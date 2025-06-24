@@ -1,10 +1,7 @@
 <template>
   <div class="visual-container">
-    <header class="visual-header">
-      <h1>Mon Portfolio - Mode Visuel</h1>
-      <button @click="changeStyle">Changer de style</button>
-    </header>
-    
+  
+    <AppHeader />
     <main class="visual-content">
       <!-- Votre contenu visuel riche ici -->
       <section class="hero">
@@ -14,15 +11,9 @@
   </div>
 </template>
 
-<script>
-export default {
-  methods: {
-    changeStyle() {
-      localStorage.removeItem('portfolioStyle')
-      this.$emit('change-style')
-    }
-  }
-}
+<script setup lang="ts">
+	import AppHeader from './AppHeader.vue';
+
 </script>
 
 <style scoped>
