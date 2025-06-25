@@ -1,107 +1,87 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button';
 import Toogletheme from './toogletheme.vue';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
+    NavigationMenu,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Phone, Mail } from 'lucide-vue-next';
-import type { NavItem } from '@/types';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-vue-next';
+import { computed } from 'vue';
 
 
-
-const mainNavItems: NavItem[] = [
-  {
-    title: 'Home',
-    href: '/',
-  },
-  {
-    title: 'Services',
-    href: '/services',
-  },
-  
-  {
-    title: 'Contact',
-    href: '/contact',
-    icon: Phone
-  }
-];
-
-
-const isActive = (href: string) => {
-  return route.path === href || 
-         (href !== '/' && route.path.startsWith(href));
-};
 </script>
 
 <template>
-  <header class="sticky top-0 z-50 w-full border-b bg-white/95 dark:bg-gray-950/95 backdrop-blur md:px-12">
-    <div class="flex h-16 items-center justify-between px-4">
-      <!-- Mobile Menu -->
-      <div class="flex items-center lg:hidden">
-        <Sheet>
-          <SheetTrigger as-child>
-            <Button variant="ghost" size="icon" class="mr-2">
-              <Menu class="h-5 w-5" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" class="w-[300px] p-6">
-            <SheetHeader class="mb-8">
-              <AppLogoIcon class="size-6" />
-            </SheetHeader>
-            <nav class="flex flex-col space-y-4">
-              <a 
-                v-for="item in mainNavItems" 
-                :key="item.title" 
-                :href="item.href" 
-                class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors"
-                :class="isActive(item.href) 
-                  ? 'bg-accent text-primary' 
-                  : 'hover:bg-gray-100 dark:hover:bg-gray-800'"
-              >
-                <component v-if="item.icon" :is="item.icon" class="h-5 w-5" />
-                {{ item.title }}
-              </a>
-            </nav>
-            
-          </SheetContent>
-        </Sheet>
-        
-      </div>
+    <div>
+        <div class="border-b border-sideba	r-border/80">
+            <div class="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
+                <!-- Mobile Menu -->
+                <div class="lg:hidden">
+                    <Sheet>
+                        <SheetTrigger :as-child="true">
+                            <Button variant="ghost" size="icon" class="mr-2 h-9 w-9">
+                                <Menu class="h-5 w-5" />
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent side="left" class="w-[300px] h-2/3 shadow-2xl bg-teal-500  rounded-br-full p-6" >
+                            <SheetTitle class="sr-only">Navigation Menu</SheetTitle>
+                            <SheetHeader class="flex justify-start text-left">
+                                <AppLogoIcon class="size-6 fill-current text-black dark:text-white" />
+                            </SheetHeader>
+                            <div class="flex h-full flex-1 flex-col justify-between space-y-4 py-6">
+                                <nav class="-mx-3 space-y-1">
+                                    <Link
+                                        href="#"
+                                        class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent"
+                                       
+                                    >
+                                       
+                                        {{ 'un' }}
+                                    </Link>
+                                </nav>
+                               
+                            </div>
+                        </SheetContent>
+                    </Sheet>
+                </div>
 
-      <!-- Desktop Logo -->
-      <RouterLink to="/" class="hidden items-center lg:flex">
-        <AppLogo class="h-7" />
-      </RouterLink>
+               
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden lg:flex lg:items-center lg:space-x-8">
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem v-for="(item, index) in mainNavItems" :key="index">
-              <RouterLink :to="item.href" custom v-slot="{ navigate, isActive }">
-                <NavigationMenuLink
-                  @click="navigate"
-                  class="text-sm cursor-pointer font-medium transition-colors px-3 py-2 rounded-md"
-                  :class="isActive 
-                    ? 'text-primary' 
-                    : 'text-gray-900 hover:text-primary dark:text-gray-100 dark:hover:text-white'"
-                >
-                  {{ item.title }}
-                </NavigationMenuLink>
-              </RouterLink>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-      </nav>
+                <!-- Desktop Menu -->
+                <div class="hidden h-full lg:flex lg:flex-1">
+                    <NavigationMenu class="ml-10 flex h-full items-stretch">
+                        <NavigationMenuList class="flex h-full items-stretch space-x-2">
+                            <NavigationMenuItem  class="relative flex h-full items-center">
+                                <Link href="#">
+                                    <NavigationMenuLink
+                                       
+                                    >
+                                        
+                                        {{ 'un' }}
+                                    </NavigationMenuLink>
+                                </Link>
+                                <div
+                                    class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black dark:bg-white"
+                                ></div>
+                            </NavigationMenuItem>
+                        </NavigationMenuList>
+                    </NavigationMenu>
+                </div>
 
-      <div class="flex items-center gap-4">
-     
-        <Toogletheme />
-      </div>
+                <div class="ml-auto flex items-center space-x-2">
+                 
+										<Toogletheme />
+
+                </div>
+            </div>
+        </div>
+
+      
     </div>
-  </header>
 </template>
