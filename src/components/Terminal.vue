@@ -1,28 +1,40 @@
 <template>
-  <div class="terminal-container" @click="focusInput">
-    <div class="terminal-header">
-      <div class="header-buttons">
-        <span class="close-btn"></span>
-        <span class="minimize-btn"></span>
-        <span class="maximize-btn"></span>
+  <div 
+    class="font-mono text-gray-100 rounded-xl overflow-hidden shadow-2xl max-w-4xl mx-auto h-[500px] flex flex-col cursor-text transition-colors duration-300"
+    :class="currentTheme"
+    @click="focusInput"
+    ref="terminalContainer"
+  >
+    <!-- Header -->
+    <div class="px-3 py-2 flex items-center" :class="headerClass">
+      <div class="flex gap-2">
+        <span class="w-3 h-3 rounded-full bg-red-500"></span>
+        <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+        <span class="w-3 h-3 rounded-full bg-green-500"></span>
       </div>
-      <div class="header-title">Terminal</div>
+      <div class="flex-1 text-center text-sm" :class="titleClass">Terminal Portfolio</div>
     </div>
     
-    <div class="terminal-content" ref="terminalContent">
-      <div v-for="(line, index) in output" :key="index" class="terminal-line">
-        <span v-if="line.type === 'command'" class="prompt">$ {{ line.text }}</span>
-        <span v-else class="output">{{ line.text }}</span>
+    <!-- Content -->
+    <div 
+      class="flex-1 p-4 overflow-y-auto text-sm leading-relaxed"
+      ref="terminalContent"
+      :class="contentClass"
+    >
+      <div v-for="(line, index) in output" :key="index" class="mb-1 break-words" ref="outputLines">
+        <span v-if="line.type === 'command'" class="text-green-400 mr-2">$ {{ line.text }}</span>
+        <span v-else class="whitespace-pre-wrap" :class="line.color || textColor">{{ line.text }}</span>
       </div>
-      <div class="terminal-input">
-        <span class="prompt">$</span>
+      <div class="flex items-center">
+        <span class="text-green-400 mr-2">$</span>
         <input
           v-model="currentCommand"
           @keyup.enter="executeCommand"
           @keyup.up="historyUp"
           @keyup.down="historyDown"
           ref="commandInput"
-          class="command-input"
+          class="flex-1 bg-transparent border-none outline-none caret-gray-100"
+          :class="textColor"
           spellcheck="false"
         />
       </div>
@@ -31,238 +43,600 @@
 </template>
 
 <script>
+import { gsap } from 'gsap';
+
+const projects = {
+  portfolio: {
+    name: "Terminal Portfolio",
+    description: "Portfolio interactif avec terminal personnalisé",
+    technologies: ["Vue 3", "Tailwind CSS", "GSAP", "JavaScript ES6+"],
+    link: "https://github.com/votreprofil/terminal-portfolio",
+    year: 2023,
+    features: [
+      "Système de commandes personnalisables",
+      "Animations fluides avec GSAP",
+      "Thème clair/sombre interactif",
+      "Présentation chronologique"
+    ]
+  },
+  ecommerce: {
+    name: "Plateforme E-commerce",
+    description: "Solution complète avec gestion de stocks et paiements",
+    technologies: ["React", "Node.js", "MongoDB", "Stripe API"],
+    link: "https://github.com/votreprofil/ecommerce-platform",
+    year: 2022
+  }
+};
+
+const timelineSections = [
+  {
+    title: "🎓 Formation Initiale",
+    content: "Master en Ingénierie Logicielle - École Polytechnique (2015-2018)\nSpécialisation en architectures distribuées et UX design"
+  },
+  {
+    title: "💼 Début de Carrière",
+    content: "Développeur Frontend chez WebSolutions (2018-2020)\n• Refonte de l'interface admin\n• Migration vers Vue.js\n• Formation des équipes"
+  },
+  {
+    title: "🚀 Projet Phare",
+    content: "Lead Developer sur l'application BankApp (2020-2022)\n• Architecture microservices\n• Sécurité financière\n• Équipe de 6 développeurs"
+  },
+  {
+    title: "🏆 Reconnaissance",
+    content: "Prix de l'innovation technique 2022\nOpen Source Contributor of the Year 2021"
+  }
+];
+
 export default {
   data() {
-		
     return {
       currentCommand: '',
       output: [
-        { type: 'output', text: 'Bienvenue dans le terminal de mon portfolio.' },
-        { type: 'output', text: 'Tapez "help" pour voir les commandes disponibles.' }
+        { type: 'output', text: 'Bienvenue dans mon portfolio interactif.' },
+        { type: 'output', text: 'Tapez "help" pour explorer mes commandes.', color: 'text-blue-400' }
       ],
       commandHistory: [],
       historyIndex: -1,
+      currentTheme: 'bg-gray-900',
+      textColor: 'text-gray-100',
+      headerClass: 'bg-gray-800',
+      titleClass: 'text-gray-400',
+      contentClass: 'bg-gray-900',
+      isTimelineActive: false,
+      currentTimelineStep: 0,
       commands: {
         help: {
           description: 'Affiche toutes les commandes disponibles',
-          execute: () => this.showHelp()
+          usage: 'help [command]',
+          execute: (args) => this.showHelp(args[0])
         },
         about: {
-          description: 'Affiche des informations sur moi',
-          execute: () => this.showAbout()
+          description: 'Présentation détaillée et compétences',
+          usage: 'about',
+          execute: () => this.showDetailedAbout()
+        },
+        skills: {
+          description: 'Mes compétences techniques par catégorie',
+          usage: 'skills [frontend|backend|devops|design]',
+          execute: (args) => this.showSkills(args[0])
+        },
+        tools: {
+          description: 'Mes outils et environnement de travail',
+          usage: 'tools',
+          execute: () => this.showTools()
         },
         projects: {
-          description: 'Liste mes projets',
-          execute: () => this.showProjects()
+          description: 'Liste de mes projets principaux',
+          usage: 'projects',
+          execute: () => this.listProjects()
+        },
+        show: {
+          description: 'Détails d\'un projet spécifique',
+          usage: 'show <project_name>',
+          execute: (args) => this.showProjectDetails(args[0])
+        },
+        random: {
+          description: 'Affiche un projet aléatoire',
+          usage: 'random',
+          execute: () => this.showRandomProject()
+        },
+        timeline: {
+          description: 'Mon parcours chronologique interactif',
+          usage: 'timeline',
+          execute: () => this.startInteractiveTimeline()
+        },
+        experience: {
+          description: 'Mes expériences professionnelles',
+          usage: 'experience',
+          execute: () => this.showProfessionalExperience()
+        },
+        contact: {
+          description: 'Mes coordonnées professionnelles',
+          usage: 'contact',
+          execute: () => this.showContactDetails()
+        },
+        theme: {
+          description: 'Change le thème (dark/light)',
+          usage: 'theme <dark|light>',
+          execute: (args) => this.changeTheme(args[0])
         },
         clear: {
           description: 'Efface le terminal',
+          usage: 'clear',
           execute: () => this.clearTerminal()
-        },
-        contact: {
-          description: 'Affiche mes informations de contact',
-          execute: () => this.showContact()
         }
-      }
-    }
+      },
+      personalData: {
+        name: "Alexandre Martin",
+        title: "Architecte Logiciel Full-Stack",
+        specialties: ["Vue.js/React", "Node.js", "UX Design", "Cloud Architecture"],
+        location: "Lyon, France",
+        email: "alex.martin@protonmail.com",
+        website: "https://alexmartin.dev",
+        github: "github.com/alex-martin-dev",
+        linkedin: "linkedin.com/in/alexmartin-dev",
+        bio: `
+Développeur passionné avec 7 ans d'expérience dans la création d'applications web complexes.
+Expert en résolution de problèmes et en optimisation des performances.
+Philosophie : "Le code est de la poésie logique".`,
+        languages: [
+          { name: "Français", level: "Natif" },
+          { name: "Anglais", level: "Courant (TOEFL 950)" },
+          { name: "Espagnol", level: "Intermediaire" }
+        ]
+      },
+      skillsData: {
+        frontend: {
+          title: "Frontend",
+          items: [
+            { name: "Vue.js", level: 5, years: 5 },
+            { name: "React", level: 4, years: 3 },
+            { name: "TypeScript", level: 5, years: 4 },
+            { name: "TailwindCSS", level: 4, years: 3 },
+            { name: "GSAP", level: 3, years: 2 }
+          ]
+        },
+        backend: {
+          title: "Backend",
+          items: [
+            { name: "Node.js", level: 5, years: 6 },
+            { name: "Python", level: 4, years: 3 },
+            { name: "GraphQL", level: 4, years: 3 },
+            { name: "REST API", level: 5, years: 5 }
+          ]
+        },
+        devops: {
+          title: "DevOps & Cloud",
+          items: [
+            { name: "Docker", level: 4, years: 3 },
+            { name: "AWS", level: 3, years: 2 },
+            { name: "CI/CD Pipelines", level: 4, years: 3 }
+          ]
+        },
+        design: {
+          title: "UI/UX Design",
+          items: [
+            { name: "Figma", level: 4, years: 3 },
+            { name: "Adobe XD", level: 3, years: 2 },
+            { name: "Prototypage", level: 4, years: 3 }
+          ]
+        }
+      },
+      toolsData: [
+        {
+          category: "Éditeurs & IDE",
+          items: ["VS Code", "WebStorm", "Vim"]
+        },
+        {
+          category: "Collaboration",
+          items: ["Git/GitHub", "Jira", "Slack", "Figma"]
+        },
+        {
+          category: "Environnement",
+          items: ["MacOS (zsh)", "Linux (Ubuntu)", "Windows (WSL2)"]
+        },
+        {
+          category: "Productivité",
+          items: ["Notion", "Trello", "Obsidian"]
+        }
+      ],
+      experienceData: [
+        {
+          position: "Lead Developer",
+          company: "TechInnovation",
+          period: "2021 - Présent",
+          achievements: [
+            "Dirige une équipe de 8 développeurs",
+            "Conçu l'architecture d'une plateforme SaaS",
+            "Optimisation des performances (réduction de 40% du temps de chargement)"
+          ],
+          stack: ["Vue 3", "Node.js", "AWS", "Microservices"]
+        },
+        {
+          position: "Développeur Full-Stack",
+          company: "WebAgency",
+          period: "2018 - 2021",
+          achievements: [
+            "Développement de 15+ applications client",
+            "Mise en place de pratiques CI/CD",
+            "Formation des juniors aux bonnes pratiques"
+          ],
+          stack: ["React", "Express.js", "MongoDB"]
+        }
+      ]
+    };
   },
   mounted() {
-    this.focusInput()
+    this.focusInput();
+    document.addEventListener('keydown', this.handleTimelineNavigation);
+    this.animateTerminalEntrance();
+  },
+  beforeDestroy() {
+    document.removeEventListener('keydown', this.handleTimelineNavigation);
   },
   methods: {
+    animateTerminalEntrance() {
+      gsap.from(this.$refs.terminalContainer, {
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+        ease: "power3.out"
+      });
+    },
     focusInput() {
-      this.$refs.commandInput.focus()
+      this.$refs.commandInput.focus();
     },
     executeCommand() {
-			
-      const cmd = this.currentCommand.trim()
-      if (!cmd) return
+      if (this.isTimelineActive) return;
       
-      // Ajouter la commande à l'historique
-      this.commandHistory.push(cmd)
-      this.historyIndex = this.commandHistory.length
+      const cmd = this.currentCommand.trim();
+      if (!cmd) return;
       
-      // Afficher la commande
-      this.output.push({ type: 'command', text: cmd })
+      this.commandHistory.push(cmd);
+      this.historyIndex = this.commandHistory.length;
       
-      // Exécuter la commande
-      const [command, ...args] = cmd.split(' ')
-      this.processCommand(command.toLowerCase(), args)
+      // Animation de la commande
+      gsap.fromTo(
+        this.$refs.outputLines[this.output.length],
+        { opacity: 0, x: -20 },
+        { opacity: 1, x: 0, duration: 0.3 }
+      );
       
-      // Réinitialiser l'entrée
-      this.currentCommand = ''
+      this.output.push({ type: 'command', text: cmd });
       
-      // Faire défiler vers le bas
+      const [command, ...args] = cmd.split(' ');
+      this.processCommand(command.toLowerCase(), args);
+      
+      this.currentCommand = '';
       this.$nextTick(() => {
-        this.$refs.terminalContent.scrollTop = this.$refs.terminalContent.scrollHeight
-      })
+        this.scrollToBottom();
+      });
     },
     processCommand(command, args) {
       if (this.commands[command]) {
-        this.commands[command].execute(args)
+        this.commands[command].execute(args);
       } else {
-        this.output.push({ 
-          type: 'output', 
-          text: `Commande non reconnue: ${command}. Tapez "help" pour la liste des commandes.`
-        })
+        this.showError(`Commande inconnue: ${command}. Tapez "help" pour la liste.`);
       }
     },
+    scrollToBottom() {
+      this.$refs.terminalContent.scrollTop = this.$refs.terminalContent.scrollHeight;
+    },
     historyUp() {
-      if (this.commandHistory.length === 0) return
-      
       if (this.historyIndex > 0) {
-        this.historyIndex--
-        this.currentCommand = this.commandHistory[this.historyIndex]
+        this.historyIndex--;
+        this.currentCommand = this.commandHistory[this.historyIndex];
       }
     },
     historyDown() {
       if (this.historyIndex < this.commandHistory.length - 1) {
-        this.historyIndex++
-        this.currentCommand = this.commandHistory[this.historyIndex]
+        this.historyIndex++;
+        this.currentCommand = this.commandHistory[this.historyIndex];
       } else {
-        this.historyIndex = this.commandHistory.length
-        this.currentCommand = ''
+        this.historyIndex = this.commandHistory.length;
+        this.currentCommand = '';
       }
     },
-    showHelp() {
-      const helpText = ['Commandes disponibles:', ...Object.keys(this.commands).map(
-        cmd => `  ${cmd.padEnd(10)} - ${this.commands[cmd].description}`
-      )]
-      this.output.push({ type: 'output', text: helpText.join('\n') })
+    showHelp(commandName) {
+      if (commandName) {
+        const cmd = this.commands[commandName];
+        if (cmd) {
+          this.output.push({
+            type: 'output',
+            text: `Aide pour ${commandName}:\nDescription: ${cmd.description}\nUsage: ${cmd.usage}`,
+            color: 'text-yellow-400'
+          });
+          return;
+        }
+        this.showError(`Commande "${commandName}" introuvable.`);
+        return;
+      }
+
+      const helpText = [
+        'Commandes disponibles:',
+        ...Object.entries(this.commands).map(
+          ([name, cmd]) => `  ${name.padEnd(12)} - ${cmd.description}`
+        ),
+        '',
+        'Pour plus d\'aide: help <command>'
+      ];
+      
+      this.showFormattedText(helpText, 'text-cyan-400');
     },
-    showAbout() {
+    showDetailedAbout() {
+      const { name, title, specialties, bio, languages } = this.personalData;
+      
       const aboutText = [
-        'À propos de moi:',
-        '  Nom: Votre Nom',
-        '  Rôle: Développeur Full Stack',
-        '  Spécialités: Vue.js, Node.js, UI/UX',
-        '  Passion: Créer des expériences utilisateur exceptionnelles'
-      ]
-      this.output.push({ type: 'output', text: aboutText.join('\n') })
+        `=== ${name.toUpperCase()} ===`,
+        `Titre: ${title}`,
+        `Spécialités: ${specialties.join(', ')}`,
+        '',
+        `BIO:`,
+        bio,
+        '',
+        `Langues:`,
+        ...languages.map(lang => `  ${lang.name}: ${lang.level}`),
+        '',
+        `Explorez mes compétences avec:`,
+        `- skills - Mes compétences techniques`,
+        `- tools - Mon environnement de travail`,
+        `- timeline - Mon parcours professionnel`
+      ];
+      
+      this.showFormattedText(aboutText, 'text-purple-400');
     },
-    showProjects() {
-      const projects = [
-        'Mes projets:',
-        '  1. Application E-commerce - Vue.js, Node.js',
-        '  2. Dashboard Analytique - React, D3.js',
-        '  3. Réseau Social - React Native, GraphQL'
-      ]
-      this.output.push({ type: 'output', text: projects.join('\n') })
+    showSkills(category) {
+      if (!category) {
+        const categories = Object.keys(this.skillsData);
+        this.showFormattedText(
+          [
+            'Catégories de compétences disponibles:',
+            ...categories.map(cat => `  - ${cat}`),
+            '',
+            'Usage: skills <category> pour les détails'
+          ],
+          'text-blue-400'
+        );
+        return;
+      }
+      
+      const categoryData = this.skillsData[category.toLowerCase()];
+      if (!categoryData) {
+        this.showError(`Catégorie "${category}" introuvable.`);
+        return;
+      }
+      
+      const skillsText = [
+        `=== ${categoryData.title.toUpperCase()} ===`,
+        ...categoryData.items.map(item => {
+          const stars = '★'.repeat(item.level) + '☆'.repeat(5 - item.level);
+          return `${item.name.padEnd(15)} ${stars} (${item.years} an(s))`;
+        })
+      ];
+      
+      this.showFormattedText(skillsText, 'text-green-400');
+    },
+    showTools() {
+      const toolsText = ['=== MES OUTILS ==='];
+      
+      this.toolsData.forEach(group => {
+        toolsText.push(`\n${group.category}:`);
+        toolsText.push(...group.items.map(item => `  - ${item}`));
+      });
+      
+      this.showFormattedText(toolsText, 'text-orange-400');
+    },
+    showProfessionalExperience() {
+      const expText = ['=== EXPÉRIENCE PROFESSIONNELLE ==='];
+      
+      this.experienceData.forEach((exp, index) => {
+        expText.push(
+          `\n${index + 1}. ${exp.position} @ ${exp.company} (${exp.period})`,
+          `Technologies: ${exp.stack.join(', ')}`,
+          `Réalisations:`,
+          ...exp.achievements.map(ach => `  • ${ach}`)
+        );
+      });
+      
+      this.showFormattedText(expText, 'text-blue-400');
+    },
+    listProjects() {
+      const projectList = [
+        'Mes projets principaux:',
+        ...Object.keys(projects).map(
+          key => `  ${key.padEnd(12)} - ${projects[key].name}`
+        ),
+        '',
+        'Pour les détails: show <project_name>'
+      ];
+      
+      this.showFormattedText(projectList, 'text-purple-400');
+    },
+    showProjectDetails(projectKey) {
+      if (!projectKey) {
+        this.showError('Usage: show <project_name>');
+        return;
+      }
+      
+      const project = projects[projectKey];
+      if (!project) {
+        this.showError(`Projet "${projectKey}" introuvable. Tapez "projects" pour la liste.`);
+        return;
+      }
+      
+      const projectText = [
+        `=== ${project.name.toUpperCase()} ===`,
+        `Année: ${project.year}`,
+        `Description: ${project.description}`,
+        '',
+        `Technologies:`,
+        `  ${project.technologies.join(', ')}`,
+        '',
+        `Fonctionnalités:`,
+        ...project.features?.map(feat => `  • ${feat}`) || ['  Aucune information supplémentaire'],
+        '',
+        `Lien: ${project.link}`
+      ];
+      
+      this.showFormattedText(projectText, 'text-green-400');
+    },
+    showRandomProject() {
+      const keys = Object.keys(projects);
+      const randomKey = keys[Math.floor(Math.random() * keys.length)];
+      
+      this.output.push({
+        type: 'output',
+        text: 'Projet aléatoire sélectionné:',
+        color: 'text-yellow-400'
+      });
+      
+      this.showProjectDetails(randomKey);
+    },
+    startInteractiveTimeline() {
+      this.isTimelineActive = true;
+      this.currentTimelineStep = 0;
+      
+      this.showFormattedText(
+        ['=== PARCOURS INTERACTIF ===', 'Appuyez sur une touche pour continuer...'],
+        'text-cyan-400'
+      );
+      
+      this.showNextTimelineStep();
+    },
+    showNextTimelineStep() {
+      if (this.currentTimelineStep >= timelineSections.length) {
+        this.isTimelineActive = false;
+        this.showFormattedText(
+          ['Fin de la chronologie.', 'Tapez "help" pour voir les commandes disponibles.'],
+          'text-blue-400'
+        );
+        return;
+      }
+      
+      const section = timelineSections[this.currentTimelineStep];
+      this.showFormattedText(
+        [`\n${section.title}`, section.content],
+        'text-purple-400'
+      );
+      
+      this.currentTimelineStep++;
+    },
+    handleTimelineNavigation(e) {
+      if (this.isTimelineActive && e.key.length === 1) {
+        this.showNextTimelineStep();
+      }
+    },
+    showContactDetails() {
+      const { email, website, github, linkedin } = this.personalData;
+      
+      const contactText = [
+        '=== COORDONNÉES ===',
+        `Email: ${email}`,
+        `Portfolio: ${website}`,
+        `GitHub: ${github}`,
+        `LinkedIn: ${linkedin}`
+      ];
+      
+      this.showFormattedText(contactText, 'text-blue-400');
+    },
+    changeTheme(theme) {
+      const themes = {
+        dark: {
+          bg: 'bg-gray-900',
+          text: 'text-gray-100',
+          header: 'bg-gray-800',
+          title: 'text-gray-400'
+        },
+        light: {
+          bg: 'bg-gray-100',
+          text: 'text-gray-900',
+          header: 'bg-gray-200',
+          title: 'text-gray-600'
+        }
+      };
+      
+      if (!theme || !themes[theme]) {
+        this.showError('Usage: theme <dark|light>');
+        return;
+      }
+      
+      gsap.to(this.$refs.terminalContainer, {
+        backgroundColor: theme === 'dark' ? '#111827' : '#f3f4f6',
+        color: theme === 'dark' ? '#f3f4f6' : '#111827',
+        duration: 0.5,
+        onComplete: () => {
+          const selectedTheme = themes[theme];
+          this.currentTheme = selectedTheme.bg;
+          this.textColor = selectedTheme.text;
+          this.headerClass = selectedTheme.header;
+          this.titleClass = selectedTheme.title;
+          this.contentClass = selectedTheme.bg;
+          
+          this.showFormattedText(
+            `Thème ${theme} activé`,
+            theme === 'dark' ? 'text-green-400' : 'text-blue-600'
+          );
+        }
+      });
     },
     clearTerminal() {
-      this.output = []
+      gsap.to(this.$refs.outputLines, {
+        opacity: 0,
+        y: -20,
+        duration: 0.3,
+        stagger: 0.05,
+        onComplete: () => {
+          this.output = [];
+        }
+      });
     },
-    showContact() {
-      const contact = [
-        'Contact:',
-        '  Email: contact@example.com',
-        '  GitHub: github.com/votreprofil',
-        '  LinkedIn: linkedin.com/in/votreprofil'
-      ]
-      this.output.push({ type: 'output', text: contact.join('\n') })
+    showFormattedText(lines, color = 'text-gray-100') {
+      const text = Array.isArray(lines) ? lines.join('\n') : lines;
+      this.output.push({ type: 'output', text, color });
+      this.scrollToBottom();
+    },
+    showError(message) {
+      this.showFormattedText(message, 'text-red-400');
     }
   }
-}
+};
 </script>
 
-<style scoped>
-.terminal-container {
-  font-family: 'Courier New', monospace;
-  background-color: #1e1e1e;
-  color: #f0f0f0;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  max-width: 1000px;
-  margin: 0 auto;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-}
-
-.terminal-header {
-  background-color: #3a3a3a;
-  padding: 8px 12px;
-  display: flex;
-  align-items: center;
-}
-
-.header-buttons {
-  display: flex;
-  gap: 8px;
-}
-
-.header-buttons span {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.close-btn { background-color: #ff5f56; }
-.minimize-btn { background-color: #ffbd2e; }
-.maximize-btn { background-color: #27c93f; }
-
-.header-title {
-  flex-grow: 1;
-  text-align: center;
-  font-size: 14px;
-  color: #b3b3b3;
-}
-
-.terminal-content {
-  flex-grow: 1;
-  padding: 15px;
-  overflow-y: auto;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.terminal-line {
-  margin-bottom: 5px;
-  word-break: break-word;
-}
-
-.prompt {
-  color: #5ff967;
-  margin-right: 8px;
-}
-
-.output {
-  white-space: pre-wrap;
-}
-
-.terminal-input {
-  display: flex;
-  align-items: center;
-}
-
-.command-input {
-  flex-grow: 1;
-  background: transparent;
-  border: none;
-  color: #f0f0f0;
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
-  outline: none;
-  caret-color: #f0f0f0;
-}
-
-/* Barre de défilement */
-.terminal-content::-webkit-scrollbar {
+<style>
+/* Barre de défilement personnalisée */
+::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
-.terminal-content::-webkit-scrollbar-track {
-  background: #2a2a2a;
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
 }
 
-.terminal-content::-webkit-scrollbar-thumb {
-  background: #5a5a5a;
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
 }
 
-.terminal-content::-webkit-scrollbar-thumb:hover {
-  background: #7a7a7a;
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Styles spécifiques au thème clair */
+.bg-gray-100 ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.bg-gray-100 ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.bg-gray-100 ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Animation d'entrée pour les nouvelles lignes */
+.terminal-line {
+  will-change: transform, opacity;
 }
 </style>
