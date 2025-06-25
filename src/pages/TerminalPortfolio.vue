@@ -5,23 +5,41 @@
               <StyleSwitcher />
 
     </div>
-    
-    <div class="terminal-content">
-      <!-- Votre contenu en style terminal ici -->
-      <p>$ Bienvenue dans mon portfolio</p>
-      <p>$ Tapez "help" pour voir les commandes disponibles</p>
-    </div>
+
+
+		  <div ref="terminalContainer" class="terminal-container"></div>
   </div>
 </template>
 
-<script>
+<script lang="ts" setup>
+import { onMounted, ref } from 'vue'
+import { Terminal } from '@xterm/xterm';
 import StyleSwitcher from '@/components/StyleSwitcher.vue'
 
-export default {
-  components: {
-	StyleSwitcher
+const terminalContainer = ref<HTMLElement | null>(null)
+let term: Terminal
+
+onMounted(() => {
+  if (terminalContainer.value) {
+    term = new Terminal()
+    term.open(terminalContainer.value)
+    term.write('Bienvenue dans le terminal !\r\n')
+
+    // Gestion de l'entrée utilisateur
+    let input = ''
+    term.onData((data) => {
+      const char = data.charCodeAt(0)
+      if (char === 13) {
+        // Entrée
+        term.write(`\r\n> Commande entrée : ${input}\r\n`)
+        input = ''
+      } else {
+        input += data
+        term.write(data)
+      }
+    })
   }
-}
+})
 </script>
 
 <style scoped>
@@ -32,4 +50,5 @@ export default {
   font-family: monospace;
   min-height: 100vh;
 }
+
 </style>
