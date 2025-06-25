@@ -43,7 +43,7 @@ export default {
 
 <template>
   <div :class="{'terminal-mode': currentStyle === 'terminal'}">
-    <StyleSwitcher v-if="currentStyle" />
+ <!--    <StyleSwitcher v-if="currentStyle" /> -->
     
     <StyleSelector 
       v-if="showStyleSelector" 

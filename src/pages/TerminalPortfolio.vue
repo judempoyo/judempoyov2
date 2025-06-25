@@ -2,7 +2,8 @@
   <div class="terminal-container">
     <div class="terminal-header">
       <h1>Mon Portfolio - Mode Terminal</h1>
-      <button @click="changeStyle">Changer de style</button>
+              <StyleSwitcher />
+
     </div>
     
     <div class="terminal-content">
@@ -14,12 +15,11 @@
 </template>
 
 <script>
+import StyleSwitcher from '@/components/StyleSwitcher.vue'
+
 export default {
-  methods: {
-    changeStyle() {
-      localStorage.removeItem('portfolioStyle')
-      this.$emit('change-style')
-    }
+  components: {
+	StyleSwitcher
   }
 }
 </script>
