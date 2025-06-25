@@ -1,6 +1,6 @@
 <template>
   <div 
-    class="font-mono text-gray-100 rounded-xl overflow-hidden shadow-2xl max-w-4xl mx-auto h-[500px] flex flex-col cursor-text transition-colors duration-300"
+    class="font-mono text-gray-100 rounded-xl overflow-hidden shadow-2xl max-w-4xl mx-auto min-h-100 flex flex-col cursor-text transition-colors duration-300"
     :class="currentTheme"
     @click="focusInput"
     ref="terminalContainer"
