@@ -260,37 +260,36 @@ export default {
       
       this.showFormattedText(aboutText, 'text-purple-400');
     },
-    showSkills(category) {
-      if (!category) {
-        const categories = Object.keys(this.skillsData);
-        this.showFormattedText(
-          [
-            'Catégories de compétences disponibles:',
-            ...categories.map(cat => `  - ${cat}`),
-            '',
-            'Usage: skills <category> pour les détails'
-          ],
-          'text-blue-400'
-        );
-        return;
-      }
-      
-      const categoryData = this.skillsData[category.toLowerCase()];
-      if (!categoryData) {
-        this.showError(`Catégorie "${category}" introuvable.`);
-        return;
-      }
-      
-      const skillsText = [
-        `=== ${categoryData.title.toUpperCase()} ===`,
-        ...categoryData.items.map(item => {
-          const stars = '★'.repeat(item.level) + '☆'.repeat(5 - item.level);
-          return `${item.name.padEnd(15)} ${stars} (${item.years} an(s))`;
-        })
-      ];
-      
-      this.showFormattedText(skillsText, 'text-green-400');
-    },
+     showSkills(category) {
+    if (!category) {
+      // Afficher toutes les catégories
+      const categories = Object.keys(this.skillsData);
+      this.output.push({
+        type: 'output',
+        text: ['Compétences disponibles:', ...categories.map(
+          cat => `- ${cat} (${this.skillsData[cat].items.length} compétences)`
+        )].join('\n'),
+        color: 'text-blue-400'
+      });
+      return;
+    }
+
+    const categoryData = this.skillsData[category.toLowerCase()];
+    if (!categoryData) {
+      this.showError(`Catégorie "${category}" non trouvée.`);
+      return;
+    }
+
+    const skillsText = [
+      `=== ${categoryData.title.toUpperCase()} ===`,
+      ...categoryData.items.map(item => {
+        const stars = '★'.repeat(item.level) + '☆'.repeat(5 - item.level);
+        return `${item.name.padEnd(15)} ${stars} (${item.years} ans)`;
+      })
+    ];
+    
+    this.showFormattedText(skillsText, 'text-green-400');
+  },
     showTools() {
       const toolsText = ['=== MES OUTILS ==='];
       

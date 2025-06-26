@@ -297,53 +297,81 @@ export default {
     </section>
 
     <!-- About Section -->
-    <section 
-      id="about" 
-      class="py-20 px-6 bg-zinc-50 dark:bg-zinc-800/30"
-      ref="about"
-    >
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center dark:text-white" ref="aboutTitle">
-          À <span class="text-teal-600 dark:text-teal-400">propos</span> de moi
-        </h2>
+<section id="about" class="py-20 px-6 bg-zinc-50 dark:bg-zinc-800/30" ref="about">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center dark:text-white" ref="aboutTitle">
+      À <span class="text-teal-600 dark:text-teal-400">propos</span> de moi
+    </h2>
+    
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6" ref="aboutText">
+        <p class="text-lg text-zinc-700 dark:text-zinc-300">
+          {{ sharedData.personal.bio }}
+        </p>
         
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div class="space-y-6" ref="aboutText">
-            <p class="text-lg text-zinc-700 dark:text-zinc-300">
-              {{ sharedData.personal.bio }}
-            </p>
-            <div class="pt-4">
-              <h3 class="text-xl font-semibold mb-4 dark:text-white">Compétences</h3>
-              <div class="flex flex-wrap gap-3">
-                <span 
-                  v-for="(skill, index) in sharedData.skills" 
-                  :key="index"
-                  class="px-4 py-2 bg-white dark:bg-zinc-700 rounded-full shadow-sm border border-zinc-200 dark:border-zinc-600 dark:text-white"
-                >
-                  {{ skill }}
-                </span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="relative h-80" ref="aboutVisual">
+        <!-- Section Compétences intégrée -->
+        <div>
+          <h3 class="text-xl font-semibold mb-4 dark:text-white">Mes Compétences</h3>
+          <div class="grid grid-cols-2 gap-4">
             <div 
-              v-for="(card, index) in aboutCards" 
-              :key="index"
-              class="absolute bg-white dark:bg-zinc-800 p-6 rounded-xl shadow-lg border border-zinc-100 dark:border-zinc-700"
-              :class="card.class"
+              v-for="(category, key) in sharedData.skills" 
+              :key="key"
+              class="bg-white dark:bg-zinc-800 p-4 rounded-lg shadow-sm"
             >
-              <div class="w-10 h-10 mb-4 rounded-full flex items-center justify-center" :class="card.bg">
-                <component :is="card.icon" class="w-6 h-6" :class="card.color" />
+              <h4 class="font-medium text-teal-600 dark:text-teal-400 mb-2">
+                {{ category.title }}
+              </h4>
+              <div class="space-y-2">
+                <div 
+                  v-for="(skill, index) in category.items" 
+                  :key="index"
+                  class="text-sm  p-3 rounded-lg bg-zinc-50 dark:bg-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-600 transition-colors"
+                >
+                  <div class="flex justify-between">
+                    <span class="dark:text-zinc-300">{{ skill.name }}</span>
+                    <span class="text-zinc-500 dark:text-zinc-400 text-xs">
+                      {{ skill.years }} an{{ skill.years > 1 ? 's' : '' }}
+                    </span>
+                  </div>
+                  <div class="flex items-center mt-1">
+                    <div class="flex mr-2">
+                      <span 
+                        v-for="i in 5" 
+                        :key="i"
+                        class="text-sm"
+                        :class="{
+                          'text-yellow-500': i <= skill.level,
+                          'text-zinc-300 dark:text-zinc-600': i > skill.level
+                        }"
+                      >
+                        ★
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3 class="font-semibold mb-2 dark:text-white">{{ card.title }}</h3>
-              <p class="text-zinc-600 dark:text-zinc-400 text-sm">{{ card.text }}</p>
             </div>
           </div>
         </div>
       </div>
-    </section>
-
+      
+      <div class="relative h-80" ref="aboutVisual">
+        <div 
+          v-for="(card, index) in aboutCards" 
+          :key="index"
+          class="absolute bg-white dark:bg-zinc-800 p-6 rounded-xl shadow-lg border border-zinc-100 dark:border-zinc-700"
+          :class="card.class"
+        >
+          <div class="w-10 h-10 mb-4 rounded-full flex items-center justify-center" :class="card.bg">
+            <component :is="card.icon" class="w-6 h-6" :class="card.color" />
+          </div>
+          <h3 class="font-semibold mb-2 dark:text-white">{{ card.title }}</h3>
+          <p class="text-zinc-600 dark:text-zinc-400 text-sm">{{ card.text }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
     <!-- Projects Section -->
     <section id="projects" class="py-20 px-6 bg-white dark:bg-zinc-900" ref="projectsSection">
       <div class="max-w-7xl mx-auto">
@@ -361,11 +389,11 @@ export default {
             <div class="relative overflow-hidden h-60">
               <img 
                 :src="project.image" 
-                :alt="project.title" 
+                :alt="project.name" 
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               >
               <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                <h3 class="text-xl font-semibold text-white">{{ project.title }}</h3>
+                <h3 class="text-xl font-semibold text-white">{{ project.name }}</h3>
               </div>
             </div>
             <div class="p-6">
@@ -373,7 +401,7 @@ export default {
               <div class="flex justify-between items-center">
                 <div class="flex gap-2">
                   <span 
-                    v-for="(tag, i) in project.tags" 
+                    v-for="(tag, i) in project.technologies" 
                     :key="i"
                     class="text-xs px-2 py-1 bg-zinc-100 dark:bg-zinc-700 rounded-full dark:text-white"
                   >

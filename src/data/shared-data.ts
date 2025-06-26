@@ -4,6 +4,7 @@ export const sharedData = {
         name: "Jude mpoyo",
         title: "Architecte Logiciel Full-Stack",
         specialties: ["Vue.js/React", "Node.js", "UX Design", "Cloud Architecture"],
+        shortBio: "Je crée des solutions web innovantes et performantes.",
         location: "Lyon, France",
         email: "alex.martin@protonmail.com",
         website: "https://alexmartin.dev",
@@ -103,8 +104,8 @@ Philosophie : "Le code est de la poésie logique".`,
   projects: {
   portfolio: {
     name: "Terminal Portfolio",
-    description: "Portfolio interactif avec terminal personnalisé",
-    technologies: ["Vue 3", "Tailwind CSS", "GSAP", "JavaScript ES6+"],
+    description: "Portfolio interactif avec terminal personnalisé ",
+    technologies: ["Vue 3", "Tailwind", "GSAP", "JS ES6+"],
     link: "https://github.com/votreprofil/terminal-portfolio",
     year: 2023,
     features: [
@@ -112,16 +113,32 @@ Philosophie : "Le code est de la poésie logique".`,
       "Animations fluides avec GSAP",
       "Thème clair/sombre interactif",
       "Présentation chronologique"
-    ]
+    ],
+   image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
   },
   ecommerce: {
     name: "Plateforme E-commerce",
     description: "Solution complète avec gestion de stocks et paiements",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe API"],
+    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
     link: "https://github.com/votreprofil/ecommerce-platform",
-    year: 2022
-  }
+    year: 2022,
+    image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
+  },
+    dashboard: {
+    name: "Dashboard Analytique",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, quis quas adipisci molestiae officiis numquam soluta deleniti commodi sequi ipsum, a incidunt voluptatibus quae. Excepturi est at unde nobis minima.",
+    technologies: ["PHP", "Laravel", "vuejs"],
+    link: "https://github.com/votreprofil/ecommerce-platform",
+    year: 2022,
+   image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
+  },
+  
+  								
+
 },
+
+
+
 
   timeline:  [
   {
@@ -142,8 +159,28 @@ Philosophie : "Le code est de la poésie logique".`,
   }
 ],
 
-
-
+  socialLinks: [
+    { 
+      icon: "GithubIcon", 
+      link: "https://github.com/judempoyo",
+      name: "GitHub"
+    },
+    { 
+      icon: "LinkedinIcon", 
+      link: "https://linkedin.com/in/judempoyo",
+      name: "LinkedIn"
+    },
+    { 
+      icon: "TwitterIcon", 
+      link: "https://twitter.com/judempoyo",
+      name: "Twitter"
+    },
+    { 
+      icon: "InstagramIcon", 
+      link: "https://instagram.com/judempoyo",
+      name: "Instagram"
+    }
+  ],
   contactMethods: {
     whatsapp: {
       name: "WhatsApp",
