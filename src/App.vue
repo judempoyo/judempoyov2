@@ -4,9 +4,10 @@ import StyleSelector from '@/components/StyleSelector.vue'
 import TerminalPortfolio from '@/pages/TerminalPortfolio.vue'
 import VisualPortfolio from '@/pages/VisualPortfolio.vue'
 import StyleSwitcher from './components/StyleSwitcher.vue'
+import ToogleTheme from './components/ToogleTheme.vue'
 
 export default {
-  components: { StyleSelector, TerminalPortfolio, VisualPortfolio, StyleSwitcher },
+  components: { StyleSelector, TerminalPortfolio, VisualPortfolio, StyleSwitcher, ToogleTheme },
   setup() {
     const currentStyle = ref(null)
     const showStyleSelector = ref(false)
@@ -45,12 +46,12 @@ export default {
   <div :class="{'terminal-mode': currentStyle === 'terminal'}">
  <!--    <StyleSwitcher v-if="currentStyle" /> -->
     
+
     <StyleSelector 
       v-if="showStyleSelector" 
       @style-selected="handleStyleSelection"
       @close="showStyleSelector = false"
     />
-
     <TerminalPortfolio v-else-if="currentStyle === 'terminal'" />
     <VisualPortfolio v-else-if="currentStyle === 'visual'" />
   </div>

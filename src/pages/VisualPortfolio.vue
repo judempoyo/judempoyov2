@@ -15,6 +15,7 @@ import {
   InstagramIcon
 } from 'lucide-vue-next'
 import StyleSwitcher from '@/components/StyleSwitcher.vue'
+import ToogleTheme from '@/components/ToogleTheme.vue'
 
 
 gsap.registerPlugin(ScrollTrigger)
@@ -31,7 +32,8 @@ export default {
     GithubIcon,
     LinkedinIcon,
     InstagramIcon,
-		StyleSwitcher
+		StyleSwitcher,
+		ToogleTheme
   },
   emits: ['change-style'],
   setup(props, { emit }) {
@@ -275,6 +277,7 @@ export default {
             {{ link.text }}
           </a>
         </div>
+				<ToogleTheme />
       </div>
     </nav>
 
