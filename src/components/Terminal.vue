@@ -12,7 +12,7 @@
         <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
         <span class="w-3 h-3 rounded-full bg-green-500"></span>
       </div>
-      <div class="flex-1 text-center text-sm" :class="titleClass">Terminal Portfolio</div>
+      <div class="flex-1 text-center text-sm" :class="titleClass">Jude MPOYO</div>
     </div>
     
     <!-- Content -->

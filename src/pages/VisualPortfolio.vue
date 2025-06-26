@@ -15,8 +15,8 @@ import {
   InstagramIcon
 } from 'lucide-vue-next'
 import StyleSwitcher from '@/components/StyleSwitcher.vue'
-import ToogleTheme from '@/components/ToogleTheme.vue'
-
+import ToggleTheme from '@/components/ToggleTheme.vue'
+import { sharedData } from '@/data/shared-data'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -32,8 +32,8 @@ export default {
     GithubIcon,
     LinkedinIcon,
     InstagramIcon,
-		StyleSwitcher,
-		ToogleTheme
+    StyleSwitcher,
+    ToggleTheme
   },
   emits: ['change-style'],
   setup(props, { emit }) {
@@ -44,62 +44,29 @@ export default {
       { id: 'contact', text: 'Contact' }
     ])
 
-    const skills = ref([
-      'Vue.js', 'React', 'JavaScript', 'TypeScript', 
-      'Tailwind CSS', 'GSAP', 'Node.js', 'UI/UX Design'
-    ])
-
-    const projects = ref([
-      {
-        title: 'Application E-commerce',
-        description: 'Plateforme de vente en ligne avec paiement sécurisé et gestion de stock.',
-        tags: ['Vue.js', 'Node.js', 'MongoDB'],
-        image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
-      },
-      {
-        title: 'Dashboard Analytique',
-        description: 'Tableau de bord de données en temps réel avec visualisations interactives.',
-        tags: ['React', 'D3.js', 'Firebase'],
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
-      },
-      {
-        title: 'Réseau Social',
-        description: 'Application mobile de réseau social avec messagerie instantanée.',
-        tags: ['React Native', 'GraphQL', 'AWS'],
-        image: 'https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
-      }
-    ])
-
-    const socialLinks = ref([
-      { icon: 'TwitterIcon', link: '#' },
-      { icon: 'GithubIcon', link: '#' },
-      { icon: 'LinkedinIcon', link: '#' },
-      { icon: 'InstagramIcon', link: '#' }
-    ])
-
     const aboutCards = ref([
       {
         title: 'Développement Frontend',
         text: 'Création d\'interfaces utilisateur réactives et accessibles',
         icon: 'CodeIcon',
-        bg: 'bg-teal-100',
-        color: 'text-teal-600',
+        bg: 'bg-teal-100 dark:bg-teal-900/50',
+        color: 'text-teal-600 dark:text-teal-400',
         class: 'top-0 left-0 w-48'
       },
       {
         title: 'Design UI/UX',
         text: 'Conception d\'expériences utilisateur intuitives et esthétiques',
         icon: 'PaletteIcon',
-        bg: 'bg-indigo-100',
-        color: 'text-indigo-600',
+        bg: 'bg-indigo-100 dark:bg-indigo-900/50',
+        color: 'text-indigo-600 dark:text-indigo-400',
         class: 'top-12 right-0 w-56'
       },
       {
         title: 'Optimisation',
         text: 'Performances et SEO pour un meilleur référencement',
         icon: 'TerminalIcon',
-        bg: 'bg-blue-100',
-        color: 'text-blue-600',
+        bg: 'bg-blue-100 dark:bg-blue-900/50',
+        color: 'text-blue-600 dark:text-blue-400',
         class: 'bottom-0 left-1/4 w-52'
       }
     ])
@@ -129,11 +96,7 @@ export default {
       }
     }
 
-    const changeStyle = () => {
-      emit('change-style')
-    }
-
-    onMounted(() => {
+      onMounted(() => {
       gsap.from(heroTitle.value, {
         opacity: 0,
         y: 50,
@@ -235,10 +198,8 @@ export default {
     })
 
     return {
+      sharedData,
       navLinks,
-      skills,
-      projects,
-      socialLinks,
       aboutCards,
       hero,
       heroTitle,
@@ -254,16 +215,16 @@ export default {
       projectCards,
       contact,
       contactTitle,
-      scrollToSection,
-      changeStyle
+      scrollToSection
     }
   }
 }
 </script>
+
 <template>
-  <div class="visual-portfolio min-h-screen bg-gradient-to-br from-zinc-50 to-white">
+  <div class="visual-portfolio min-h-screen bg-white dark:bg-zinc-900 transition-colors duration-300">
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 backdrop-blur-md bg-white/80 shadow-sm">
+    <nav class="fixed w-full z-50 backdrop-blur-md bg-white/80 dark:bg-zinc-900/80 shadow-sm">
       <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <StyleSwitcher />
         <div class="hidden md:flex gap-6">
@@ -271,13 +232,13 @@ export default {
             v-for="link in navLinks" 
             :key="link.id" 
             :href="'#' + link.id"
-            class="text-zinc-700 hover:text-teal-600 transition-colors"
+            class="text-zinc-700 dark:text-zinc-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
             @click="scrollToSection(link.id)"
           >
             {{ link.text }}
           </a>
         </div>
-				<ToogleTheme />
+        <ToggleTheme />
       </div>
     </nav>
 
@@ -289,23 +250,23 @@ export default {
     >
       <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h1 class="text-5xl md:text-6xl font-bold mb-6" ref="heroTitle">
-            Bonjour, je suis <span class="text-teal-600">Développeur</span>
+          <h1 class="text-5xl md:text-6xl font-bold mb-6 dark:text-white" ref="heroTitle">
+            Bonjour, je suis <span class="text-teal-600 dark:text-teal-400">Jude Mpoyo</span>
           </h1>
-          <p class="text-xl text-zinc-600 mb-8" ref="heroText">
-            Je crée des expériences web modernes et interactives avec des technologies innovantes.
+          <p class="text-xl text-zinc-600 dark:text-zinc-400 mb-8" ref="heroText">
+            {{ sharedData.personal.shortBio }}
           </p>
           <div class="flex gap-4" ref="heroButtons">
             <a 
               href="#projects" 
-              class="px-8 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors shadow-lg"
+              class="px-8 py-3 bg-teal-600 dark:bg-teal-700 text-white rounded-lg hover:bg-teal-700 dark:hover:bg-teal-600 transition-colors shadow-lg"
               @click="scrollToSection('projects')"
             >
               Voir mes projets
             </a>
             <a 
               href="#contact" 
-              class="px-8 py-3 border-2 border-zinc-300 text-zinc-700 rounded-lg hover:bg-zinc-50 transition-colors"
+              class="px-8 py-3 border-2 border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
               @click="scrollToSection('contact')"
             >
               Me contacter
@@ -313,20 +274,22 @@ export default {
           </div>
         </div>
         <div class="relative" ref="heroVisual">
-          <div class="absolute inset-0 bg-teal-100 rounded-3xl transform rotate-6"></div>
-          <div class="relative bg-white p-2 rounded-3xl shadow-2xl overflow-hidden border-8 border-white">
+          <div class="absolute inset-0 bg-teal-100 dark:bg-teal-900 rounded-3xl transform rotate-6"></div>
+          <div class="relative bg-white dark:bg-zinc-800 p-2 rounded-3xl shadow-2xl overflow-hidden border-8 border-white dark:border-zinc-800">
             <img 
-              src="/public/judepic.png" 
-              alt="Projet web" 
-              class="rounded-2xl w-full h-auto"
+              src="/judepic.png" 
+              alt="Jude Mpoyo" 
+              class="rounded-2xl w-full h-auto object-cover aspect-square"
             >
-            <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm p-4 rounded-xl shadow-md">
+            <div class="absolute bottom-4 left-4 right-4 bg-white/90 dark:bg-zinc-800/90 backdrop-blur-sm p-4 rounded-xl shadow-md">
               <div class="flex gap-2 mb-2">
                 <span class="w-3 h-3 rounded-full bg-red-500"></span>
                 <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
                 <span class="w-3 h-3 rounded-full bg-green-500"></span>
               </div>
-              <h3 class="font-extrabold text-center  md:text-5xl uppercase bg-gradient-to-br from-teal-600 to-zinc-1 bg-clip-text text-transparent">Jude Mpoyo</h3>
+              <h3 class="font-extrabold text-center text-2xl md:text-3xl uppercase bg-gradient-to-br from-teal-600 to-zinc-600 dark:from-teal-400 dark:to-zinc-300 bg-clip-text text-transparent">
+                {{ sharedData.personal.name }}
+              </h3>
             </div>
           </div>
         </div>
@@ -336,29 +299,26 @@ export default {
     <!-- About Section -->
     <section 
       id="about" 
-      class="py-20 px-6 bg-gradient-to-br from-white to-zinc-50"
+      class="py-20 px-6 bg-zinc-50 dark:bg-zinc-800/30"
       ref="about"
     >
       <div class="max-w-7xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center" ref="aboutTitle">
-          À <span class="text-teal-600">propos</span> de moi
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center dark:text-white" ref="aboutTitle">
+          À <span class="text-teal-600 dark:text-teal-400">propos</span> de moi
         </h2>
         
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="space-y-6" ref="aboutText">
-            <p class="text-lg text-zinc-700">
-              Passionné par le développement web depuis plus de 5 ans, je me spécialise dans la création d'interfaces utilisateur modernes et performantes.
-            </p>
-            <p class="text-lg text-zinc-700">
-              Mon approche combine design minutieux et code optimisé pour offrir des expériences fluides et mémorables.
+            <p class="text-lg text-zinc-700 dark:text-zinc-300">
+              {{ sharedData.personal.bio }}
             </p>
             <div class="pt-4">
-              <h3 class="text-xl font-semibold mb-4">Compétences</h3>
+              <h3 class="text-xl font-semibold mb-4 dark:text-white">Compétences</h3>
               <div class="flex flex-wrap gap-3">
                 <span 
-                  v-for="(skill, index) in skills" 
+                  v-for="(skill, index) in sharedData.skills" 
                   :key="index"
-                  class="px-4 py-2 bg-white rounded-full shadow-sm border border-zinc-200"
+                  class="px-4 py-2 bg-white dark:bg-zinc-700 rounded-full shadow-sm border border-zinc-200 dark:border-zinc-600 dark:text-white"
                 >
                   {{ skill }}
                 </span>
@@ -370,14 +330,14 @@ export default {
             <div 
               v-for="(card, index) in aboutCards" 
               :key="index"
-              class="absolute bg-white p-6 rounded-xl shadow-lg border border-zinc-100"
+              class="absolute bg-white dark:bg-zinc-800 p-6 rounded-xl shadow-lg border border-zinc-100 dark:border-zinc-700"
               :class="card.class"
             >
               <div class="w-10 h-10 mb-4 rounded-full flex items-center justify-center" :class="card.bg">
                 <component :is="card.icon" class="w-6 h-6" :class="card.color" />
               </div>
-              <h3 class="font-semibold mb-2">{{ card.title }}</h3>
-              <p class="text-zinc-600 text-sm">{{ card.text }}</p>
+              <h3 class="font-semibold mb-2 dark:text-white">{{ card.title }}</h3>
+              <p class="text-zinc-600 dark:text-zinc-400 text-sm">{{ card.text }}</p>
             </div>
           </div>
         </div>
@@ -385,19 +345,19 @@ export default {
     </section>
 
     <!-- Projects Section -->
-     <section id="projects" class="py-20 px-6 bg-white" ref="projectsSection">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center" ref="projectsTitle">
-        Mes <span class="text-teal-600">projets</span> récents
-      </h2>
-      
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div 
-          v-for="(project, index) in projects" 
-          :key="index"
-          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
-          :ref="el => { if (el) projectCards[index] = el }"
-        >
+    <section id="projects" class="py-20 px-6 bg-white dark:bg-zinc-900" ref="projectsSection">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center dark:text-white" ref="projectsTitle">
+          Mes <span class="text-teal-600 dark:text-teal-400">projets</span> récents
+        </h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div 
+            v-for="(project, index) in sharedData.projects" 
+            :key="index"
+            class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
+            :ref="el => { if (el) projectCards[index] = el }"
+          >
             <div class="relative overflow-hidden h-60">
               <img 
                 :src="project.image" 
@@ -409,20 +369,20 @@ export default {
               </div>
             </div>
             <div class="p-6">
-              <p class="text-zinc-600 mb-4">{{ project.description }}</p>
+              <p class="text-zinc-600 dark:text-zinc-400 mb-4">{{ project.description }}</p>
               <div class="flex justify-between items-center">
                 <div class="flex gap-2">
                   <span 
                     v-for="(tag, i) in project.tags" 
                     :key="i"
-                    class="text-xs px-2 py-1 bg-zinc-100 rounded-full"
+                    class="text-xs px-2 py-1 bg-zinc-100 dark:bg-zinc-700 rounded-full dark:text-white"
                   >
                     {{ tag }}
                   </span>
                 </div>
                 <a 
-                  href="#" 
-                  class="text-teal-600 hover:text-teal-800 flex items-center gap-1"
+                  :href="project.link || '#'" 
+                  class="text-teal-600 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 flex items-center gap-1"
                 >
                   Voir plus
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -439,81 +399,75 @@ export default {
     <!-- Contact Section -->
     <section 
       id="contact" 
-      class="py-20 px-6 bg-gradient-to-br from-teal-50 to-indigo-50"
+      class="py-20 px-6 bg-teal-50 dark:bg-zinc-800/50"
       ref="contact"
     >
       <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center" ref="contactTitle">
-          Travaillons <span class="text-teal-600">ensemble</span>
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center dark:text-white" ref="contactTitle">
+          Travaillons <span class="text-teal-600 dark:text-teal-400">ensemble</span>
         </h2>
         
-        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div class="bg-white dark:bg-zinc-800 rounded-2xl shadow-xl overflow-hidden">
           <div class="grid md:grid-cols-2">
             <div class="p-8 md:p-12">
               <form class="space-y-6">
                 <div>
-                  <label for="name" class="block text-sm font-medium text-zinc-700 mb-1">Nom</label>
+                  <label for="name" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Nom</label>
                   <input 
                     type="text" 
                     id="name" 
-                    class="w-full px-4 py-3 rounded-lg border border-zinc-300 focus:ring-2 focus:ring-teal-600 focus:border-transparent"
+                    class="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 focus:ring-2 focus:ring-teal-600 focus:border-transparent dark:bg-zinc-900 dark:text-white"
                   >
                 </div>
                 <div>
-                  <label for="email" class="block text-sm font-medium text-zinc-700 mb-1">Email</label>
+                  <label for="email" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Email</label>
                   <input 
                     type="email" 
                     id="email" 
-                    class="w-full px-4 py-3 rounded-lg border border-zinc-300 focus:ring-2 focus:ring-teal-600 focus:border-transparent"
+                    class="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 focus:ring-2 focus:ring-teal-600 focus:border-transparent dark:bg-zinc-900 dark:text-white"
                   >
                 </div>
                 <div>
-                  <label for="message" class="block text-sm font-medium text-zinc-700 mb-1">Message</label>
+                  <label for="message" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Message</label>
                   <textarea 
                     id="message" 
                     rows="4"
-                    class="w-full px-4 py-3 rounded-lg border border-zinc-300 focus:ring-2 focus:ring-teal-600 focus:border-transparent"
+                    class="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 focus:ring-2 focus:ring-teal-600 focus:border-transparent dark:bg-zinc-900 dark:text-white"
                   ></textarea>
                 </div>
                 <button 
                   type="submit" 
-                  class="w-full px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors shadow-md"
+                  class="w-full px-6 py-3 bg-teal-600 dark:bg-teal-700 text-white rounded-lg hover:bg-teal-700 dark:hover:bg-teal-600 transition-colors shadow-md"
                 >
                   Envoyer le message
                 </button>
               </form>
             </div>
-            <div class="bg-teal-600 p-8 md:p-12 flex flex-col justify-between">
+            <div class="bg-teal-600 dark:bg-teal-800 p-8 md:p-12 flex flex-col justify-between">
               <div>
                 <h3 class="text-xl font-semibold text-white mb-4">Coordonnées</h3>
                 <div class="space-y-4">
                   <div class="flex items-start gap-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <span class="text-teal-100">contact@monportfolio.com</span>
+                    <MailIcon class="h-6 w-6 text-teal-200" />
+                    <span class="text-teal-100">{{ sharedData.personal.email }}</span>
                   </div>
                   <div class="flex items-start gap-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    <span class="text-teal-100">+33 6 12 34 56 78</span>
+                    <PhoneIcon class="h-6 w-6 text-teal-200" />
+                    <span class="text-teal-100">{{ sharedData.personal.phone }}</span>
                   </div>
                   <div class="flex items-start gap-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span class="text-teal-100">Paris, France</span>
+                    <MapPinIcon class="h-6 w-6 text-teal-200" />
+                    <span class="text-teal-100">{{ sharedData.personal.location }}</span>
                   </div>
                 </div>
               </div>
               <div class="flex gap-4 mt-8">
                 <a 
-                  v-for="(social, index) in socialLinks" 
+                  v-for="(social, index) in sharedData.socialLinks" 
                   :key="index"
                   :href="social.link" 
-                  class="w-10 h-10 rounded-full bg-teal-700 flex items-center justify-center text-white hover:bg-teal-800 transition-colors"
+                  class="w-10 h-10 rounded-full bg-teal-700 dark:bg-teal-900 flex items-center justify-center text-white hover:bg-teal-800 dark:hover:bg-teal-700 transition-colors"
+                  target="_blank"
                 >
                   <component :is="social.icon" class="w-5 h-5" />
                 </a>
@@ -529,7 +483,7 @@ export default {
       <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
         <div>
           <h3 class="text-xl font-semibold mb-4">Mon Portfolio</h3>
-          <p class="text-zinc-400">Création d'expériences web modernes et performantes.</p>
+          <p class="text-zinc-400">{{ sharedData.personal.shortBio }}</p>
         </div>
         <div>
           <h3 class="text-xl font-semibold mb-4">Navigation</h3>
@@ -549,10 +503,11 @@ export default {
           <h3 class="text-xl font-semibold mb-4">Réseaux sociaux</h3>
           <div class="flex gap-4">
             <a 
-              v-for="(social, index) in socialLinks" 
+              v-for="(social, index) in sharedData.socialLinks" 
               :key="index"
               :href="social.link" 
               class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-white hover:bg-teal-600 transition-colors"
+              target="_blank"
             >
               <component :is="social.icon" class="w-5 h-5" />
             </a>
@@ -560,11 +515,12 @@ export default {
         </div>
       </div>
       <div class="max-w-7xl mx-auto pt-8 mt-8 border-t border-zinc-800 text-center text-zinc-500 text-sm">
-        &copy; {{ new Date().getFullYear() }} Mon Portfolio. Tous droits réservés.
+        &copy; {{ new Date().getFullYear() }} {{ sharedData.personal.name }}. Tous droits réservés.
       </div>
     </footer>
   </div>
 </template>
+
 
 
 

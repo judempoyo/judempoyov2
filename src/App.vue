@@ -4,7 +4,7 @@ import StyleSelector from '@/components/StyleSelector.vue'
 import TerminalPortfolio from '@/pages/TerminalPortfolio.vue'
 import VisualPortfolio from '@/pages/VisualPortfolio.vue'
 import StyleSwitcher from './components/StyleSwitcher.vue'
-import ToogleTheme from './components/ToogleTheme.vue'
+import ToogleTheme from './components/ToggleTheme.vue'
 
 export default {
   components: { StyleSelector, TerminalPortfolio, VisualPortfolio, StyleSwitcher, ToogleTheme },
