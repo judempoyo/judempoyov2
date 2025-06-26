@@ -131,6 +131,11 @@ export default {
           usage: 'connect <whatsapp|github|linkedin|email>',
           execute: (args) => this.connectPlatform(args[0])
         },
+				search: {
+  description: 'Recherche de projets par technologie',
+  usage: 'search <technology>',
+  execute: (args) => this.searchProjects(args[0])
+}
       },
 			 personalData: sharedData.personal,
       skillsData: sharedData.skills,
@@ -151,6 +156,34 @@ export default {
     document.removeEventListener('keydown', this.handleTimelineNavigation);
   },
   methods: {
+		searchProjects(tech) {
+  const results = Object.entries(this.projects)
+    .filter(([_, project]) => 
+      project.technologies.some(t => t.toLowerCase().includes(tech.toLowerCase()))
+    );
+
+  if (results.length === 0) {
+    this.output.push({
+      type: 'output',
+      text: `Aucun projet trouvé avec la technologie "${tech}"`,
+      color: 'text-yellow-400'
+    });
+    return;
+  }
+
+  const resultText = [
+    `Projets utilisant "${tech}":`,
+    ...results.map(([key, project]) => 
+      `- ${key}: ${project.name} (${project.year})`
+    )
+  ];
+
+  this.output.push({
+    type: 'output',
+    text: resultText.join('\n'),
+    color: 'text-blue-400'
+  });
+},
     animateTerminalEntrance() {
       gsap.from(this.$refs.terminalContainer, {
         opacity: 0,
