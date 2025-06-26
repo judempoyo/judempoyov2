@@ -2,6 +2,8 @@
 import { Button } from '@/components/ui/button';
 import ToggleTheme from './ToggleTheme.vue';
 import StyleSwitcher from './StyleSwitcher.vue';
+import { sharedData } from '@/data/shared-data.js';
+
 import { 
   NavigationMenu,
   NavigationMenuItem,
@@ -12,12 +14,8 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { Menu, X, ChevronRight, Circle } from 'lucide-vue-next';
 import { ref } from 'vue';
 
-const navLinks = [
-  { id: 'home', text: 'Accueil' },
-  { id: 'projects', text: 'Projets' },
-  { id: 'about', text: 'À propos' },
-  { id: 'contact', text: 'Contact' },
-];
+const navLinks = sharedData.navLinks;
+
 
 const scrollToSection = (id: string) => {
   const element = document.getElementById(id);

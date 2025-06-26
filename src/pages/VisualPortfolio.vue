@@ -222,24 +222,7 @@ export default {
 <template>
   <div class="visual-portfolio min-h-screen bg-white dark:bg-zinc-900 transition-colors duration-300">
     <!-- Navigation -->
-   <!--  <nav class="fixed w-full z-50 backdrop-blur-md bg-white/80 dark:bg-zinc-900/80 shadow-sm">
-      <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <StyleSwitcher />
-        <div class="hidden md:flex gap-6">
-          <a 
-            v-for="link in navLinks" 
-            :key="link.id" 
-            :href="'#' + link.id"
-            class="text-zinc-700 dark:text-zinc-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
-            @click="scrollToSection(link.id)"
-          >
-            {{ link.text }}
-          </a>
-        </div>
-        <ToggleTheme />
-      </div>
-    </nav>
- -->
+
  <AppHeader />
     <!-- Hero Section -->
     <section 
@@ -518,10 +501,11 @@ export default {
             <li v-for="link in navLinks" :key="link.id">
               <a 
                 :href="'#' + link.id" 
-                class="text-zinc-400 hover:text-white transition-colors"
+                class="flex items-center gap-3 text-zinc-400 hover:text-white transition-colors group"
                 @click="scrollToSection(link.id)"
               >
-                {{ link.text }}
+                <span class="w-2 h-2 rounded-full bg-teal-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              <span class="group-hover:translate-x-1 transition-transform">{{ link.text }}</span>
               </a>
             </li>
           </ul>
@@ -533,8 +517,10 @@ export default {
               v-for="(social, index) in sharedData.socialLinks" 
               :key="index"
               :href="social.link" 
-              class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-white hover:bg-teal-600 transition-colors"
-              target="_blank"
+               class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-white hover:bg-gradient-to-br from-teal-500 to-emerald-600 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-teal-500/20"
+            target="_blank"
+
+            :aria-label="social.name"
             >
               <component :is="social.icon" class="w-5 h-5" />
             </a>

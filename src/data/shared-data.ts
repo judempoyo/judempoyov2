@@ -6,6 +6,7 @@ export const sharedData = {
         shortBio: "Je crée des solutions web innovantes et performantes.",
         location: "Lyon, France",
         email: "alex.martin@protonmail.com",
+        phone: "+243975889135",
         website: "https://alexmartin.dev",
         github: "github.com/alex-martin-dev",
         linkedin: "linkedin.com/in/alexmartin-dev",
@@ -208,5 +209,11 @@ Philosophie : "Le code est de la poésie logique".`,
       action: "copy",
       value: "mpoyojude0@gmail.com"
     }
-  }
+  },
+  navLinks : [
+  { id: 'home', text: 'Accueil' },
+  { id: 'projects', text: 'Projets' },
+  { id: 'about', text: 'À propos' },
+  { id: 'contact', text: 'Contact' },
+]
 };
