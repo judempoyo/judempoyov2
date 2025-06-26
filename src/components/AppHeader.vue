@@ -32,11 +32,11 @@ const isSheetOpen = ref(false);
     <div class="max-w-7xl mx-auto px-6 py-3 flex items-center">
   
       <div class="flex items-center mr-4 group">
-        <div class="relative overflow-hidden h-8 w-8 rounded-lg mr-2 flex items-center justify-center bg-gradient-to-tr from-teal-400 to-emerald-500">
+        <div class="relative overflow-hidden h-8 w-8 rounded-lg mr-2 flex items-center justify-center bg-gradient-to-tr from-teal-400 to-teal-500">
           <Circle class="h-5 w-5 text-white animate-ping absolute opacity-75" />
           <Circle class="h-5 w-5 text-white" fill="currentColor" />
         </div>
-        <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-emerald-500 group-hover:bg-gradient-to-l transition-all duration-500">
+        <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-teal-500 group-hover:bg-gradient-to-l transition-all duration-500">
           JUMP
         </span>
       </div>
@@ -44,7 +44,7 @@ const isSheetOpen = ref(false);
       <!-- Mobile Menu Button with Morphing Animation -->
       <div class="md:hidden ml-auto">
         <Sheet v-model:open="isSheetOpen">
-          <SheetTrigger as-child>
+          <SheetTrigger :as-child="true">
             <Button variant="ghost" size="icon" class="h-10 w-10 relative group">
               <Menu class="h-5 w-5 absolute transition-all duration-300" :class="{'opacity-0 rotate-90': isSheetOpen}" />
               <X class="h-5 w-5 absolute transition-all duration-300" :class="{'opacity-0 -rotate-90': !isSheetOpen}" />
@@ -53,23 +53,23 @@ const isSheetOpen = ref(false);
           </SheetTrigger>
           <SheetContent 
             side="left" 
-            class="w-xs max-w-sm !h-auto !top-6 !left-4 !right-auto !bottom-6 rounded-2xl bg-white/95 dark:bg-[#0d0d0d]/95 backdrop-blur-3xl border border-zinc-200/30 dark:border-zinc-800/30 shadow-2xl overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            class="w-xs max-w-sm h-[55vh] !top-6 !left-4 !right-auto !bottom-6 rounded-circle bg-white/95 dark:bg-[#0d0d0d]/95 backdrop-blur-3xl border border-zinc-200/30 dark:border-zinc-800/30 drop-shadow-2xl  overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
             :style="{
               transform: isSheetOpen ? 'translateX(0)' : 'translateX(-120%)',
               opacity: isSheetOpen ? 1 : 0,
-              'border-radius': isSheetOpen ? '1rem' : '50%'
+              'border-radius': isSheetOpen ? '2.5rem' : '50%'
             }"
           >
             <!-- Animated Border Top -->
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-emerald-500 via-purple-500 animate-gradient-x"></div>
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-teal-500 via-zinc-500 animate-gradient-x"></div>
             
             <!-- Floating Bubbles Background -->
             <div class="absolute inset-0 overflow-hidden opacity-10">
               <div v-for="i in 8" :key="i" 
-                   class="absolute rounded-full bg-teal-400 animate-float"
+                   class="absolute rounded-full bg-teal-500 animate-float opacity-40 dark:opacity-20"
                    :style="{
-                     width: `${Math.random() * 6 + 4}rem`,
-                     height: `${Math.random() * 6 + 4}rem`,
+                     width: `${Math.random() * 2 + 2}rem`,
+                     height: `${Math.random() * 2 + 2}rem`,
                      left: `${Math.random() * 80}%`,
                      top: `${Math.random() * 80}%`,
                      animationDelay: `${i * 2}s`,
@@ -79,25 +79,25 @@ const isSheetOpen = ref(false);
 
             <SheetHeader class="text-left mt-6 relative z-10">
               <SheetTitle class="text-3xl font-bold flex items-center gap-3">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-emerald-500 to-purple-500 animate-gradient-x bg-300%">Menu</span>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-teal-500 to-zinc-500 animate-gradient-x bg-300%">Menu</span>
               </SheetTitle>
             </SheetHeader>
 
-            <div class="flex flex-col space-y-4 py-8 relative z-10">
+            <div class="flex flex-col space-y-2 py-2 relative z-10">
               <a
                 v-for="(link, index) in navLinks"
                 :key="link.id"
                 :href="'#' + link.id"
-                class="group relative overflow-hidden px-5 py-4 rounded-xl transition-all duration-500 hover:bg-white/10 dark:hover:bg-black/10"
+                class="relative overflow-hidden px-3 py-2 rounded-xl transition-all duration-500 hover:bg-teal-200 dark:hover:bg-black/10 hover:underline"
                 @click="scrollToSection(link.id)"
                
               >
                 <span class="relative z-10 flex items-center gap-4 text-zinc-800 dark:text-zinc-100 group-hover:text-teal-500 dark:group-hover:text-teal-400 transition-colors">
                   
-                  <span class="font-medium tracking-wide text-lg">{{ link.text }}</span>
+                  <span class="font-medium tracking-wide text-lg hover:underline">{{ link.text }}</span>
                 </span>
-                <span class="absolute inset-0 bg-gradient-to-r from-teal-400/10 to-emerald-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></span>
-                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-teal-400 to-emerald-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                <span class="absolute inset-0 bg-gradient-to-r from-teal-400/10 to-teal-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-teal-400 to-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
               </a>
             </div>
 
@@ -124,8 +124,8 @@ const isSheetOpen = ref(false);
                 <span class="relative z-10 text-zinc-700 dark:text-zinc-300 group-hover:text-teal-500 dark:group-hover:text-teal-400 transition-colors duration-300">
                   {{ link.text }}
                 </span>
-                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-teal-400 to-emerald-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700 ease-out"></span>
-                <span class="absolute inset-0 bg-gradient-to-r from-teal-400/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-teal-400 to-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700 ease-out"></span>
+                <span class="absolute inset-0 bg-gradient-to-r from-teal-400/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></span>
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
@@ -136,10 +136,7 @@ const isSheetOpen = ref(false);
       <div class="hidden md:flex items-center gap-4 ml-auto">
         <StyleSwitcher />
         <ToggleTheme />
-        <Button variant="outline" class="relative overflow-hidden group group-hover:shadow-lg group-hover:shadow-teal-400/20 transition-all duration-500">
-          <span class="relative z-10">Contact</span>
-          <span class="absolute inset-0 bg-gradient-to-r from-teal-400 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-        </Button>
+      
       </div>
     </div>
   </nav>
