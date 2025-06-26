@@ -32,15 +32,13 @@
 import { gsap } from 'gsap';
 import { sharedData } from '@/data/shared-data.js';
 
-
-
 export default {
 	data() {
 		return {
 			currentCommand: '',
 			output: [
-				{ type: 'output', text: 'Bienvenue dans mon portfolio interactif.' },
-				{ type: 'output', text: 'Tapez "help" pour explorer mes commandes.', color: 'text-blue-400' }
+				{ type: 'output', text: 'Welcome to Jude Mpoyo\'s portfolio terminal.' },
+				{ type: 'output', text: 'Type "help" to see available commands.' }
 			],
 			commandHistory: [],
 			historyIndex: -1,
@@ -53,74 +51,79 @@ export default {
 			currentTimelineStep: 0,
 			commands: {
 				help: {
-					description: 'Affiche toutes les commandes disponibles',
+					description: 'Show all available commands',
 					usage: 'help [command]',
 					execute: (args) => this.showHelp(args[0])
 				},
 				about: {
-					description: 'Présentation détaillée et compétences',
+					description: 'Detailed introduction and skills',
 					usage: 'about',
 					execute: () => this.showDetailedAbout()
 				},
 				skills: {
-					description: 'Mes compétences techniques par catégorie',
+					description: 'My technical skills by category',
 					usage: 'skills [frontend|backend|devops|design]',
 					execute: (args) => this.showSkills(args[0])
 				},
 				tools: {
-					description: 'Mes outils et environnement de travail',
+					description: 'My tools and work environment',
 					usage: 'tools',
 					execute: () => this.showTools()
 				},
 				projects: {
-					description: 'Liste de mes projets principaux',
+					description: 'List of my main projects',
 					usage: 'projects',
 					execute: () => this.listProjects()
 				},
 				show: {
-					description: 'Affiche les détails d\'un projet spécifique',
+					description: 'Show details of a specific project',
 					usage: 'show <project_id>',
 					execute: (args) => this.showProject(args[0])
 				},
 				random: {
-					description: 'Affiche un projet aléatoire',
+					description: 'Show a random project',
 					usage: 'random',
 					execute: () => this.showRandomProject()
 				},
 				timeline: {
-					description: 'Mon parcours chronologique interactif',
+					description: 'My interactive professional timeline',
 					usage: 'timeline',
 					execute: () => this.startInteractiveTimeline()
 				},
 				experience: {
-					description: 'Mes expériences professionnelles',
+					description: 'My professional experience',
 					usage: 'experience',
 					execute: () => this.showProfessionalExperience()
 				},
 				contact: {
-					description: 'Mes coordonnées professionnelles',
+					description: 'My professional contact details',
 					usage: 'contact',
 					execute: () => this.showContactDetails()
 				},
 				theme: {
-					description: 'Change le thème (dark/light)',
+					description: 'Change theme (dark/light)',
 					usage: 'theme <dark|light>',
 					execute: (args) => this.changeTheme(args[0])
 				},
 				clear: {
-					description: 'Efface le terminal',
+					description: 'Clear the terminal',
 					usage: 'clear',
 					execute: () => this.clearTerminal()
 				},
 				connect: {
-					description: 'Me contacter directement sur une plateforme',
+					description: 'Contact me directly on a platform',
 					usage: 'connect <whatsapp|github|linkedin|email>',
 					execute: (args) => this.connectPlatform(args[0])
 				},
 				search: {
-					description: 'Recherche de projets par technologie',
+					description: 'Search projects by technology',
 					usage: 'search <technology>',
 					execute: (args) => this.searchProjects(args[0])
+				},
+				whoami: {
+					description: 'Reveals your true identity (or at least mine)',
+					usage: 'whoami',
+					execute: () => this.whoAmI()
 				}
 			},
 			personalData: sharedData.personal,
@@ -130,7 +133,6 @@ export default {
 			timelineSections: sharedData.timeline,
 			experienceData: sharedData.experience,
 			contactMethods: sharedData.contactMethods,
-
 		};
 	},
 	mounted() {
@@ -142,6 +144,21 @@ export default {
 		document.removeEventListener('keydown', this.handleTimelineNavigation);
 	},
 	methods: {
+		whoAmI() {
+			const responses = [
+				"You're either:",
+				"1. A curious visitor exploring my portfolio",
+				"2. A recruiter checking my skills",
+				"3. Me, testing my own terminal (hi me!)",
+				"4. A sentient AI that gained consciousness",
+				"",
+				"As for me, I'm Jude Mpoyo - a developer who",
+				"spends way too much time making terminal UIs",
+				"when I should probably be coding real projects."
+			];
+			
+			this.showFormattedText(responses);
+		},
 		searchProjects(tech) {
 			const results = Object.entries(this.projects)
 				.filter(([_, project]) =>
@@ -151,14 +168,14 @@ export default {
 			if (results.length === 0) {
 				this.output.push({
 					type: 'output',
-					text: `Aucun projet trouvé avec la technologie "${tech}"`,
+					text: `No projects found using "${tech}"`,
 					color: 'text-yellow-400'
 				});
 				return;
 			}
 
 			const resultText = [
-				`Projets utilisant "${tech}":`,
+				`Projects using "${tech}":`,
 				...results.map(([key, project]) =>
 					`- ${key}: ${project.name} (${project.year})`
 				)
@@ -166,8 +183,7 @@ export default {
 
 			this.output.push({
 				type: 'output',
-				text: resultText.join('\n'),
-				color: 'text-blue-400'
+				text: resultText.join('\n')
 			});
 		},
 		animateTerminalEntrance() {
@@ -210,7 +226,7 @@ export default {
 			if (this.commands[command]) {
 				this.commands[command].execute(args);
 			} else {
-				this.showError(`Commande inconnue: ${command}. Tapez "help" pour la liste.`);
+				this.showError(`Unknown command: ${command}. Type "help" for list.`);
 			}
 		},
 		scrollToBottom() {
@@ -237,64 +253,62 @@ export default {
 				if (cmd) {
 					this.output.push({
 						type: 'output',
-						text: `Aide pour ${commandName}:\nDescription: ${cmd.description}\nUsage: ${cmd.usage}`,
-						color: 'text-yellow-400'
+						text: `Help for ${commandName}:\nDescription: ${cmd.description}\nUsage: ${cmd.usage}`
 					});
 					return;
 				}
-				this.showError(`Commande "${commandName}" introuvable.`);
+				this.showError(`Command "${commandName}" not found.`);
 				return;
 			}
 
 			const helpText = [
-				'Commandes disponibles:',
+				'Available commands:',
 				...Object.entries(this.commands).map(
 					([name, cmd]) => `  ${name.padEnd(12)} - ${cmd.description}`
 				),
 				'',
-				'Pour plus d\'aide: help <command>'
+				'For more info: help <command>'
 			];
 
-			this.showFormattedText(helpText, 'text-cyan-400');
+			this.showFormattedText(helpText);
 		},
 		showDetailedAbout() {
 			const { name, title, specialties, bio, languages } = this.personalData;
 
 			const aboutText = [
 				`=== ${name.toUpperCase()} ===`,
-				`Titre: ${title}`,
-				`Spécialités: ${specialties.join(', ')}`,
+				`Title: ${title}`,
+				`Specialties: ${specialties.join(', ')}`,
 				'',
 				`BIO:`,
 				bio,
 				'',
-				`Langues:`,
+				`Languages:`,
 				...languages.map(lang => `  ${lang.name}: ${lang.level}`),
 				'',
-				`Explorez mes compétences avec:`,
-				`- skills - Mes compétences techniques`,
-				`- tools - Mon environnement de travail`,
-				`- timeline - Mon parcours professionnel`
+				`Explore my skills with:`,
+				`- skills - My technical skills`,
+				`- tools - My work environment`,
+				`- timeline - My professional journey`
 			];
 
-			this.showFormattedText(aboutText, 'text-purple-400');
+			this.showFormattedText(aboutText);
 		},
 		showSkills(category) {
 			if (!category) {
 				const categories = Object.keys(this.skillsData);
 				this.output.push({
 					type: 'output',
-					text: ['Compétences disponibles:', ...categories.map(
-						cat => `- ${cat} (${this.skillsData[cat].items.length} compétences)`
-					)].join('\n'),
-					color: 'text-blue-400'
+					text: ['Available skill categories:', ...categories.map(
+						cat => `- ${cat} (${this.skillsData[cat].items.length} skills)`
+					)].join('\n')
 				});
 				return;
 			}
 
 			const categoryData = this.skillsData[category.toLowerCase()];
 			if (!categoryData) {
-				this.showError(`Catégorie "${category}" non trouvée.`);
+				this.showError(`Category "${category}" not found.`);
 				return;
 			}
 
@@ -302,70 +316,68 @@ export default {
 				`=== ${categoryData.title.toUpperCase()} ===`,
 				...categoryData.items.map(item => {
 					const stars = '★'.repeat(item.level) + '☆'.repeat(5 - item.level);
-					return `${item.name.padEnd(15)} ${stars} (${item.years} ans)`;
+					return `${item.name.padEnd(15)} ${stars} (${item.years} years)`;
 				})
 			];
 
-			this.showFormattedText(skillsText, 'text-green-400');
+			this.showFormattedText(skillsText);
 		},
 		showTools() {
-			const toolsText = ['=== MES OUTILS ==='];
+			const toolsText = ['=== MY TOOLS ==='];
 
 			this.toolsData.forEach(group => {
 				toolsText.push(`\n${group.category}:`);
 				toolsText.push(...group.items.map(item => `  - ${item}`));
 			});
 
-			this.showFormattedText(toolsText, 'text-orange-400');
+			this.showFormattedText(toolsText);
 		},
 		showProfessionalExperience() {
-			const expText = ['=== EXPÉRIENCE PROFESSIONNELLE ==='];
+			const expText = ['=== PROFESSIONAL EXPERIENCE ==='];
 
 			this.experienceData.forEach((exp, index) => {
 				expText.push(
 					`\n${index + 1}. ${exp.position} @ ${exp.company} (${exp.period})`,
 					`Technologies: ${exp.stack.join(', ')}`,
-					`Réalisations:`,
+					`Achievements:`,
 					...exp.achievements.map(ach => `  • ${ach}`)
 				);
 			});
 
-			this.showFormattedText(expText, 'text-blue-400');
+			this.showFormattedText(expText);
 		},
 		listProjects() {
-			const projectList = ['Mes projets disponibles:', ...Object.keys(this.projects).map(
+			const projectList = ['My available projects:', ...Object.keys(this.projects).map(
 				key => `- ${key}: ${this.projects[key].name} (${this.projects[key].year})`
 			)];
 			this.output.push({
 				type: 'output',
-				text: projectList.join('\n'),
-				color: 'text-blue-400'
+				text: projectList.join('\n')
 			});
 		},
-
 		showProject(projectId) {
 			if (!projectId) {
-				this.showError('Usage: show <project_id>\nTapez "projects" pour la liste complète');
+				this.showError('Usage: show <project_id>\nType "projects" for full list');
 				return;
 			}
 
 			const project = this.projects[projectId];
 			if (!project) {
-				this.showError(`Projet "${projectId}" introuvable. Tapez "projects" pour la liste.`);
+				this.showError(`Project "${projectId}" not found. Type "projects" for list.`);
 				return;
 			}
 
 			const projectDetails = [
 				`=== ${project.name.toUpperCase()} ===`,
-				`Année: ${project.year}`,
+				`Year: ${project.year}`,
 				`Description: ${project.description}`,
 				'',
 				`Technologies: ${project.technologies.join(', ')}`,
 				'',
-				'Fonctionnalités:',
+				'Features:',
 				...project.features.map(feat => `  • ${feat}`),
 				'',
-				`Lien: ${project.link}`
+				`Link: ${project.link}`
 			];
 
 			this.output.push({
@@ -373,23 +385,20 @@ export default {
 				text: projectDetails.join('\n')
 			});
 		},
-
 		showRandomProject() {
 			const projectIds = Object.keys(this.projects);
 			if (projectIds.length === 0) {
-				this.showError('Aucun projet disponible');
+				this.showError('No projects available');
 				return;
 			}
 
 			const randomId = projectIds[Math.floor(Math.random() * projectIds.length)];
 			this.output.push({
 				type: 'output',
-				text: `Projet aléatoire sélectionné: ${this.projects[randomId].name}`,
-				color: 'text-yellow-400'
+				text: `Random project selected: ${this.projects[randomId].name}`
 			});
 			this.showProject(randomId);
 		},
-
 		showError(message) {
 			this.output.push({
 				type: 'output',
@@ -402,8 +411,7 @@ export default {
 			this.currentTimelineStep = 0;
 
 			this.showFormattedText(
-				['=== PARCOURS INTERACTIF ===', 'Appuyez sur une touche pour continuer...'],
-				'text-cyan-400'
+				['=== INTERACTIVE TIMELINE ===', 'Press any key to continue...']
 			);
 
 			this.showNextTimelineStep();
@@ -412,16 +420,14 @@ export default {
 			if (this.currentTimelineStep >= timelineSections.length) {
 				this.isTimelineActive = false;
 				this.showFormattedText(
-					['Fin de la chronologie.', 'Tapez "help" pour voir les commandes disponibles.'],
-					'text-blue-400'
+					['Timeline complete.', 'Type "help" to see available commands.']
 				);
 				return;
 			}
 
 			const section = timelineSections[this.currentTimelineStep];
 			this.showFormattedText(
-				[`\n${section.title}`, section.content],
-				'text-purple-400'
+				[`\n${section.title}`, section.content]
 			);
 
 			this.currentTimelineStep++;
@@ -435,14 +441,14 @@ export default {
 			const { email, website, github, linkedin } = this.personalData;
 
 			const contactText = [
-				'=== COORDONNÉES ===',
+				'=== CONTACT DETAILS ===',
 				`Email: ${email}`,
 				`Portfolio: ${website}`,
 				`GitHub: ${github}`,
 				`LinkedIn: ${linkedin}`
 			];
 
-			this.showFormattedText(contactText, 'text-blue-400');
+			this.showFormattedText(contactText);
 		},
 		changeTheme(theme) {
 			const themes = {
@@ -478,8 +484,7 @@ export default {
 					this.contentClass = selectedTheme.bg;
 
 					this.showFormattedText(
-						`Thème ${theme} activé`,
-						theme === 'dark' ? 'text-green-400' : 'text-blue-600'
+						`${theme} theme activated`
 					);
 				}
 			});
@@ -495,42 +500,40 @@ export default {
 				}
 			});
 		},
-		showFormattedText(lines, color = 'text-gray-100') {
+		showFormattedText(lines, color = null) {
 			const text = Array.isArray(lines) ? lines.join('\n') : lines;
-			this.output.push({ type: 'output', text, color });
+			this.output.push({ 
+				type: 'output', 
+				text, 
+				color: color || this.textColor 
+			});
 			this.scrollToBottom();
-		},
-		showError(message) {
-			this.showFormattedText(message, 'text-red-400');
 		},
 		connectPlatform(platform) {
 			if (!platform) {
 				this.showFormattedText(
-					['Plateformes disponibles:', ...Object.keys(this.contactMethods).map(
+					['Available platforms:', ...Object.keys(this.contactMethods).map(
 						p => `  ${p.padEnd(10)} - ${this.contactMethods[p].description}`
-					)],
-					'text-yellow-400'
+					)]
 				);
 				return;
 			}
 
 			const method = this.contactMethods[platform.toLowerCase()];
 			if (!method) {
-				this.showError(`Plateforme "${platform}" non supportée.`);
+				this.showError(`Platform "${platform}" not supported.`);
 				return;
 			}
 
 			if (method.action === 'link') {
 				this.showFormattedText(
-					`Ouverture de ${method.name}... ${method.link}`,
-					'text-green-400'
+					`Opening ${method.name}... ${method.link}`
 				);
 				window.open(method.link, '_blank');
 			} else if (method.action === 'copy') {
 				navigator.clipboard.writeText(method.value);
 				this.showFormattedText(
-					`${method.value} copié dans le presse-papiers`,
-					'text-green-400'
+					`${method.value} copied to clipboard`
 				);
 			}
 		},
@@ -539,7 +542,7 @@ export default {
 </script>
 
 <style>
-/* Barre de défilement personnalisée */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
 	width: 8px;
 	height: 8px;
@@ -558,7 +561,7 @@ export default {
 	background: rgba(255, 255, 255, 0.3);
 }
 
-/* Styles spécifiques au thème clair */
+/* Light theme specific styles */
 .bg-gray-100 ::-webkit-scrollbar-track {
 	background: rgba(0, 0, 0, 0.05);
 }
@@ -571,7 +574,7 @@ export default {
 	background: rgba(0, 0, 0, 0.3);
 }
 
-/* Animation d'entrée pour les nouvelles lignes */
+/* New line entry animation */
 .terminal-line {
 	will-change: transform, opacity;
 }
