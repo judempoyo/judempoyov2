@@ -313,7 +313,7 @@ export default {
           <div class="absolute inset-0 bg-teal-100 rounded-3xl transform rotate-6"></div>
           <div class="relative bg-white p-2 rounded-3xl shadow-2xl overflow-hidden border-8 border-white">
             <img 
-              src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+              src="/public/judepic.png" 
               alt="Projet web" 
               class="rounded-2xl w-full h-auto"
             >
@@ -323,7 +323,7 @@ export default {
                 <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
                 <span class="w-3 h-3 rounded-full bg-green-500"></span>
               </div>
-              <h3 class="font-medium">Mon Dernier Projet</h3>
+              <h3 class="font-extrabold text-center  md:text-5xl uppercase bg-gradient-to-br from-teal-600 to-zinc-1 bg-clip-text text-transparent">Jude Mpoyo</h3>
             </div>
           </div>
         </div>
