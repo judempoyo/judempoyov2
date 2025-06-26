@@ -262,7 +262,6 @@ export default {
     },
      showSkills(category) {
     if (!category) {
-      // Afficher toutes les catégories
       const categories = Object.keys(this.skillsData);
       this.output.push({
         type: 'output',
@@ -315,45 +314,55 @@ export default {
       this.showFormattedText(expText, 'text-blue-400');
     },
     listProjects() {
-      const projectList = [
-        'Mes projets principaux:',
-        ...Object.keys(projects).map(
-          key => `  ${key.padEnd(12)} - ${projects[key].name}`
-        ),
-        '',
-        'Pour les détails: show <project_name>'
-      ];
-      
-      this.showFormattedText(projectList, 'text-purple-400');
-    },
-    showProjectDetails(projectKey) {
-      if (!projectKey) {
-        this.showError('Usage: show <project_name>');
-        return;
-      }
-      
-      const project = projects[projectKey];
-      if (!project) {
-        this.showError(`Projet "${projectKey}" introuvable. Tapez "projects" pour la liste.`);
-        return;
-      }
-      
-      const projectText = [
-        `=== ${project.name.toUpperCase()} ===`,
-        `Année: ${project.year}`,
-        `Description: ${project.description}`,
-        '',
-        `Technologies:`,
-        `  ${project.technologies.join(', ')}`,
-        '',
-        `Fonctionnalités:`,
-        ...project.features?.map(feat => `  • ${feat}`) || ['  Aucune information supplémentaire'],
-        '',
-        `Lien: ${project.link}`
-      ];
-      
-      this.showFormattedText(projectText, 'text-green-400');
-    },
+    const projectList = ['Mes projets disponibles:', ...Object.keys(this.projects).map(
+      key => `- ${key}: ${this.projects[key].name} (${this.projects[key].year})`
+    )];
+    this.output.push({ 
+      type: 'output', 
+      text: projectList.join('\n'),
+      color: 'text-blue-400'
+    });
+  },
+
+  showProject(projectKey) {
+    if (!projectKey) {
+      this.output.push({
+        type: 'output',
+        text: 'Usage: show <project_name>\nTapez "projects" pour la liste',
+        color: 'text-red-400'
+      });
+      return;
+    }
+
+    const project = this.projects[projectKey];
+    if (!project) {
+      this.output.push({
+        type: 'output',
+        text: `Projet "${projectKey}" introuvable. Tapez "projects" pour la liste.`,
+        color: 'text-red-400'
+      });
+      return;
+    }
+
+    const projectDetails = [
+      `=== ${project.name.toUpperCase()} ===`,
+      `Année: ${project.year}`,
+      `Description: ${project.description}`,
+      '',
+      `Technologies: ${project.technologies.join(', ')}`,
+      '',
+      'Fonctionnalités:',
+      ...project.features.map(feat => `  • ${feat}`),
+      '',
+      `Lien: ${project.link}`
+    ];
+
+    this.output.push({
+      type: 'output',
+      text: projectDetails.join('\n'),
+      color: 'text-green-400'
+    });
+  },
     showRandomProject() {
       const keys = Object.keys(projects);
       const randomKey = keys[Math.floor(Math.random() * keys.length)];
