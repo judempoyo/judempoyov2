@@ -1,4 +1,3 @@
-// shared-data.js
 export const sharedData = {
   personal: {
         name: "Jude mpoyo",
@@ -122,6 +121,12 @@ Philosophie : "Le code est de la poésie logique".`,
     technologies: ["React", "Node.js", "MongoDB", "Stripe"],
     link: "https://github.com/votreprofil/ecommerce-platform",
     year: 2022,
+      features: [
+      "Système de commandes personnalisables",
+      "Animations fluides avec GSAP",
+      "Thème clair/sombre interactif",
+      "Présentation chronologique"
+    ],
     image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
   },
     dashboard: {
@@ -130,6 +135,12 @@ Philosophie : "Le code est de la poésie logique".`,
     technologies: ["PHP", "Laravel", "vuejs"],
     link: "https://github.com/votreprofil/ecommerce-platform",
     year: 2022,
+      features: [
+      "Système de commandes personnalisables",
+      "Animations fluides avec GSAP",
+      "Thème clair/sombre interactif",
+      "Présentation chronologique"
+    ],
    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
   },
   
@@ -170,16 +181,7 @@ Philosophie : "Le code est de la poésie logique".`,
       link: "https://linkedin.com/in/judempoyo",
       name: "LinkedIn"
     },
-    { 
-      icon: "TwitterIcon", 
-      link: "https://twitter.com/judempoyo",
-      name: "Twitter"
-    },
-    { 
-      icon: "InstagramIcon", 
-      link: "https://instagram.com/judempoyo",
-      name: "Instagram"
-    }
+   
   ],
   contactMethods: {
     whatsapp: {

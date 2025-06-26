@@ -14,9 +14,8 @@ import {
   LinkedinIcon,
   InstagramIcon
 } from 'lucide-vue-next'
-import StyleSwitcher from '@/components/StyleSwitcher.vue'
-import ToggleTheme from '@/components/ToggleTheme.vue'
 import { sharedData } from '@/data/shared-data'
+import AppHeader from '@/components/AppHeader.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -32,8 +31,7 @@ export default {
     GithubIcon,
     LinkedinIcon,
     InstagramIcon,
-    StyleSwitcher,
-    ToggleTheme
+		AppHeader
   },
   emits: ['change-style'],
   setup(props, { emit }) {
@@ -224,7 +222,7 @@ export default {
 <template>
   <div class="visual-portfolio min-h-screen bg-white dark:bg-zinc-900 transition-colors duration-300">
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 backdrop-blur-md bg-white/80 dark:bg-zinc-900/80 shadow-sm">
+   <!--  <nav class="fixed w-full z-50 backdrop-blur-md bg-white/80 dark:bg-zinc-900/80 shadow-sm">
       <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <StyleSwitcher />
         <div class="hidden md:flex gap-6">
@@ -241,7 +239,8 @@ export default {
         <ToggleTheme />
       </div>
     </nav>
-
+ -->
+ <AppHeader />
     <!-- Hero Section -->
     <section 
       id="home" 
