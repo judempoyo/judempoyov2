@@ -220,7 +220,7 @@ export default {
 </script>
 
 <template>
-  <div class="visual-portfolio min-h-screen bg-white dark:bg-zinc-900 transition-colors duration-300">
+  <div class="visual-portfolio min-h-screen overflow-x-hidden bg-white dark:bg-zinc-900 transition-colors duration-300">
     <!-- Navigation -->
 
  <AppHeader />

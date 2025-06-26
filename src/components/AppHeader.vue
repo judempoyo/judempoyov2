@@ -30,14 +30,14 @@ const isSheetOpen = ref(false);
 <template>
   <nav class="fixed w-full z-50 backdrop-blur-2xl bg-white/90 dark:bg-[#0a0a0a]/90 border-b border-zinc-200/20 dark:border-zinc-800/20 shadow-lg shadow-zinc-200/10 dark:shadow-black/20">
     <div class="max-w-7xl mx-auto px-6 py-3 flex items-center">
-      <!-- Animated Logo -->
+  
       <div class="flex items-center mr-4 group">
         <div class="relative overflow-hidden h-8 w-8 rounded-lg mr-2 flex items-center justify-center bg-gradient-to-tr from-teal-400 to-emerald-500">
           <Circle class="h-5 w-5 text-white animate-ping absolute opacity-75" />
           <Circle class="h-5 w-5 text-white" fill="currentColor" />
         </div>
         <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-emerald-500 group-hover:bg-gradient-to-l transition-all duration-500">
-          MON LOGO
+          JUMP
         </span>
       </div>
 
@@ -53,7 +53,7 @@ const isSheetOpen = ref(false);
           </SheetTrigger>
           <SheetContent 
             side="left" 
-            class="w-[85vw] max-w-sm !h-auto !top-6 !left-4 !right-auto !bottom-6 rounded-2xl bg-white/95 dark:bg-[#0d0d0d]/95 backdrop-blur-3xl border border-zinc-200/30 dark:border-zinc-800/30 shadow-2xl overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            class="w-xs max-w-sm !h-auto !top-6 !left-4 !right-auto !bottom-6 rounded-2xl bg-white/95 dark:bg-[#0d0d0d]/95 backdrop-blur-3xl border border-zinc-200/30 dark:border-zinc-800/30 shadow-2xl overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
             :style="{
               transform: isSheetOpen ? 'translateX(0)' : 'translateX(-120%)',
               opacity: isSheetOpen ? 1 : 0,
@@ -80,7 +80,6 @@ const isSheetOpen = ref(false);
             <SheetHeader class="text-left mt-6 relative z-10">
               <SheetTitle class="text-3xl font-bold flex items-center gap-3">
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-emerald-500 to-purple-500 animate-gradient-x bg-300%">Menu</span>
-                <ChevronRight class="h-6 w-6 text-emerald-400 animate-bounce-right delay-100" />
               </SheetTitle>
             </SheetHeader>
 
@@ -91,14 +90,10 @@ const isSheetOpen = ref(false);
                 :href="'#' + link.id"
                 class="group relative overflow-hidden px-5 py-4 rounded-xl transition-all duration-500 hover:bg-white/10 dark:hover:bg-black/10"
                 @click="scrollToSection(link.id)"
-                :style="{
-                  transitionDelay: `${index * 100 + 300}ms`,
-                  transform: isSheetOpen ? 'translateX(0)' : 'translateX(-20px)',
-                  opacity: isSheetOpen ? 1 : 0
-                }"
+               
               >
                 <span class="relative z-10 flex items-center gap-4 text-zinc-800 dark:text-zinc-100 group-hover:text-teal-500 dark:group-hover:text-teal-400 transition-colors">
-                  <span class="w-3 h-3 rounded-full bg-emerald-500 transform transition-all duration-500 group-hover:scale-150 group-hover:bg-teal-400 shadow-lg group-hover:shadow-teal-400/30"></span>
+                  
                   <span class="font-medium tracking-wide text-lg">{{ link.text }}</span>
                 </span>
                 <span class="absolute inset-0 bg-gradient-to-r from-teal-400/10 to-emerald-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></span>
