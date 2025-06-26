@@ -233,7 +233,7 @@ export default {
       <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         <div>
           <h1 class="text-5xl md:text-6xl font-bold mb-6 dark:text-white" ref="heroTitle">
-            Bonjour, je suis <span class="text-teal-600 dark:text-teal-400">Jude Mpoyo</span>
+            HI, I'm <span class="text-teal-600 dark:text-teal-400">Jude Mpoyo</span>
           </h1>
           <p class="text-xl text-zinc-600 dark:text-zinc-400 mb-8" ref="heroText">
             {{ sharedData.personal.shortBio }}
@@ -244,14 +244,14 @@ export default {
               class="px-8 py-3 bg-teal-600 dark:bg-teal-700 text-white rounded-lg hover:bg-teal-700 dark:hover:bg-teal-600 transition-colors shadow-lg"
               @click="scrollToSection('projects')"
             >
-              Voir mes projets
+              My projects
             </a>
             <a 
               href="#contact" 
               class="px-8 py-3 border-2 border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
               @click="scrollToSection('contact')"
             >
-              Me contacter
+              Contact
             </a>
           </div>
         </div>
@@ -282,12 +282,12 @@ export default {
 <section id="about" class="py-20 px-6 bg-zinc-50 dark:bg-zinc-800/30" ref="about">
   <div class="max-w-7xl mx-auto">
     <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center dark:text-white" ref="aboutTitle">
-      À <span class="text-teal-600 dark:text-teal-400">propos</span> de moi
+      <span class="text-teal-600 dark:text-teal-400">About</span> me
     </h2>
     
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <div class="space-y-6" ref="aboutText">
-        <p class="text-lg text-zinc-700 dark:text-zinc-300">
+        <p class="text-lg text-zinc-700 dark:text-zinc-300" >
           {{ sharedData.personal.bio }}
         </p>
         
@@ -492,10 +492,25 @@ export default {
     <footer class="bg-zinc-900 text-white py-12 px-6">
       <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
         <div>
-          <h3 class="text-xl font-semibold mb-4">Mon Portfolio</h3>
+          <h3 class="text-xl font-semibold mb-4">Jude's portfolio</h3>
           <p class="text-zinc-400">{{ sharedData.personal.shortBio }}</p>
         </div>
         <div>
+          <h3 class="text-xl font-semibold mb-4">Project</h3>
+          <ul class="space-y-2">
+            <li v-for="link in navLinks" :key="link.id">
+              <a 
+                :href="'#' + link.id" 
+                class="flex items-center gap-3 text-zinc-400 hover:text-white transition-colors group"
+                @click="scrollToSection(link.id)"
+              >
+                <span class="w-2 h-2 rounded-full bg-teal-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              <span class="group-hover:translate-x-1 transition-transform">{{ link.text }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+				 <div>
           <h3 class="text-xl font-semibold mb-4">Navigation</h3>
           <ul class="space-y-2">
             <li v-for="link in navLinks" :key="link.id">

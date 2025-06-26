@@ -1,23 +1,26 @@
 export const sharedData = {
   personal: {
         name: "Jude mpoyo",
-        title: "Architecte Logiciel Full-Stack",
-        specialties: ["Vue.js/React", "Node.js", "UX Design", "Cloud Architecture"],
-        shortBio: "Je crée des solutions web innovantes et performantes.",
-        location: "Lyon, France",
-        email: "alex.martin@protonmail.com",
+        title: "Backend Developper",
+        specialties: ["Laravel", "PHP", "VueJS", "Cloud Architecture"],
+        shortBio: `
+        Passionate about creating dynamic and responsive
+          applications. Let\'s build
+          something amazing together!.`,
+        location: "Kolwezi, DRC",
+        email: "mpoyojude0@gmail.com",
         phone: "+243975889135",
-        website: "https://alexmartin.dev",
-        github: "github.com/alex-martin-dev",
-        linkedin: "linkedin.com/in/alexmartin-dev",
+        website: "https://judempoyo.dev",
+        github: "github.com/judempoyo",
+        linkedin: "linkedin.com/in/judempoyo",
         bio: `
+        
 Développeur passionné avec 7 ans d'expérience dans la création d'applications web complexes.
 Expert en résolution de problèmes et en optimisation des performances.
 Philosophie : "Le code est de la poésie logique".`,
         languages: [
           { name: "Français", level: "Natif" },
-          { name: "Anglais", level: "Courant (TOEFL 950)" },
-          { name: "Espagnol", level: "Intermediaire" }
+          { name: "Anglais", level: "" },
         ]
       },
 
@@ -25,55 +28,60 @@ Philosophie : "Le code est de la poésie logique".`,
         frontend: {
           title: "Frontend",
           items: [
-            { name: "Vue.js", level: 5, years: 5 },
-            { name: "React", level: 4, years: 3 },
-            { name: "TypeScript", level: 5, years: 4 },
-            { name: "TailwindCSS", level: 4, years: 3 },
-            { name: "GSAP", level: 3, years: 2 }
+            { name: "Vue.js", level: 3, years: 0 },
+            { name: "TailwindCSS", level: 4, years: 2 },
+            { name: "Livewire", level: 3, years: 1 },
+            { name: "Flutter", level: 2, years: 1 }
           ]
         },
         backend: {
           title: "Backend",
           items: [
-            { name: "Node.js", level: 5, years: 6 },
-            { name: "Python", level: 4, years: 3 },
-            { name: "GraphQL", level: 4, years: 3 },
-            { name: "REST API", level: 5, years: 5 }
+            { name: "PHP", level: 5, years: 3 },
+            { name: "Laravel", level: 4, years: 2 },
+            { name: "C++", level: 3, years: 1 },
+            { name: "REST API", level: 3, years: 1 },
+            { name: "Filament", level: 3, years: 1 },
+            { name: "Firebase", level: 2, years: 1 },
+            { name: "Supabase", level: 1, years: 0 },
           ]
         },
         devops: {
-          title: "DevOps & Cloud",
+          title: "DevOps & tools",
           items: [
-            { name: "Docker", level: 4, years: 3 },
-            { name: "AWS", level: 3, years: 2 },
-            { name: "CI/CD Pipelines", level: 4, years: 3 }
+            { name: "Docker", level: 1, years: 0 },
+            { name: "GIT", level: 4, years: 3 },
+            { name: "GitHub", level: 3, years: 2 },
+            { name: "Postman", level: 2, years: 0 },
+            { name: "Trello", level: 2, years: 0 },
+            { name: "Vs Code", level: 4, years: 5 },
           ]
         },
-        design: {
+       /*  design: {
           title: "UI/UX Design",
           items: [
             { name: "Figma", level: 4, years: 3 },
             { name: "Adobe XD", level: 3, years: 2 },
             { name: "Prototypage", level: 4, years: 3 }
           ]
-        }
+        } */
       },
        tools: [
         {
-          category: "Éditeurs & IDE",
-          items: ["VS Code", "WebStorm", "Vim"]
+          category: "Editors & IDE",
+          items: ["VS Code", "WebStorm", "Android studio"]
         },
         {
           category: "Collaboration",
-          items: ["Git/GitHub", "Jira", "Slack", "Figma"]
+          items: ["Git/GitHub",  "Figma"]
         },
         {
           category: "Environnement",
-          items: ["MacOS (zsh)", "Linux (Ubuntu)", "Windows (WSL2)"]
+          items: [ "Linux (Ubuntu)", "Windows"]
         },
         {
-          category: "Productivité",
-          items: ["Notion", "Trello", "Obsidian"]
+          category: "Productivity",
+          items: ["Notion", "Trello"]
         }
       ],
       experience: [
@@ -144,8 +152,6 @@ Philosophie : "Le code est de la poésie logique".`,
     ],
    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
   },
-  
-  								
 
 },
 
