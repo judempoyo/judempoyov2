@@ -3,8 +3,8 @@
     @click="openStyleSelector"
     class="fixed top-4 right-4 z-50 flex items-center gap-2 px-2 py-2 rounded-full transition-all"
     :class="{
-      'bg-gray-800 text-white hover:bg-gray-700': currentStyle === 'terminal',
-      'bg-white text-gray-800 shadow-md hover:bg-gray-100': currentStyle === 'visual'
+      'bg-zinc-800 text-white hover:bg-zinc-700': currentStyle === 'terminal',
+      'bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 shadow-md hover:bg-zinc-100': currentStyle === 'visual'
     }"
   >
     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
