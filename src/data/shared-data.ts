@@ -149,25 +149,25 @@ Philosophie : "Le code est de la poésie logique".`,
       name: "WhatsApp",
       description: "Me contacter directement sur WhatsApp",
       action: "link",
-      link: "https://wa.me/33612345678"
+      link: "https://wa.me/243975889135"
     },
     github: {
       name: "GitHub",
       description: "Voir mes projets sur GitHub",
       action: "link",
-      link: "https://github.com/votreprofil"
+      link: "https://github.com/judempoyo"
     },
     linkedin: {
       name: "LinkedIn",
       description: "Me contacter sur LinkedIn",
       action: "link",
-      link: "https://linkedin.com/in/votreprofil"
+      link: "https://linkedin.com/in/judempoyo"
     },
     email: {
       name: "Email",
       description: "Copier mon adresse email",
       action: "copy",
-      value: "contact@example.com"
+      value: "mpoyojude0@gmail.com"
     }
   }
 };
