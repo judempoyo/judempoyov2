@@ -30,7 +30,7 @@
 
 <script>
 import { gsap } from 'gsap';
-import { sharedData } from '@/data/shared-data.js';
+import { sharedData } from '@/data/shared-data'
 
 export default {
 	data() {
@@ -49,6 +49,13 @@ export default {
 			contentClass: 'bg-gray-900',
 			isTimelineActive: false,
 			currentTimelineStep: 0,
+			personalData: sharedData.personal,
+			skillsData: sharedData.skills,
+			toolsData: sharedData.tools,
+			projects: sharedData.projects,
+			timelineSections: sharedData.timeline,
+			experienceData: sharedData.experience,
+			contactMethods: sharedData.contactMethods,
 			commands: {
 				help: {
 					description: 'Show all available commands',
@@ -126,13 +133,7 @@ export default {
 					execute: () => this.whoAmI()
 				}
 			},
-			personalData: sharedData.personal,
-			skillsData: sharedData.skills,
-			toolsData: sharedData.tools,
-			projects: sharedData.projects,
-			timelineSections: sharedData.timeline,
-			experienceData: sharedData.experience,
-			contactMethods: sharedData.contactMethods,
+			
 		};
 	},
 	mounted() {
@@ -406,37 +407,46 @@ export default {
 				color: 'text-red-400'
 			});
 		},
-		startInteractiveTimeline() {
-			this.isTimelineActive = true;
-			this.currentTimelineStep = 0;
+		 startInteractiveTimeline() {
+    this.isTimelineActive = true;
+    this.currentTimelineStep = 0;
+    
+    this.output.push({
+      type: 'output',
+      text: '===  INTERACTIVE TIMELINE  ===\n  Press any key to continue...',
+      color: 'text-cyan-400'
+    });
+    
+    this.showNextTimelineStep();
+  },
 
-			this.showFormattedText(
-				['=== INTERACTIVE TIMELINE ===', 'Press any key to continue...']
-			);
+  showNextTimelineStep() {
+    // Vérifiez que timelineSections est bien défini
+    if (!this.timelineSections || this.currentTimelineStep >= this.timelineSections.length) {
+      this.isTimelineActive = false;
+      this.output.push({
+        type: 'output', 
+        text: 'Timeline complete. Type "help" to see available commands.',
+        color: 'text-blue-400'
+      });
+      return;
+    }
 
-			this.showNextTimelineStep();
-		},
-		showNextTimelineStep() {
-			if (this.currentTimelineStep >= timelineSections.length) {
-				this.isTimelineActive = false;
-				this.showFormattedText(
-					['Timeline complete.', 'Type "help" to see available commands.']
-				);
-				return;
-			}
+    const section = this.timelineSections[this.currentTimelineStep];
+    this.output.push({
+      type: 'output',
+      text: `\n${section.title}\n${section.content}`,
+      color: 'text-purple-400'
+    });
+    
+    this.currentTimelineStep++;
+  },
 
-			const section = timelineSections[this.currentTimelineStep];
-			this.showFormattedText(
-				[`\n${section.title}`, section.content]
-			);
-
-			this.currentTimelineStep++;
-		},
-		handleTimelineNavigation(e) {
-			if (this.isTimelineActive && e.key.length === 1) {
-				this.showNextTimelineStep();
-			}
-		},
+  handleTimelineNavigation(e) {
+    if (this.isTimelineActive && e.key.length === 1) {
+      this.showNextTimelineStep();
+    }
+  },
 		showContactDetails() {
 			const { email, website, github, linkedin } = this.personalData;
 
