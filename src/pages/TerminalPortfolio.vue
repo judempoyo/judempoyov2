@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-zinc-900 terminal-container">
+  <div class="bg-zinc-800 terminal-container">
     <div class="terminal-header">
   
               <StyleSwitcher />
