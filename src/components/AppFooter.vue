@@ -79,7 +79,7 @@ const socialIcons: Record<SocialIconKey, any> = {
       </div>
 
       <!-- Contact -->
-      <div class="space-y-6">
+      <div class="space-y-6" id="contact">
         <h3 class="text-xl font-bold text-white">Contact</h3>
         <div class="space-y-4">
           <a 
