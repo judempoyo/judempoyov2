@@ -29,6 +29,7 @@ Philosophy: "Code is logical poetry".`,
       title: "Frontend",
       items: [
         { name: "Vue.js", level: 3, years: 0 },
+        { name: "Angular", level: 2, years: 0 },
         { name: "TailwindCSS", level: 4, years: 2 },
         { name: "Livewire", level: 3, years: 1 },
         { name: "Flutter", level: 2, years: 1 }
@@ -39,11 +40,10 @@ Philosophy: "Code is logical poetry".`,
       items: [
         { name: "PHP", level: 5, years: 3 },
         { name: "Laravel", level: 4, years: 2 },
+        { name: "TypeScript", level: 2, years: 0 },
         { name: "C++", level: 3, years: 1 },
         { name: "REST API", level: 3, years: 1 },
         { name: "Filament", level: 3, years: 1 },
-        { name: "Firebase", level: 2, years: 1 },
-        { name: "Supabase", level: 1, years: 0 },
       ]
     },
     devops: {
@@ -55,6 +55,9 @@ Philosophy: "Code is logical poetry".`,
         { name: "Postman", level: 2, years: 0 },
         { name: "Trello", level: 2, years: 0 },
         { name: "VS Code", level: 4, years: 5 },
+
+        { name: "Firebase", level: 2, years: 1 },
+        { name: "Supabase", level: 1, years: 0 },
       ]
     }
   },
@@ -105,48 +108,182 @@ Philosophy: "Code is logical poetry".`,
 
   projects: {
     portfolio: {
-      name: "Terminal Portfolio",
-      description: "Interactive portfolio with custom terminal",
-      technologies: ["Vue 3", "Tailwind", "GSAP", "JS ES6+"],
-      link: "https://github.com/judempoyo/terminal-portfolio",
-      year: 2023,
-      features: [
-        "Custom command system",
-        "Smooth animations with GSAP",
-        "Interactive light/dark theme",
-        "Timeline presentation"
+      "name": "Terminal/Graphical Portfolio",
+      "description": "Portfolio with selectable visual style (terminal or graphical)",
+      "technologies": ["Vue 3", "Tailwind CSS"],
+      "link": "",
+      "year": 2025,
+      "features": [
+        "Terminal and graphical modes",
+        "Customizable visual theme",
+        "Modern responsive design"
       ],
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
+      "image": ""
     },
-    ecommerce: {
-      name: "E-commerce Platform",
-      description: "Complete solution with inventory and payment management",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      link: "https://github.com/judempoyo/ecommerce-platform",
-      year: 2022,
-      features: [
-        "Custom order system",
-        "Smooth animations with GSAP",
-        "Interactive light/dark theme",
-        "Timeline presentation"
+    phpmvstarter: {
+      "name": "PHP MV Starter",
+      "description": "Starter kit with ready-to-use authentication system",
+      "technologies": ["PHP 8.2+", "Eloquent", "Dotenv", "Tailwind CSS v4", "PostCSS"],
+      "link": "",
+      "year": 2025,
+      "features": [
+        "Authentication system",
+        "Clean MVC structure",
+        "Tailwind CSS integration"
       ],
-      image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
+      "image": ""
     },
-    dashboard: {
-      name: "Analytics Dashboard",
-      description: "Comprehensive data visualization and reporting tool",
-      technologies: ["PHP", "Laravel", "Vue.js"],
-      link: "https://github.com/judempoyo/analytics-dashboard",
-      year: 2022,
-      features: [
-        "Custom command system",
-        "Smooth animations with GSAP",
-        "Interactive light/dark theme",
-        "Timeline presentation"
+    ecom: {
+      "name": "Ecom Platform",
+      "description": "E-commerce platform for selling products (work in progress)",
+      "technologies": ["Laravel", "Livewire", "Filament"],
+      "link": "",
+      "year": 2025,
+      "features": [
+        "Product management",
+        "Admin dashboard (Filament)",
+        "Planned payment integration"
       ],
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
+      "image": ""
     },
+    jumpdatatable: {
+      "name": "Jump Datatable",
+      "description": "Composer package to easily add dynamic tables in PHP projects",
+      "technologies": ["PHP", "Tailwind CSS", "Bootstrap", "JavaScript"],
+      "link": "https://github.com/judempoyo/jumpDatatable",
+      "year": 2024,
+      "features": [
+        "Quick integration",
+        "Auto-pagination",
+        "Column sorting",
+        "Data search",
+        "Responsive design",
+        "Easy customization"
+      ],
+      "image": ""
+    },
+    gestion_pharmacie: {
+      "name": "Pharmacy Management",
+      "description": "Pharmacy management app using PHP MVC architecture",
+      "technologies": ["PHP", "Tailwind CSS"],
+      "link": "",
+      "year": 2024,
+      "features": [
+        "Product and stock management",
+        "Sales tracking",
+        "Clean MVC structure"
+      ],
+      "image": ""
+    },
+    jumptodo: {
+      "name": "Jump Todo",
+      "description": "Task management app with Pomodoro timer",
+      "technologies": ["Angular", "TypeScript", "Tailwind CSS"],
+      "link": "",
+      "year": 2025,
+      "features": [
+        "Task lists",
+        "Pomodoro integration",
+        "Responsive UI"
+      ],
+      "image": ""
+    },
+    jumpmanagment: {
+      "name": "Jump Management",
+      "description": "Full management app for hardware stores or similar businesses",
+      "technologies": ["Laravel", "Livewire", "Filament"],
+      "link": "",
+      "year": 2025,
+      "features": [
+        "Inventory management",
+        "Sales dashboard",
+        "User roles and permissions"
+      ],
+      "image": ""
+    },
+    trelloboardclone: {
+      "name": "Trello Board Clone",
+      "description": "Task management board inspired by Trello",
+      "technologies": ["Angular", "Angular Material", "Tailwind CSS"],
+      "link": "",
+      "year": 2025,
+      "features": [
+        "Board and task management",
+        "Task filters",
+        "Favorite boards",
+        "Planned animations",
+        "Planned authentication"
+      ],
+      "image": ""
+    },
+    jumpapi: {
+      "name": "Jump API",
+      "description": "REST API for user and product management with CRUD operations",
+      "technologies": ["PHP", "MySQL", "PDO"],
+      "link": "",
+      "year": 2025,
+      "features": [
+        "User and product CRUD",
+        "Pagination support",
+        "Dynamic model creation",
+        "JSON request/response"
+      ],
+      "image": ""
+    },
+    appimmo: {
+      "name": "App Immo",
+      "description": "Mobile app for a fictional real estate agency",
+      "technologies": ["Flutter"],
+      "link": "",
+      "year": 2025,
+      "features": [
+        "Property listings",
+        "Contact management",
+        "Mobile optimized UI"
+      ],
+      "image": ""
+    },
+    learn2code: {
+      "name": "Learn2Code",
+      "description": "Mobile app to help beginners learn programming",
+      "technologies": ["Flutter"],
+      "link": "",
+      "year": 2025,
+      "features": [
+        "Beginner-friendly lessons",
+        "Interactive quizzes",
+        "Progress tracking"
+      ],
+      "image": ""
+    },
+    laravel12angular19starter: {
+      "name": "Laravel + Angular Starter",
+      "description": "Starter kit combining Laravel and Angular 19 (in progress)",
+      "technologies": ["Laravel", "Angular 19"],
+      "link": "",
+      "year": 2025,
+      "features": [
+        "Basic authentication (planned)",
+        "REST API structure",
+        "Angular frontend setup"
+      ],
+      "image": ""
+    },
+    agriproject: {
+      "name": "Agri Project",
+      "description": "Online sales platform for agricultural products with stock management",
+      "technologies": ["Laravel"],
+      "link": "",
+      "year": 2025,
+      "features": [
+        "Stock management for farmers",
+        "Online product sales",
+        "Admin interface"
+      ],
+      "image": ""
+    }
   },
+
 
   timeline: [
     {
