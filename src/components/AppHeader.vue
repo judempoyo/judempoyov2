@@ -148,10 +148,10 @@ const isSheetOpen = ref(false);
               <NavigationMenuLink
                 :href="'#' + link.id"
                 @click="scrollToSection(link.id)"
-                class="relative px-5 py-2.5 text-sm font-medium group overflow-hidden flex items-center gap-2"
+                class="relative  px-4 py-2.5 text-sm font-medium group overflow-hidden flex items-center gap-2"
               >
-                <component :is="link.icon" class="h-4 w-4 text-teal-600 dark:text-teal-400 opacity-80 group-hover:opacity-100 transition-opacity" />
-                <span class="relative z-10 text-zinc-700 dark:text-zinc-300 group-hover:text-teal-500 dark:group-hover:text-teal-400 transition-colors duration-300">
+                <component :is="link.icon" class="h-4 w-4 flex-shrink-0 text-teal-600 dark:text-teal-400 opacity-80 group-hover:opacity-100 transition-opacity" />
+                <span class="relative  z-10 text-zinc-700 dark:text-zinc-300 group-hover:text-teal-500 dark:group-hover:text-teal-400 transition-colors duration-300 whitespace-nowrap">
                   {{ link.text }}
                 </span>
                 <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-teal-400 to-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700 ease-out"></span>

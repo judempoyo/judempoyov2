@@ -238,7 +238,7 @@ export default {
       <div class="hidden md:block absolute -top-6 -left-6 w-24 h-24 bg-teal-400/10 rounded-full blur-xl"></div>
       
       <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 dark:text-white leading-tight" ref="heroTitle">
-        Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-600 dark:from-teal-400 dark:to-blue-500">Jude Mpoyo</span>
+        Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-zinc-600 dark:from-teal-400 dark:to-zinc-500">Jude Mpoyo</span>
       </h1>
       
       <p class="text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 mb-6 md:mb-8 max-w-md mx-auto md:mx-0 leading-relaxed" ref="heroText">
@@ -268,7 +268,7 @@ export default {
     <div class="relative order-1 md:order-2 mx-auto w-full max-w-xs sm:max-w-sm md:max-w-none" ref="heroVisual">
       <div class="hidden md:block absolute -top-8 -left-8 w-40 h-40 bg-teal-400/20 rounded-full blur-xl"></div>
       
-      <div class="md:absolute inset-0 bg-gradient-to-br from-teal-100 to-blue-100 dark:from-teal-900/50 dark:to-blue-900/50 rounded-2xl md:rounded-3xl transform md:rotate-6"></div>
+      <div class="md:absolute inset-0 bg-gradient-to-br from-teal-100 to-zinc-100 dark:from-teal-900/50 dark:to-zinc-900/50 rounded-2xl md:rounded-3xl transform md:rotate-6"></div>
       
       <div class="relative bg-white dark:bg-zinc-800 p-1 sm:p-1.5 rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl overflow-hidden border-4 md:border-8 border-white dark:border-zinc-800 transition-all duration-300 hover:shadow-teal-500/20 hover:-translate-y-1 md:hover:-translate-y-2">
         <img src="/judepic.png" alt="Jude Mpoyo"
@@ -349,7 +349,7 @@ export default {
 					</div>
 
 					<div class="relative h-[480px]" ref="aboutVisual">
-						<div class="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-blue-500/5 rounded-2xl blur-xl"></div>
+						<div class="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-zinc-500/5 rounded-2xl blur-xl"></div>
 
 						<template v-for="(card, index) in aboutCards" :key="index">
 							<div
