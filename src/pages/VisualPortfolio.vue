@@ -231,64 +231,63 @@ export default {
 		<AppHeader />
 
 		<!-- Hero Section -->
-		<section id="home" class="min-h-screen flex items-center justify-center pt-20 px-6 md:px-12" ref="hero">
-			<div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-				<div class="relative z-10">
-					<div class="absolute -top-8 -left-8 w-32 h-32 bg-teal-400/10 rounded-full blur-3xl"></div>
-					<h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 dark:text-white leading-tight" ref="heroTitle">
-						Hi, I'm <span
-							class="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-600 dark:from-teal-400 dark:to-blue-500">Jude
-							Mpoyo</span>
-					</h1>
-					<p class="text-xl text-zinc-600 dark:text-zinc-300 mb-8 max-w-lg leading-relaxed" ref="heroText">
-						{{ sharedData.personal.shortBio }}
-					</p>
-					<div class="flex gap-4 flex-wrap" ref="heroButtons">
-						<a href="#projects"
-							class="px-8 py-3.5 bg-gradient-to-r from-teal-600 to-teal-500 dark:from-teal-700 dark:to-teal-600 text-white rounded-xl hover:shadow-lg hover:shadow-teal-500/20 transition-all duration-300 shadow-md flex items-center gap-2 group"
-							@click="scrollToSection('projects')">
-							<span>My projects</span>
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform"
-								fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-							</svg>
-						</a>
-						<a href="#contact"
-							class="px-8 py-3.5 border-2 border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-all duration-300 flex items-center gap-2 group">
-							<span>Contact me</span>
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform"
-								fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-									d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-							</svg>
-						</a>
-					</div>
-				</div>
-				<div class="relative" ref="heroVisual">
-					<div class="absolute -top-12 -left-12 w-64 h-64 bg-teal-400/20 rounded-full blur-3xl"></div>
-					<div
-						class="absolute inset-0 bg-gradient-to-br from-teal-100 to-blue-100 dark:from-teal-900/50 dark:to-blue-900/50 rounded-3xl transform rotate-6">
-					</div>
-					<div
-						class="relative bg-white dark:bg-zinc-800 p-1.5 rounded-3xl shadow-2xl overflow-hidden border-8 border-white dark:border-zinc-800 transition-all duration-500 hover:shadow-teal-500/20 hover:-translate-y-2">
-						<img src="/judepic.png" alt="Jude Mpoyo"
-							class="rounded-2xl w-full h-auto object-cover aspect-square grayscale-[25%] hover:grayscale-0 transition-all duration-500">
-						<div
-							class="absolute bottom-4 left-4 right-4 bg-white/90 dark:bg-zinc-800/90 backdrop-blur-sm p-4 rounded-xl shadow-md border border-white/20">
-							<div class="flex gap-2 mb-2">
-								<span class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></span>
-								<span class="w-3 h-3 rounded-full bg-yellow-500"></span>
-								<span class="w-3 h-3 rounded-full bg-green-500"></span>
-							</div>
-							<h3
-								class="font-extrabold text-center text-2xl md:text-3xl uppercase bg-gradient-to-br from-teal-600 to-zinc-600 dark:from-teal-400 dark:to-zinc-300 bg-clip-text text-transparent">
-								{{ sharedData.personal.name }}
-							</h3>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+<section id="home" class="min-h-screen flex items-center justify-center pt-16 pb-12 px-4 sm:px-6" ref="hero">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+    <!-- Contenu texte -->
+    <div class="relative z-10 order-2 md:order-1 text-center md:text-left">
+      <div class="hidden md:block absolute -top-6 -left-6 w-24 h-24 bg-teal-400/10 rounded-full blur-xl"></div>
+      
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 dark:text-white leading-tight" ref="heroTitle">
+        Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-600 dark:from-teal-400 dark:to-blue-500">Jude Mpoyo</span>
+      </h1>
+      
+      <p class="text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 mb-6 md:mb-8 max-w-md mx-auto md:mx-0 leading-relaxed" ref="heroText">
+        {{ sharedData.personal.shortBio }}
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start" ref="heroButtons">
+        <a href="#projects"
+          class="px-6 py-3 sm:px-8 sm:py-3.5 bg-gradient-to-r from-teal-600 to-teal-500 dark:from-teal-700 dark:to-teal-600 text-white rounded-lg sm:rounded-xl hover:shadow-lg hover:shadow-teal-500/20 transition-all duration-300 shadow-md flex items-center justify-center gap-2 group"
+          @click="scrollToSection('projects')">
+          <span>My projects</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+        <a href="#contact"
+          class="px-6 py-3 sm:px-8 sm:py-3.5 border-2 border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-lg sm:rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-all duration-300 flex items-center justify-center gap-2 group">
+          <span>Contact me</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Image profil -->
+    <div class="relative order-1 md:order-2 mx-auto w-full max-w-xs sm:max-w-sm md:max-w-none" ref="heroVisual">
+      <div class="hidden md:block absolute -top-8 -left-8 w-40 h-40 bg-teal-400/20 rounded-full blur-xl"></div>
+      
+      <div class="md:absolute inset-0 bg-gradient-to-br from-teal-100 to-blue-100 dark:from-teal-900/50 dark:to-blue-900/50 rounded-2xl md:rounded-3xl transform md:rotate-6"></div>
+      
+      <div class="relative bg-white dark:bg-zinc-800 p-1 sm:p-1.5 rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl overflow-hidden border-4 md:border-8 border-white dark:border-zinc-800 transition-all duration-300 hover:shadow-teal-500/20 hover:-translate-y-1 md:hover:-translate-y-2">
+        <img src="/judepic.png" alt="Jude Mpoyo"
+          class="rounded-xl md:rounded-2xl w-full h-auto object-cover aspect-square grayscale-[25%] hover:grayscale-0 transition-all duration-300">
+        
+        <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 bg-white/90 dark:bg-zinc-800/90 backdrop-blur-sm p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md border border-white/20">
+          <div class="flex gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
+            <span class="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500 animate-pulse"></span>
+            <span class="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></span>
+            <span class="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500"></span>
+          </div>
+          <h3 class="font-extrabold text-center text-xl sm:text-2xl md:text-3xl uppercase bg-gradient-to-br from-teal-600 to-zinc-600 dark:from-teal-400 dark:to-zinc-300 bg-clip-text text-transparent">
+            {{ sharedData.personal.name }}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 		<!-- About Section -->
 		<section id="about"
