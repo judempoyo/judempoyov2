@@ -16,6 +16,7 @@ import {
 } from 'lucide-vue-next'
 import { sharedData } from '@/data/shared-data'
 import AppHeader from '@/components/AppHeader.vue'
+import AppFooter from '@/components/AppFooter.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -31,16 +32,12 @@ export default {
     GithubIcon,
     LinkedinIcon,
     InstagramIcon,
-		AppHeader
+		AppHeader,
+		AppFooter
   },
   emits: ['change-style'],
   setup(props, { emit }) {
-    const navLinks = ref([
-      { id: 'home', text: 'Accueil' },
-      { id: 'about', text: 'À propos' },
-      { id: 'projects', text: 'Projets' },
-      { id: 'contact', text: 'Contact' }
-    ])
+
 
     const aboutCards = ref([
       {
@@ -197,7 +194,6 @@ export default {
 
     return {
       sharedData,
-      navLinks,
       aboutCards,
       hero,
       heroTitle,
@@ -489,63 +485,7 @@ export default {
     </section>
 
     <!-- Footer -->
-    <footer class="bg-zinc-900 text-white py-12 px-6">
-      <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-        <div>
-          <h3 class="text-xl font-semibold mb-4">Jude's portfolio</h3>
-          <p class="text-zinc-400">{{ sharedData.personal.shortBio }}</p>
-        </div>
-        <div>
-          <h3 class="text-xl font-semibold mb-4">Project</h3>
-          <ul class="space-y-2">
-            <li v-for="link in navLinks" :key="link.id">
-              <a 
-                :href="'#' + link.id" 
-                class="flex items-center gap-3 text-zinc-400 hover:text-white transition-colors group"
-                @click="scrollToSection(link.id)"
-              >
-                <span class="w-2 h-2 rounded-full bg-teal-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-              <span class="group-hover:translate-x-1 transition-transform">{{ link.text }}</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-				 <div>
-          <h3 class="text-xl font-semibold mb-4">Navigation</h3>
-          <ul class="space-y-2">
-            <li v-for="link in navLinks" :key="link.id">
-              <a 
-                :href="'#' + link.id" 
-                class="flex items-center gap-3 text-zinc-400 hover:text-white transition-colors group"
-                @click="scrollToSection(link.id)"
-              >
-                <span class="w-2 h-2 rounded-full bg-teal-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-              <span class="group-hover:translate-x-1 transition-transform">{{ link.text }}</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-xl font-semibold mb-4">Réseaux sociaux</h3>
-          <div class="flex gap-4">
-            <a 
-              v-for="(social, index) in sharedData.socialLinks" 
-              :key="index"
-              :href="social.link" 
-               class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-white hover:bg-gradient-to-br from-teal-500 to-emerald-600 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-teal-500/20"
-            target="_blank"
-
-            :aria-label="social.name"
-            >
-              <component :is="social.icon" class="w-5 h-5" />
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="max-w-7xl mx-auto pt-8 mt-8 border-t border-zinc-800 text-center text-zinc-500 text-sm">
-        &copy; {{ new Date().getFullYear() }} {{ sharedData.personal.name }}. Tous droits réservés.
-      </div>
-    </footer>
+   <AppFooter />
   </div>
 </template>
 
