@@ -68,7 +68,7 @@ const isSheetOpen = ref(false);
         </span>
       </div>
 
-      <!-- Mobile Menu Button with Morphing Animation -->
+      <!-- Mobile Menu -->
       <div class="md:hidden ml-auto">
         <Sheet v-model:open="isSheetOpen">
           <SheetTrigger :as-child="true">
@@ -80,17 +80,15 @@ const isSheetOpen = ref(false);
           </SheetTrigger>
           <SheetContent 
             side="left" 
-            class="w-xs max-w-sm h-[55vh] !top-6 !left-4 !right-auto !bottom-6 rounded-circle bg-white/95 dark:bg-[#0d0d0d]/95 backdrop-blur-3xl border border-zinc-200/30 dark:border-zinc-800/30 drop-shadow-2xl overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            class="w-xs max-w-sm h-[65vh] !top-6 !left-4 !right-auto !bottom-6 rounded-circle bg-white/95 dark:bg-[#0d0d0d]/95 backdrop-blur-3xl border border-zinc-200/30 dark:border-zinc-800/30 drop-shadow-2xl overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
             :style="{
               transform: isSheetOpen ? 'translateX(0)' : 'translateX(-120%)',
               opacity: isSheetOpen ? 1 : 0,
               'border-radius': isSheetOpen ? '2.5rem' : '50%'
             }"
           >
-            <!-- Animated Border Top -->
             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-teal-500 via-zinc-500 animate-gradient-x"></div>
             
-            <!-- Floating Bubbles Background -->
             <div class="absolute inset-0 overflow-hidden opacity-10">
               <div v-for="i in 8" :key="i" 
                    class="absolute rounded-full bg-teal-500 animate-float opacity-40 dark:opacity-20"
@@ -162,7 +160,6 @@ const isSheetOpen = ref(false);
         </NavigationMenu>
       </div>
 
-      <!-- Desktop Controls -->
       <div class="hidden md:flex items-center gap-4 ml-auto">
         <StyleSwitcher />
         <ToggleTheme />
@@ -193,7 +190,6 @@ const isSheetOpen = ref(false);
   animation: float linear infinite;
 }
 
-/* Custom transition for sheet content */
 :deep([data-state="open"] .sheet-overlay) {
   animation: fadeIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
