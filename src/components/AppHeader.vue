@@ -28,7 +28,6 @@ import {
 } from 'lucide-vue-next';
 import { ref, type FunctionalComponent } from 'vue';
 
-// Associer chaque lien à une icône
 const navLinks = sharedData.navLinks.map(link => {
    const icons = {
     'home': Home,

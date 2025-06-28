@@ -5,17 +5,15 @@ import {
   GithubIcon,
   LinkedinIcon,
   InstagramIcon,
+	PhoneIcon,
   MailIcon,
   GlobeIcon
 } from 'lucide-vue-next'
 import { sharedData } from '@/data/shared-data'
 
-const navLinks = [
-  { id: 'home', text: 'Accueil' },
-  { id: 'about', text: 'À propos' },
-  { id: 'projects', text: 'Projets' },
-  { id: 'contact', text: 'Contact' }
-]
+const navLinks = sharedData.navLinks;
+
+
 
 const scrollToSection = (id: string) => {
   const element = document.getElementById(id)

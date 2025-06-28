@@ -312,12 +312,12 @@ Philosophy: "Code is logical poetry".`,
 
   socialLinks: [
     { 
-      icon: "GithubIcon", 
+      icon: "github", 
       link: "https://github.com/judempoyo",
       name: "GitHub"
     },
     { 
-      icon: "LinkedinIcon", 
+      icon: "linkedin", 
       link: "https://linkedin.com/in/judempoyo",
       name: "LinkedIn"
     },
