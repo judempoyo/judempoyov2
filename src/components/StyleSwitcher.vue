@@ -13,7 +13,7 @@
   </button>
 </template>
 
-<script>
+<script setup lang="ts">
 import { inject } from 'vue'
 
 export default {
