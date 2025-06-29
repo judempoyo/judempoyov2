@@ -41,33 +41,13 @@ const canonicalUrl = 'https://yourportfolio.com';
 
 <template>
   <footer class="bg-zinc-900 text-white py-16 px-6 relative overflow-hidden border-t border-zinc-800">
-	    <Head>
-      <title>{{ pageTitle }}</title>
-      <meta name="description" :content="pageDescription">
-      <link rel="canonical" :href="canonicalUrl" />
-      
-      <!-- Open Graph / Facebook -->
-      <meta property="og:type" content="website">
-      <meta property="og:url" :content="canonicalUrl">
-      <meta property="og:title" :content="pageTitle">
-      <meta property="og:description" :content="pageDescription">
-      <meta property="og:image" content="/social-preview.jpg">
-      
-      <!-- Twitter -->
-      <meta property="twitter:card" content="summary_large_image">
-      <meta property="twitter:url" :content="canonicalUrl">
-      <meta property="twitter:title" :content="pageTitle">
-      <meta property="twitter:description" :content="pageDescription">
-      <meta property="twitter:image" content="/social-preview.jpg">
-    </Head>
-    <!-- Effets d'arrière-plan animés -->
+	   
     <div class="absolute inset-0 opacity-5">
       <div class="absolute -top-32 -left-32 w-64 h-64 rounded-full bg-teal-500 blur-3xl animate-float-slow"></div>
       <div class="absolute -bottom-16 -right-16 w-48 h-48 rounded-full bg-emerald-500 blur-3xl animate-float-slow animation-delay-2000"></div>
     </div>
 
     <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 relative z-10">
-      <!-- Section À propos -->
       <div class="space-y-6">
         <div class="flex items-center gap-3">
           <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center">
@@ -82,7 +62,6 @@ const canonicalUrl = 'https://yourportfolio.com';
         </p>
       </div>
 
-      <!-- Navigation -->
       <div class="space-y-6">
         <h3 class="text-xl font-bold text-white">Navigation</h3>
         <ul class="space-y-3">
@@ -99,7 +78,6 @@ const canonicalUrl = 'https://yourportfolio.com';
         </ul>
       </div>
 
-      <!-- Contact -->
       <div class="space-y-6" id="contact">
         <h3 class="text-xl font-bold text-white">Contact</h3>
         <div class="space-y-4">
@@ -121,7 +99,6 @@ const canonicalUrl = 'https://yourportfolio.com';
         </div>
       </div>
 
-      <!-- Réseaux sociaux -->
       <div class="space-y-6">
         <h3 class="text-xl font-bold text-white">Réseaux</h3>
         <div class="flex flex-wrap gap-3">
@@ -141,8 +118,6 @@ const canonicalUrl = 'https://yourportfolio.com';
         </div>
       </div>
     </div>
-
-    <!-- Copyright -->
     <div class="max-w-7xl mx-auto pt-12 mt-12 border-t border-zinc-800 text-center text-zinc-500 text-sm relative z-10">
       &copy; {{ new Date().getFullYear() }} {{ sharedData.personal.name }}. All rights reserved
     </div>

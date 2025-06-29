@@ -216,14 +216,17 @@ export default {
     canonicalLink.rel = 'canonical';
     canonicalLink.href = window.location.href.split('#')[0];
     document.head.appendChild(canonicalLink);
-    
+
+    const projects = Array.isArray(sharedData.projects) 
+  ? sharedData.projects 
+  : Object.values(sharedData.projects);
     
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.text = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "ItemList",
-      "itemListElement": sharedData.projects.map((project, index) => ({
+      "itemListElement": projects.map((project, index) => ({
         "@type": "ListItem",
         "position": index + 1,
         "item": {
