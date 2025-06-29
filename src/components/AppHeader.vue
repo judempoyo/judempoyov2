@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button';
-import ToggleTheme from './ToggleTheme.vue';
-import StyleSwitcher from './StyleSwitcher.vue';
+import ToggleTheme from '@/components//ToggleTheme.vue';
+import StyleSwitcher from '@/components/StyleSwitcher.vue';
 import { sharedData } from '@/data/shared-data.js';
 
 import { 

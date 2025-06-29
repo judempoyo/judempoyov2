@@ -20,21 +20,26 @@ import StyleSwitcher from '@/components/StyleSwitcher.vue'
 import Terminal from '@/components/Terminal.vue'
 import { ref, onMounted } from 'vue'
 import { sharedData } from '@/data/shared-data'
+import { useMetadata } from '@/composables/useMetadata';
 
-onMounted(() =>   {
-    document.title = `${sharedData.personal.name} | Terminal Portfolio`
-     
-    const metaDescription = document.createElement('meta')
-    metaDescription.name = 'description'
-    metaDescription.content = 'Interactive terminal-style developer portfolio showcasing skills and projects'
-    document.head.appendChild(metaDescription)
-  })
+
+
 export default {
   components: { Terminal, StyleSwitcher},
 	data() {
     return {
       sharedData
-    }}
+    }},
+		setup() {
+    const { setMetadata } = useMetadata();
+
+    onMounted(() => {
+      setMetadata({
+        title: `${sharedData.personal.name} | Terminal Portfolio`,
+        description: 'Interactive terminal-style developer portfolio'
+      });
+    });
+  }
 }
 
 </script>
