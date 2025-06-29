@@ -1,6 +1,7 @@
 export const sharedData = {
   personal: {
     name: "Jude Mpoyo",
+    initials: "JM",
     title: "Backend Developer",
     specialties: ["Laravel", "PHP", "VueJS", "Cloud Architecture"],
     shortBio: `
@@ -124,47 +125,21 @@ Philosophy: "Code is logical poetry".`,
       name: "Terminal/Graphical Portfolio",
       description: "Portfolio with selectable visual style (terminal or graphical)",
       technologies: ["Vue 3", "Tailwind CSS"],
-      link: "",
+      link: "https://github.com/judempoyo/judempoyov2",
       year: 2025,
       features: [
         "Terminal and graphical modes",
         "Customizable visual theme",
         "Modern responsive design"
       ],
-      image: ""
+      image: "images/judeportfolio.png"
     },
-    phpmvstarter: {
-      name: "PHP MV Starter",
-      description: "Starter kit with ready-to-use authentication system",
-      technologies: ["PHP 8.2+", "Eloquent", "Dotenv", "Tailwind CSS v4", "PostCSS"],
-      link: "",
-      year: 2025,
-      features: [
-        "Authentication system",
-        "Clean MVC structure",
-        "Tailwind CSS integration"
-      ],
-      image: ""
-    },
-    ecom: {
-      name: "Ecom Platform",
-      description: "E-commerce platform for selling products (work in progress)",
-      technologies: ["Laravel", "Livewire", "Filament"],
-      link: "",
-      year: 2025,
-      features: [
-        "Product management",
-        "Admin dashboard (Filament)",
-        "Planned payment integration"
-      ],
-      image: ""
-    },
-    jumpdatatable: {
+     jumpdatatable: {
       name: "Jump Datatable",
       description: "Composer package to easily add dynamic tables in PHP projects",
       technologies: ["PHP", "Tailwind CSS", "Bootstrap", "JavaScript"],
       link: "https://github.com/judempoyo/jumpDatatable",
-      year: 2024,
+      year: 2025,
       features: [
         "Quick integration",
         "Auto-pagination",
@@ -173,52 +148,93 @@ Philosophy: "Code is logical poetry".`,
         "Responsive design",
         "Easy customization"
       ],
-      image: ""
+      image: "images/jumpdatatable.png"
     },
+    phpmvstarter: {
+      name: "PHP MV Starter",
+      description: "Starter kit with ready-to-use authentication system",
+      technologies: ["PHP 8.2+", "Eloquent", "Dotenv", "Tailwind CSS v4", "PostCSS"],
+      link: "https://github.com/judempoyo/phpMVCStarter",
+      year: 2025,
+      features: [
+        "Authentication system",
+        "Clean MVC structure",
+        "Tailwind CSS integration"
+      ],
+      image: "images/phpmvcstarter.png"
+    },
+     learn2code: {
+      name: "Learn2Code",
+      description: "Mobile app to help beginners learn programming",
+      technologies: ["Flutter"],
+      link: "https://github.com/judempoyo/learn2code",
+      year: 2025,
+      features: [
+        "Beginner-friendly lessons",
+        "Interactive quizzes",
+        "Progress tracking"
+      ],
+      image: "images/mobileapp.jpg"
+    },
+    ecom: {
+      name: "Ecom Platform",
+      description: "E-commerce platform for selling products (work in progress)",
+      technologies: ["Laravel", "Livewire", "Filament"],
+      link: "https://github.com/judempoyo/Ecom",
+      year: 2025,
+      features: [
+        "Product management",
+        "Admin dashboard (Filament)",
+        "Planned payment integration"
+      ],
+      image: "images/ecom.png"
+    },
+   
     gestion_pharmacie: {
       name: "Pharmacy Management",
       description: "Pharmacy management app using PHP MVC architecture",
       technologies: ["PHP", "Tailwind CSS"],
-      link: "",
-      year: 2024,
+      link: "https://github.com/judempoyo/gestion_pharmacie",
+      year: 2025,
       features: [
         "Product and stock management",
         "Sales tracking",
         "Clean MVC structure"
       ],
-      image: ""
+      image: "images/jumpapi.png"
     },
     jumptodo: {
       name: "Jump Todo",
       description: "Task management app with Pomodoro timer",
       technologies: ["Angular", "TypeScript", "Tailwind CSS"],
-      link: "",
+      link: "https://github.com/judempoyo/jumpTodo",
       year: 2025,
       features: [
         "Task lists",
         "Pomodoro integration",
         "Responsive UI"
       ],
-      image: ""
+      image: "images/jumptododark.png"
     },
+    
     jumpmanagment: {
       name: "Jump Management",
       description: "Full management app for hardware stores or similar businesses",
       technologies: ["Laravel", "Livewire", "Filament"],
-      link: "",
+      link: "https://github.com/judempoyo/JumpManagment",
       year: 2025,
       features: [
         "Inventory management",
         "Sales dashboard",
         "User roles and permissions"
       ],
-      image: ""
+      image: "images/jumpmanagement.png"
     },
     trelloboardclone: {
       name: "Trello Board Clone",
       description: "Task management board inspired by Trello",
       technologies: ["Angular", "Angular Material", "Tailwind CSS"],
-      link: "",
+      link: "https://github.com/judempoyo/trelloboardclone",
       year: 2025,
       features: [
         "Board and task management",
@@ -227,13 +243,13 @@ Philosophy: "Code is logical poetry".`,
         "Planned animations",
         "Planned authentication"
       ],
-      image: ""
+      image: "images/trelloboardclone.png"
     },
     jumpapi: {
       name: "Jump API",
       description: "REST API for user and product management with CRUD operations",
       technologies: ["PHP", "MySQL", "PDO"],
-      link: "",
+      link: "https://github.com/judempoyo/JumpApi",
       year: 2025,
       features: [
         "User and product CRUD",
@@ -241,72 +257,48 @@ Philosophy: "Code is logical poetry".`,
         "Dynamic model creation",
         "JSON request/response"
       ],
-      image: ""
+      image: "images/jumpapi.png"
     },
     appimmo: {
       name: "App Immo",
       description: "Mobile app for a fictional real estate agency",
       technologies: ["Flutter"],
-      link: "",
+      link: "https://github.com/judempoyo/appimmo",
       year: 2025,
       features: [
         "Property listings",
         "Contact management",
         "Mobile optimized UI"
       ],
-      image: ""
+      image: "images/mobileapp.jpg"
     },
-    learn2code: {
-      name: "Learn2Code",
-      description: "Mobile app to help beginners learn programming",
-      technologies: ["Flutter"],
-      link: "",
-      year: 2025,
-      features: [
-        "Beginner-friendly lessons",
-        "Interactive quizzes",
-        "Progress tracking"
-      ],
-      image: ""
-    },
+   
     laravel12angular19starter: {
       name: "Laravel + Angular Starter",
       description: "Starter kit combining Laravel and Angular 19 (in progress)",
       technologies: ["Laravel", "Angular 19"],
-      link: "",
+      link: "https://github.com/judempoyo/laravel12angular19starter",
       year: 2025,
       features: [
         "Basic authentication (planned)",
         "REST API structure",
         "Angular frontend setup"
       ],
-      image: ""
+      image: "images/laravelangularstarter.png"
     },
-    agriproject: {
-      name: "Agri Project",
-      description: "Online sales platform for agricultural products with stock management",
-      technologies: ["Laravel"],
-      link: "",
-      year: 2025,
-      features: [
-        "Stock management for farmers",
-        "Online product sales",
-        "Admin interface"
-      ],
-      image: ""
-    }
+   
   },
 
 
  
   timeline: [
     {
-      title: "🎓 Education",
-      content: "Degree in Programming - Institut Supérieur de Commerce de Lubumbashi (Graduated 2023)\nFocus on software development, databases, and web technologies"
+      title: "💼 First Experiences",
+      content: "Web Developer Internships (2023)\n• Afrisoft: Contributed to internal tools and UI improvements\n• Link DCs: Maintained and enhanced Laravel applications"
     },
     {
-      title: "💼 First Experiences",
-      content: "Web Developer Internships (2024)\n• Afrisoft: Contributed to internal tools and UI improvements\n• Link DCs: Maintained and enhanced Laravel applications"
+      title: "🎓 Education",
+      content: "Degree in Programming - Institut Supérieur de Commerce de Lubumbashi (Graduated 2024)\nFocus on software development, databases, and web technologies"
     },
     {
       title: "🚀 Freelance Journey",
@@ -321,12 +313,12 @@ Philosophy: "Code is logical poetry".`,
 
   socialLinks: [
     { 
-      icon: "GithubIcon", 
+      icon: "github", 
       link: "https://github.com/judempoyo",
       name: "GitHub"
     },
     { 
-      icon: "LinkedinIcon", 
+      icon: "linkedin", 
       link: "https://linkedin.com/in/judempoyo",
       name: "LinkedIn"
     },

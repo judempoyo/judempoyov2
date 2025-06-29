@@ -5,8 +5,11 @@ import TerminalPortfolio from '@/pages/TerminalPortfolio.vue'
 import VisualPortfolio from '@/pages/VisualPortfolio.vue'
 import StyleSwitcher from './components/StyleSwitcher.vue'
 import ToogleTheme from './components/ToggleTheme.vue'
+import { sharedData } from '@/data/shared-data'
+
 
 export default {
+	name: 'PortfolioApp', 
   components: { StyleSelector, TerminalPortfolio, VisualPortfolio, StyleSwitcher, ToogleTheme },
   setup() {
     const currentStyle = ref(null)
@@ -16,6 +19,8 @@ export default {
       currentStyle.value = style
       showStyleSelector.value = false
       localStorage.setItem('portfolioStyle', style)
+			 document.title = `Jude MPOYO | ${style === 'terminal' ? 'Terminal' : 'Visual'} Portfolio`
+    
     }
 
     const openStyleSelector = () => {
@@ -27,7 +32,13 @@ export default {
       showStyleSelector.value = !currentStyle.value
     })
 
-    // Fournir les valeurs aux composants enfants
+const metaDescription = document.createElement('meta')
+      metaDescription.name = 'description'
+      metaDescription.content = currentStyle.value === 'terminal' 
+        ? 'Interactive terminal-style portfolio showcasing developer skills' 
+        : 'Visual portfolio with modern design showcasing projects'
+      document.head.appendChild(metaDescription)
+    
     provide('currentStyle', currentStyle)
     provide('handleStyleSelection', handleStyleSelection)
     provide('openStyleSelector', openStyleSelector)
@@ -44,17 +55,21 @@ export default {
 
 <template>
   <div :class="{'terminal-mode': currentStyle === 'terminal'}">
- <!--    <StyleSwitcher v-if="currentStyle" /> -->
+	 <header v-if="!showStyleSelector" aria-label="Portfolio navigation">
+      <StyleSwitcher v-if="currentStyle" />
+    </header>
     
 
     <StyleSelector 
       v-if="showStyleSelector" 
       @style-selected="handleStyleSelection"
       @close="showStyleSelector = false"
+			  aria-label="Portfolio style selection"
     />
     <TerminalPortfolio v-else-if="currentStyle === 'terminal'" />
     <VisualPortfolio v-else-if="currentStyle === 'visual'" />
   </div>
+	
 </template>
 
 

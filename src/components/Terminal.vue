@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="font-mono text-gray-100 rounded-xl overflow-hidden shadow-2xl max-w-4xl mx-auto min-h-100 flex flex-col cursor-text transition-colors duration-300"
+		class="font-mono text-zinc-100 rounded-xl overflow-hidden shadow-2xl max-w-4xl mx-auto min-h-100 flex flex-col cursor-text transition-colors duration-300"
 		:class="currentTheme" @click="focusInput" ref="terminalContainer">
 		<!-- Header -->
 		<div class="px-3 py-2 flex items-center" :class="headerClass">
@@ -21,7 +21,7 @@
 			<div class="flex items-center">
 				<span class="text-green-400 mr-2">$</span>
 				<input v-model="currentCommand" @keyup.enter="executeCommand" @keyup.up="historyUp" @keyup.down="historyDown"
-					ref="commandInput" class="flex-1 bg-transparent border-none outline-none caret-gray-100" :class="textColor"
+					ref="commandInput" class="flex-1 bg-transparent border-none outline-none caret-zinc-100" :class="textColor"
 					spellcheck="false" />
 			</div>
 		</div>
@@ -42,11 +42,11 @@ export default {
 			],
 			commandHistory: [],
 			historyIndex: -1,
-			currentTheme: 'bg-gray-900',
-			textColor: 'text-gray-100',
-			headerClass: 'bg-gray-800',
-			titleClass: 'text-gray-400',
-			contentClass: 'bg-gray-900',
+			currentTheme: 'bg-zinc-900',
+			textColor: 'text-zinc-100',
+			headerClass: 'bg-zinc-950',
+			titleClass: 'text-zinc-400',
+			contentClass: 'bg-zinc-900',
 			isTimelineActive: false,
 			currentTimelineStep: 0,
 			personalData: sharedData.personal,
@@ -414,14 +414,13 @@ export default {
     this.output.push({
       type: 'output',
       text: '===  INTERACTIVE TIMELINE  ===\n  Press any key to continue...',
-      color: 'text-cyan-400'
+      color: 'text-blue-400'
     });
     
     this.showNextTimelineStep();
   },
 
   showNextTimelineStep() {
-    // Vérifiez que timelineSections est bien défini
     if (!this.timelineSections || this.currentTimelineStep >= this.timelineSections.length) {
       this.isTimelineActive = false;
       this.output.push({
@@ -436,7 +435,6 @@ export default {
     this.output.push({
       type: 'output',
       text: `\n${section.title}\n${section.content}`,
-      color: 'text-purple-400'
     });
     
     this.currentTimelineStep++;
@@ -463,16 +461,16 @@ export default {
 		changeTheme(theme) {
 			const themes = {
 				dark: {
-					bg: 'bg-gray-900',
-					text: 'text-gray-100',
-					header: 'bg-gray-800',
-					title: 'text-gray-400'
+					bg: 'bg-zinc-900',
+					text: 'text-zinc-100',
+					header: 'bg-zinc-800',
+					title: 'text-zinc-400'
 				},
 				light: {
-					bg: 'bg-gray-100',
-					text: 'text-gray-900',
-					header: 'bg-gray-200',
-					title: 'text-gray-600'
+					bg: 'bg-zinc-100',
+					text: 'text-zinc-900',
+					header: 'bg-zinc-200',
+					title: 'text-zinc-600'
 				}
 			};
 
@@ -572,15 +570,15 @@ export default {
 }
 
 /* Light theme specific styles */
-.bg-gray-100 ::-webkit-scrollbar-track {
+.bg-zinc-100 ::-webkit-scrollbar-track {
 	background: rgba(0, 0, 0, 0.05);
 }
 
-.bg-gray-100 ::-webkit-scrollbar-thumb {
+.bg-zinc-100 ::-webkit-scrollbar-thumb {
 	background: rgba(0, 0, 0, 0.2);
 }
 
-.bg-gray-100 ::-webkit-scrollbar-thumb:hover {
+.bg-zinc-100 ::-webkit-scrollbar-thumb:hover {
 	background: rgba(0, 0, 0, 0.3);
 }
 
