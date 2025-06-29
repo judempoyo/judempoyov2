@@ -1,5 +1,16 @@
-
 import { sharedData } from '@/data/shared-data';
+
+
+type MetaElement = HTMLMetaElement & {
+  content: string;
+  name?: string;
+  property?: string;
+};
+
+type LinkElement = HTMLLinkElement & {
+  href: string;
+  rel: string;
+};
 
 export function useMetadata() {
   const setMetadata = (options: {
@@ -9,48 +20,61 @@ export function useMetadata() {
     url?: string;
     projects?: boolean;
   } = {}) => {
-    
+   
     document.title = options.title || `${sharedData.personal.name} | Portfolio`;
     
-    // Meta description
-    let metaDescription = document.querySelector('meta[name="description"]');
+
+    let metaDescription = document.querySelector('meta[name="description"]') as MetaElement | null;
     if (!metaDescription) {
-      metaDescription = document.createElement('meta');
+      metaDescription = document.createElement('meta') as MetaElement;
       metaDescription.name = 'description';
       document.head.appendChild(metaDescription);
     }
     metaDescription.content = options.description || sharedData.personal.shortBio;
 
-    
-    const metaOgType = document.querySelector('meta[property="og:type"]') || createMetaTag('og:type');
-    metaOgType.setAttribute('content', 'website');
 
-    const metaOgTitle = document.querySelector('meta[property="og:title"]') || createMetaTag('og:title');
-    metaOgTitle.setAttribute('content', document.title);
+    const getOrCreateMeta = (property: string, attr: 'name' | 'property' = 'property'): MetaElement => {
+      const selector = `meta[${attr}="${property}"]`;
+      let meta = document.querySelector(selector) as MetaElement | null;
+      
+      if (!meta) {
+        meta = document.createElement('meta') as MetaElement;
+        meta.setAttribute(attr, property);
+        document.head.appendChild(meta);
+      }
+      
+      return meta;
+    };
 
-    const metaOgDescription = document.querySelector('meta[property="og:description"]') || createMetaTag('og:description');
-    metaOgDescription.setAttribute('content', metaDescription.content);
+ 
+    const metaOgType = getOrCreateMeta('og:type');
+    metaOgType.content = 'website';
 
-    const metaOgUrl = document.querySelector('meta[property="og:url"]') || createMetaTag('og:url');
-    metaOgUrl.setAttribute('content', options.url || window.location.href);
+    const metaOgTitle = getOrCreateMeta('og:title');
+    metaOgTitle.content = document.title;
 
-    const metaOgImage = document.querySelector('meta[property="og:image"]') || createMetaTag('og:image');
-    metaOgImage.setAttribute('content', options.image || '/social-preview.jpg');
+    const metaOgDescription = getOrCreateMeta('og:description');
+    metaOgDescription.content = metaDescription.content;
 
-    // Twitter Card
-    const metaTwitterCard = document.querySelector('meta[name="twitter:card"]') || createMetaTag('twitter:card', 'name');
-    metaTwitterCard.setAttribute('content', 'summary_large_image');
+    const metaOgUrl = getOrCreateMeta('og:url');
+    metaOgUrl.content = options.url || window.location.href;
 
-    // Canonical URL
-    let linkCanonical = document.querySelector('link[rel="canonical"]');
+    const metaOgImage = getOrCreateMeta('og:image');
+    metaOgImage.content = options.image || '/preview.jpg';
+
+
+    const metaTwitterCard = getOrCreateMeta('twitter:card', 'name');
+    metaTwitterCard.content = 'summary_large_image';
+
+    let linkCanonical = document.querySelector('link[rel="canonical"]') as LinkElement | null;
     if (!linkCanonical) {
-      linkCanonical = document.createElement('link');
+      linkCanonical = document.createElement('link') as LinkElement;
       linkCanonical.rel = 'canonical';
       document.head.appendChild(linkCanonical);
     }
     linkCanonical.href = options.url || window.location.href;
 
-    // Structured Data (Schema.org)
+
     if (options.projects) {
       addProjectsStructuredData();
     } else {
@@ -58,14 +82,12 @@ export function useMetadata() {
     }
   };
 
-  const createMetaTag = (property: string, attr: string = 'property') => {
-    const meta = document.createElement('meta');
-    meta.setAttribute(attr, property);
-    document.head.appendChild(meta);
-    return meta;
-  };
-
   const addPersonStructuredData = () => {
+    const existingScript = document.querySelector('script[type="application/ld+json"]');
+    if (existingScript) {
+      document.head.removeChild(existingScript);
+    }
+
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.text = JSON.stringify({
@@ -84,6 +106,11 @@ export function useMetadata() {
   };
 
   const addProjectsStructuredData = () => {
+    const existingScript = document.querySelector('script[type="application/ld+json"]');
+    if (existingScript) {
+      document.head.removeChild(existingScript);
+    }
+
     const projects = Array.isArray(sharedData.projects) 
       ? sharedData.projects 
       : Object.values(sharedData.projects);
@@ -109,8 +136,4 @@ export function useMetadata() {
   };
 
   return { setMetadata };
-}
-
-function ensureArray(data: any) {
-  return Array.isArray(data) ? data : Object.values(data);
 }
