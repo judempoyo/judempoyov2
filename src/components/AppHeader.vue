@@ -51,21 +51,22 @@ const scrollToSection = (id: string) => {
 };
 
 const isSheetOpen = ref(false);
+const pageTitle = `${sharedData.personal.name} | Portfolio`;
 </script>
 
 <template>
   <nav class="fixed w-full z-50 backdrop-blur-2xl bg-white/90 dark:bg-[#0a0a0a]/90 border-b border-zinc-200/20 dark:border-zinc-800/20 shadow-lg shadow-zinc-200/10 dark:shadow-black/20">
     <div class="max-w-7xl mx-auto px-6 py-3 flex items-center">
   
-      <div class="flex items-center mr-4 group">
+       <a href="#home" class="flex items-center mr-4 group" aria-label="Go to homepage">
         <div class="relative overflow-hidden h-8 w-8 rounded-lg mr-2 flex items-center justify-center bg-gradient-to-tr from-teal-400 to-teal-500">
           <Circle class="h-5 w-5 text-white animate-ping absolute opacity-75" />
           <Circle class="h-5 w-5 text-white" fill="currentColor" />
         </div>
         <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-teal-500 group-hover:bg-gradient-to-l transition-all duration-500">
-          JUMP
+          {{ sharedData.personal.initials || 'JUMP' }}
         </span>
-      </div>
+      </a>
 
       <!-- Mobile Menu -->
       <div class="md:hidden ml-auto">

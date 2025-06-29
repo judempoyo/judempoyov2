@@ -1,6 +1,7 @@
 export const sharedData = {
   personal: {
     name: "Jude Mpoyo",
+    initials: "JM",
     title: "Backend Developer",
     specialties: ["Laravel", "PHP", "VueJS", "Cloud Architecture"],
     shortBio: `

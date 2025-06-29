@@ -146,22 +146,7 @@ const canonicalUrl = 'https://yourportfolio.com';
     <div class="max-w-7xl mx-auto pt-12 mt-12 border-t border-zinc-800 text-center text-zinc-500 text-sm relative z-10">
       &copy; {{ new Date().getFullYear() }} {{ sharedData.personal.name }}. All rights reserved
     </div>
-		 <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "{{ sharedData.personal.name }}",
-      "url": "{{ canonicalUrl }}",
-      "sameAs": [
-        {{ sharedData.socialLinks.map(s => `"${s.link}"`).join(', ') }}
-      ],
-      "jobTitle": "Web Developer",
-      "description": "{{ sharedData.personal.shortBio }}",
-      "email": "{{ sharedData.personal.email }}",
-      {{ sharedData.personal.phone ? `"telephone": "${sharedData.personal.phone}",` : '' }}
-      "image": "/profile-image.jpg"
-    }
-    </script>
+		
   </footer>
 </template>
 

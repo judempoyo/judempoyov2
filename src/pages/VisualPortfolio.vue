@@ -99,6 +99,8 @@ export default {
 			}
 		}
 
+
+
 		onMounted(() => {
 			gsap.from(heroTitle.value, {
 				opacity: 0,
@@ -200,6 +202,40 @@ export default {
 				y: 50,
 				duration: 0.8
 			})
+
+			document.title = `${sharedData.personal.name} | Portfolio`;
+    
+    
+    const metaDescription = document.querySelector('meta[name="description"]') || document.createElement('meta');
+    metaDescription.name = 'description';
+    metaDescription.content = sharedData.personal.shortBio;
+    document.head.appendChild(metaDescription);
+    
+  
+    const canonicalLink = document.querySelector('link[rel="canonical"]') || document.createElement('link');
+    canonicalLink.rel = 'canonical';
+    canonicalLink.href = window.location.href.split('#')[0];
+    document.head.appendChild(canonicalLink);
+    
+    
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": sharedData.projects.map((project, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "CreativeWork",
+          "name": project.name,
+          "description": project.description,
+          "url": project.link || window.location.href + '#projects',
+          "dateCreated": project.year
+        }
+      }))
+    });
+    document.head.appendChild(script);
 		})
 		return {
 			sharedData,
@@ -231,17 +267,17 @@ export default {
 		<AppHeader />
 
 		<!-- Hero Section -->
-<section id="home" class="min-h-screen flex items-center justify-center pt-16 pb-12 px-4 sm:px-6" ref="hero">
+<section id="home" class="min-h-screen flex items-center justify-center pt-16 pb-12 px-4 sm:px-6"  ref="hero" itemscope itemtype="https://schema.org/Person">
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
     <!-- Contenu texte -->
     <div class="relative z-10 order-2 md:order-1 text-center md:text-left">
       <div class="hidden md:block absolute -top-6 -left-6 w-24 h-24 bg-teal-400/10 rounded-full blur-xl"></div>
       
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 dark:text-white leading-tight" ref="heroTitle">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 dark:text-white leading-tight" ref="heroTitle" itemprop="name">
         Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-zinc-600 dark:from-teal-400 dark:to-zinc-500">Jude Mpoyo</span>
       </h1>
       
-      <p class="text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 mb-6 md:mb-8 max-w-md mx-auto md:mx-0 leading-relaxed" ref="heroText">
+      <p class="text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 mb-6 md:mb-8 max-w-md mx-auto md:mx-0 leading-relaxed" ref="heroText" itemprop="description">
         {{ sharedData.personal.shortBio }}
       </p>
       
@@ -305,8 +341,8 @@ export default {
 				</div>
 
 				<div class="grid md:grid-cols-2 gap-16 items-center">
-					<div class="space-y-8" ref="aboutText">
-						<p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
+					<div class="space-y-8" ref="aboutText" itemprop="knowsAbout" itemscope itemtype="https://schema.org/ItemList">
+						<p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed" itemprop="description">
 							{{ sharedData.personal.bio }}
 						</p>
 
@@ -368,7 +404,7 @@ export default {
 		</section>
 
 		<!-- Projects Section -->
-		<section id="projects" class="py-24 px-6 md:px-12 bg-white dark:bg-zinc-900" ref="projectsSection">
+		<section id="projects" class="py-24 px-6 md:px-12 bg-white dark:bg-zinc-900" ref="projectsSection" itemscope itemtype="https://schema.org/ItemList">
 			<div class="max-w-7xl mx-auto">
 				<div class="text-center mb-16">
 					<span
@@ -386,13 +422,15 @@ export default {
 				<transition-group name="stagger" tag="div" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
 					<div v-for="(project, index) in projects.slice(0, visibleProjects)" :key="project.name"
 						class="bg-white dark:bg-zinc-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
-						ref="projectCards">
+						ref="projectCards"  itemprop="itemListElement"
+             itemscope
+             itemtype="https://schema.org/CreativeWork">
 						<div class="relative overflow-hidden h-60">
 							<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10"></div>
 							<img :src="project.image" :alt="project.name"
-								class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+								class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" itemprop="image">
 							<div class="absolute bottom-0 left-0 right-0 p-6 z-20">
-								<h3 class="text-xl font-bold text-white">{{ project.name }}</h3>
+								<h3 class="text-xl font-bold text-white" itemprop="name">{{ project.name }}</h3>
 								<div class="flex flex-wrap gap-2 mt-2">
 									<span v-for="(tag, i) in project.technologies.slice(0, 3)" :key="i"
 										class="text-xs px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white">
@@ -406,13 +444,13 @@ export default {
 							</div>
 						</div>
 						<div class="p-6">
-							<p class="text-zinc-600 dark:text-zinc-400 mb-4 line-clamp-2">{{ project.description }}</p>
+							<p class="text-zinc-600 dark:text-zinc-400 mb-4 line-clamp-2"  itemprop="description">{{ project.description }}</p>
 							<div class="flex justify-between items-center">
-								<span class="text-xs text-zinc-500 dark:text-zinc-400">
+								<span class="text-xs text-zinc-500 dark:text-zinc-400" itemprop="dateCreated">
 									{{ project.year }}
 								</span>
 								<a :href="project.link || '#'"
-									class="text-teal-600 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 flex items-center gap-1 text-sm font-medium group/link">
+									class="text-teal-600 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 flex items-center gap-1 text-sm font-medium group/link"   itemprop="url">
 									View project
 									<svg xmlns="http://www.w3.org/2000/svg"
 										class="h-4 w-4 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24"
