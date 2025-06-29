@@ -7,8 +7,10 @@ import {
 	TerminalIcon,
 	PaletteIcon,
 	MailIcon,
+	ServerIcon,
 	PhoneIcon,
 	MapPinIcon,
+	DatabaseIcon,
 	TwitterIcon,
 	GithubIcon,
 	LinkedinIcon,
@@ -27,6 +29,8 @@ export default {
 	components: {
 		CodeIcon,
 		TerminalIcon,
+		DatabaseIcon,
+		ServerIcon,
 		PaletteIcon,
 		MailIcon,
 		PhoneIcon,
@@ -38,37 +42,45 @@ export default {
 		AppHeader,
 		AppFooter
 	},
-	
+
 	emits: ['change-style'],
 	setup(props, { emit }) {
 		const { setMetadata } = useMetadata();
 
 		const aboutCards = ref([
 			{
-				title: 'Frontend Development',
-				text: 'Creating reactive and accessible user interfaces',
-				icon: 'CodeIcon',
-				bg: 'bg-teal-100 dark:bg-teal-900/50',
-				color: 'text-teal-600 dark:text-teal-400',
+				title: 'Backend Development',
+				text: 'Building robust and scalable server-side applications',
+				icon: 'TerminalIcon',
+				bg: 'bg-blue-100 dark:bg-blue-900/50',
+				color: 'text-blue-600 dark:text-blue-400',
 				class: 'top-0 left-0 w-48'
 			},
 			{
-				title: 'UI/UX Design',
-				text: 'Designing intuitive and aesthetic user experiences',
-				icon: 'PaletteIcon',
+				title: 'API Design',
+				text: 'Creating efficient and well-documented RESTful/graphQL APIs',
+				icon: 'CodeIcon',
 				bg: 'bg-indigo-100 dark:bg-indigo-900/50',
 				color: 'text-indigo-600 dark:text-indigo-400',
 				class: 'top-12 right-0 w-56'
 			},
 			{
-				title: 'Optimization',
-				text: 'Performance and SEO for better ranking',
-				icon: 'TerminalIcon',
-				bg: 'bg-blue-100 dark:bg-blue-900/50',
-				color: 'text-blue-600 dark:text-blue-400',
+				title: 'Database Optimization',
+				text: 'Designing and optimizing SQL/NoSQL database schemas',
+				icon: 'DatabaseIcon',
+				bg: 'bg-purple-100 dark:bg-purple-900/50',
+				color: 'text-purple-600 dark:text-purple-400',
 				class: 'bottom-0 left-1/4 w-52'
-			}
-		])
+			},
+			/* {
+				title: 'DevOps & Deployment',
+				text: 'Implementing CI/CD pipelines and cloud infrastructure',
+				icon: 'ServerIcon',
+				bg: 'bg-teal-100 dark:bg-teal-900/50',
+				color: 'text-teal-600 dark:text-teal-400',
+				class: 'top-24 left-1/3 w-48'
+			} */
+		]);
 
 		const hero = ref(null)
 		const heroTitle = ref(null)
@@ -105,7 +117,7 @@ export default {
 			}
 		}
 
-onMounted(() => {
+		onMounted(() => {
 			gsap.from(heroTitle.value, {
 				opacity: 0,
 				y: 50,
@@ -213,7 +225,7 @@ onMounted(() => {
 			})
 		})
 
-		
+
 		return {
 			sharedData,
 			aboutCards,
@@ -341,7 +353,7 @@ onMounted(() => {
 						<!-- Skills Section -->
 						<div>
 							<h3 class="text-2xl font-semibold mb-6 dark:text-white">My Skills</h3>
-							<div class="grid grid-cols-2 gap-4">
+							<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 								<div v-for="(category, key) in sharedData.skills" :key="key"
 									class="bg-white dark:bg-zinc-800 p-5 rounded-xl shadow-sm border border-zinc-100 dark:border-zinc-700/50 hover:shadow-md transition-all">
 									<h4 class="font-medium text-lg text-teal-600 dark:text-teal-400 mb-3 flex items-center gap-2">
@@ -376,8 +388,8 @@ onMounted(() => {
 						</div>
 					</div>
 
-					<div class="relative h-[480px]" ref="aboutVisual">
-						<div class="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-zinc-500/5 rounded-2xl blur-xl"></div>
+					<div class="relative h-[600px] md:h-[500px]" ref="aboutVisual">
+						<div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-zinc-500/5 rounded-2xl blur-xl"></div>
 
 						<template v-for="(card, index) in aboutCards" :key="index">
 							<div
@@ -548,5 +560,42 @@ onMounted(() => {
 
 .dark-transition * {
 	transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+@media (max-width: 640px) {
+  .about-cards-container {
+    height: auto !important;
+    min-height: 400px;
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  
+  .about-card {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+  
+  .skills-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .hero-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  .hero-content {
+    order: 2;
+    text-align: center;
+  }
+  
+  .hero-image {
+    order: 1;
+    margin-bottom: 2rem;
+  }
 }
 </style>
