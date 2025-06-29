@@ -1,19 +1,3 @@
-<template>
-  <div class="bg-zinc-800 terminal-container">
-    <div class="terminal-header">
-  
-              <StyleSwitcher />
-
-    </div>
-
-  <Terminal />
-	  <footer class="terminal-footer" aria-hidden="true">
-      <p class="text-xs text-zinc-400 text-center py-2">
-        &copy; {{ new Date().getFullYear() }} {{ sharedData.personal.name }} - Terminal Portfolio
-      </p>
-    </footer>
-  </div>
-</template>
 
 <script >
 import StyleSwitcher from '@/components/StyleSwitcher.vue'
@@ -43,6 +27,22 @@ export default {
 }
 
 </script>
+<template>
+  <div class="bg-zinc-800 terminal-container">
+    <div class="terminal-header">
+  
+              <StyleSwitcher />
+
+    </div>
+
+  <Terminal />
+	  <footer class="terminal-footer" aria-hidden="true">
+      <p class="text-xs text-zinc-400 text-center py-2">
+        &copy; {{ new Date().getFullYear() }} {{ sharedData.personal.name }} - Terminal Portfolio
+      </p>
+    </footer>
+  </div>
+</template>
 
 <style scoped>
 .terminal-container {
