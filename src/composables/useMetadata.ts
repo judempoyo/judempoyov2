@@ -1,6 +1,5 @@
 import { sharedData } from '@/data/shared-data';
 
-
 type MetaElement = HTMLMetaElement & {
   content: string;
   name?: string;
@@ -20,9 +19,8 @@ export function useMetadata() {
     url?: string;
     projects?: boolean;
   } = {}) => {
-   
+
     document.title = options.title || `${sharedData.personal.name} | Portfolio`;
-    
 
     let metaDescription = document.querySelector('meta[name="description"]') as MetaElement | null;
     if (!metaDescription) {
@@ -31,7 +29,6 @@ export function useMetadata() {
       document.head.appendChild(metaDescription);
     }
     metaDescription.content = options.description || sharedData.personal.shortBio;
-
 
     const getOrCreateMeta = (property: string, attr: 'name' | 'property' = 'property'): MetaElement => {
       const selector = `meta[${attr}="${property}"]`;
@@ -46,7 +43,7 @@ export function useMetadata() {
       return meta;
     };
 
- 
+
     const metaOgType = getOrCreateMeta('og:type');
     metaOgType.content = 'website';
 
@@ -62,9 +59,9 @@ export function useMetadata() {
     const metaOgImage = getOrCreateMeta('og:image');
     metaOgImage.content = options.image || '/preview.jpg';
 
-
     const metaTwitterCard = getOrCreateMeta('twitter:card', 'name');
     metaTwitterCard.content = 'summary_large_image';
+
 
     let linkCanonical = document.querySelector('link[rel="canonical"]') as LinkElement | null;
     if (!linkCanonical) {
@@ -82,11 +79,17 @@ export function useMetadata() {
     }
   };
 
+  const safeRemoveScript = () => {
+    const scripts = document.querySelectorAll('script[type="application/ld+json"]');
+    scripts.forEach(script => {
+      if (script.parentNode === document.head) {
+        document.head.removeChild(script);
+      }
+    });
+  };
+
   const addPersonStructuredData = () => {
-    const existingScript = document.querySelector('script[type="application/ld+json"]');
-    if (existingScript) {
-      document.head.removeChild(existingScript);
-    }
+    safeRemoveScript();
 
     const script = document.createElement('script');
     script.type = 'application/ld+json';
@@ -106,10 +109,7 @@ export function useMetadata() {
   };
 
   const addProjectsStructuredData = () => {
-    const existingScript = document.querySelector('script[type="application/ld+json"]');
-    if (existingScript) {
-      document.head.removeChild(existingScript);
-    }
+    safeRemoveScript();
 
     const projects = Array.isArray(sharedData.projects) 
       ? sharedData.projects 
