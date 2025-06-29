@@ -11,7 +11,6 @@ import { useMetadata } from '@/composables/useMetadata';
 const { setMetadata } = useMetadata();
 setMetadata();
 export default {
-	name: 'PortfolioApp', 
   components: { StyleSelector, TerminalPortfolio, VisualPortfolio, StyleSwitcher, ToogleTheme },
   setup() {
     const currentStyle = ref(null)
