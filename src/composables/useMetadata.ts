@@ -103,7 +103,7 @@ export function useMetadata() {
       "description": sharedData.personal.shortBio,
       "email": sharedData.personal.email,
       "telephone": sharedData.personal.phone,
-      "image": "/profile-image.jpg"
+      "image": "/judepic.png"
     });
     document.head.appendChild(script);
   };
