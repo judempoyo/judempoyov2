@@ -133,7 +133,7 @@ export default {
 					execute: () => this.whoAmI()
 				}
 			},
-			
+
 		};
 	},
 	mounted() {
@@ -157,7 +157,7 @@ export default {
 				"spends way too much time making terminal UIs",
 				"when I should probably be coding real projects."
 			];
-			
+
 			this.showFormattedText(responses);
 		},
 		searchProjects(tech) {
@@ -407,44 +407,64 @@ export default {
 				color: 'text-red-400'
 			});
 		},
-		 startInteractiveTimeline() {
-    this.isTimelineActive = true;
-    this.currentTimelineStep = 0;
-    
-    this.output.push({
-      type: 'output',
-      text: '===  INTERACTIVE TIMELINE  ===\n  Press any key to continue...',
-      color: 'text-blue-400'
-    });
-    
-    this.showNextTimelineStep();
-  },
+		startInteractiveTimeline() {
+			this.isTimelineActive = true;
+			this.currentTimelineStep = 0;
 
-  showNextTimelineStep() {
-    if (!this.timelineSections || this.currentTimelineStep >= this.timelineSections.length) {
-      this.isTimelineActive = false;
-      this.output.push({
-        type: 'output', 
-        text: 'Timeline complete. Type "help" to see available commands.',
-        color: 'text-blue-400'
-      });
-      return;
-    }
+			if (window.innerWidth < 768) {
+				this.showNextTimelineStep();
+				return;
+			}
 
-    const section = this.timelineSections[this.currentTimelineStep];
-    this.output.push({
-      type: 'output',
-      text: `\n${section.title}\n${section.content}`,
-    });
-    
-    this.currentTimelineStep++;
-  },
+			this.output.push({
+				type: 'output',
+				text: '=== INTERACTIVE TIMELINE ===\n' +
+					(window.innerWidth < 768 ? 'Swipe to continue...' : 'Press any key to continue...'),
+				color: 'text-blue-400'
+			});
 
-  handleTimelineNavigation(e) {
-    if (this.isTimelineActive && e.key.length === 1) {
-      this.showNextTimelineStep();
-    }
-  },
+			if (window.innerWidth < 768) {
+				this.$refs.terminalContent.addEventListener('touchstart', this.handleMobileTimelineNavigation);
+			}
+		},
+
+		handleMobileTimelineNavigation(e) {
+			if (this.isTimelineActive) {
+				e.preventDefault();
+				this.showNextTimelineStep();
+			}
+		},
+
+		beforeDestroy() {
+			if (this.$refs.terminalContent) {
+				this.$refs.terminalContent.removeEventListener('touchstart', this.handleMobileTimelineNavigation);
+			}
+		},
+		showNextTimelineStep() {
+			if (!this.timelineSections || this.currentTimelineStep >= this.timelineSections.length) {
+				this.isTimelineActive = false;
+				this.output.push({
+					type: 'output',
+					text: 'Timeline complete. Type "help" to see available commands.',
+					color: 'text-blue-400'
+				});
+				return;
+			}
+
+			const section = this.timelineSections[this.currentTimelineStep];
+			this.output.push({
+				type: 'output',
+				text: `\n${section.title}\n${section.content}`,
+			});
+
+			this.currentTimelineStep++;
+		},
+
+		handleTimelineNavigation(e) {
+			if (this.isTimelineActive && e.key.length === 1) {
+				this.showNextTimelineStep();
+			}
+		},
 		showContactDetails() {
 			const { email, website, github, linkedin } = this.personalData;
 
@@ -510,10 +530,10 @@ export default {
 		},
 		showFormattedText(lines, color = null) {
 			const text = Array.isArray(lines) ? lines.join('\n') : lines;
-			this.output.push({ 
-				type: 'output', 
-				text, 
-				color: color || this.textColor 
+			this.output.push({
+				type: 'output',
+				text,
+				color: color || this.textColor
 			});
 			this.scrollToBottom();
 		},
