@@ -19,11 +19,9 @@ import {
   Home,
   User,
   Code,
-  Briefcase,
   Mail,
   Terminal,
   Palette,
-  Smartphone,
 	type LucideProps
 } from 'lucide-vue-next';
 import { ref, type FunctionalComponent } from 'vue';
@@ -51,7 +49,6 @@ const scrollToSection = (id: string) => {
 };
 
 const isSheetOpen = ref(false);
-const pageTitle = `${sharedData.personal.name} | Portfolio`;
 </script>
 
 <template>

@@ -34,9 +34,7 @@ const socialIcons: Record<SocialIconKey, any> = {
   email: MailIcon,
   website: GlobeIcon
 }
-const pageTitle = `${sharedData.personal.name} | Portfolio`;
-const pageDescription = sharedData.personal.shortBio;
-const canonicalUrl = 'https://yourportfolio.com';
+
 </script>
 
 <template>
