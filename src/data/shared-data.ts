@@ -25,6 +25,60 @@ Philosophy: "Code is logical poetry".`,
     ]
   },
 
+   aboutCards:[
+			{
+				title: 'Backend Development',
+				text: 'Building robust and scalable server-side applications',
+				icon: 'TerminalIcon',
+				bg: 'bg-blue-100 dark:bg-blue-900/50',
+				color: 'text-blue-600 dark:text-blue-400',
+				class: 'top-0 left-0 w-48'
+			},
+			{
+				title: 'API Design',
+				text: 'Creating efficient and well-documented RESTful/graphQL APIs',
+				icon: 'CodeIcon',
+				bg: 'bg-indigo-100 dark:bg-indigo-900/50',
+				color: 'text-indigo-600 dark:text-indigo-400',
+				class: 'top-12 right-0 w-56'
+			},
+			{
+				title: 'Database Optimization',
+				text: 'Designing and optimizing SQL/NoSQL database schemas',
+				icon: 'DatabaseIcon',
+				bg: 'bg-purple-100 dark:bg-purple-900/50',
+				color: 'text-purple-600 dark:text-purple-400',
+				class: 'bottom-0 left-1/4 w-52'
+			},
+			/* {
+				title: 'DevOps & Deployment',
+				text: 'Implementing CI/CD pipelines and cloud infrastructure',
+				icon: 'ServerIcon',
+				bg: 'bg-teal-100 dark:bg-teal-900/50',
+				color: 'text-teal-600 dark:text-teal-400',
+				class: 'top-24 left-1/3 w-48'
+			} */
+		],
+    education: [
+    {
+      degree: "Degree in Programming",
+      institution: "Institut Supérieur de Commerce de Lubumbashi (Graduated 2024)",
+      duration: "2022 - 2024",
+      description: "Focus on software development, databases, and web technologies"
+    }
+    
+  ],
+  
+  testimonials: [
+   /*  {
+      name: "Client Satisfait",
+      position: "CEO, Entreprise XYZ",
+      quote: "Jude a fait un excellent travail...",
+      avatar: "/judepic.png" 
+    } */
+  ],
+
+
   skills: {
     frontend: {
       title: "Frontend",
