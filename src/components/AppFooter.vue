@@ -5,6 +5,7 @@ import {
   GithubIcon,
   LinkedinIcon,
   InstagramIcon,
+	
 	PhoneIcon,
   MailIcon,
   GlobeIcon
@@ -33,10 +34,32 @@ const socialIcons: Record<SocialIconKey, any> = {
   email: MailIcon,
   website: GlobeIcon
 }
+const pageTitle = `${sharedData.personal.name} | Portfolio`;
+const pageDescription = sharedData.personal.shortBio;
+const canonicalUrl = 'https://yourportfolio.com';
 </script>
 
 <template>
   <footer class="bg-zinc-900 text-white py-16 px-6 relative overflow-hidden border-t border-zinc-800">
+	    <Head>
+      <title>{{ pageTitle }}</title>
+      <meta name="description" :content="pageDescription">
+      <link rel="canonical" :href="canonicalUrl" />
+      
+      <!-- Open Graph / Facebook -->
+      <meta property="og:type" content="website">
+      <meta property="og:url" :content="canonicalUrl">
+      <meta property="og:title" :content="pageTitle">
+      <meta property="og:description" :content="pageDescription">
+      <meta property="og:image" content="/social-preview.jpg">
+      
+      <!-- Twitter -->
+      <meta property="twitter:card" content="summary_large_image">
+      <meta property="twitter:url" :content="canonicalUrl">
+      <meta property="twitter:title" :content="pageTitle">
+      <meta property="twitter:description" :content="pageDescription">
+      <meta property="twitter:image" content="/social-preview.jpg">
+    </Head>
     <!-- Effets d'arrière-plan animés -->
     <div class="absolute inset-0 opacity-5">
       <div class="absolute -top-32 -left-32 w-64 h-64 rounded-full bg-teal-500 blur-3xl animate-float-slow"></div>
@@ -121,8 +144,24 @@ const socialIcons: Record<SocialIconKey, any> = {
 
     <!-- Copyright -->
     <div class="max-w-7xl mx-auto pt-12 mt-12 border-t border-zinc-800 text-center text-zinc-500 text-sm relative z-10">
-      &copy; {{ new Date().getFullYear() }} {{ sharedData.personal.name }}. Tous droits réservés.
+      &copy; {{ new Date().getFullYear() }} {{ sharedData.personal.name }}. All rights reserved
     </div>
+		 <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "{{ sharedData.personal.name }}",
+      "url": "{{ canonicalUrl }}",
+      "sameAs": [
+        {{ sharedData.socialLinks.map(s => `"${s.link}"`).join(', ') }}
+      ],
+      "jobTitle": "Web Developer",
+      "description": "{{ sharedData.personal.shortBio }}",
+      "email": "{{ sharedData.personal.email }}",
+      {{ sharedData.personal.phone ? `"telephone": "${sharedData.personal.phone}",` : '' }}
+      "image": "/profile-image.jpg"
+    }
+    </script>
   </footer>
 </template>
 
