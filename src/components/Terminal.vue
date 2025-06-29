@@ -56,6 +56,8 @@ export default {
 			timelineSections: sharedData.timeline,
 			experienceData: sharedData.experience,
 			contactMethods: sharedData.contactMethods,
+			timelineInterval: null,
+			timelineDelay: 3000,
 			commands: {
 				help: {
 					description: 'Show all available commands',
@@ -233,6 +235,7 @@ export default {
 		scrollToBottom() {
 			this.$refs.terminalContent.scrollTop = this.$refs.terminalContent.scrollHeight;
 		},
+
 		historyUp() {
 			if (this.historyIndex > 0) {
 				this.historyIndex--;
@@ -411,38 +414,40 @@ export default {
 			this.isTimelineActive = true;
 			this.currentTimelineStep = 0;
 
+
+			if (this.timelineInterval) {
+				clearInterval(this.timelineInterval);
+			}
+
+
 			if (window.innerWidth < 768) {
-				this.showNextTimelineStep();
+				this.output.push({
+					type: 'output',
+					text: '=== AUTOMATIC TIMELINE ===\nDisplaying timeline automatically...',
+					color: 'text-blue-400'
+				});
+
+
+				this.timelineInterval = setInterval(() => {
+					this.showNextTimelineStep();
+				}, this.timelineDelay);
+
 				return;
 			}
 
 			this.output.push({
 				type: 'output',
-				text: '=== INTERACTIVE TIMELINE ===\n' +
-					(window.innerWidth < 768 ? 'Swipe to continue...' : 'Press any key to continue...'),
+				text: '=== INTERACTIVE TIMELINE ===\nPress any key to continue...',
 				color: 'text-blue-400'
 			});
-
-			if (window.innerWidth < 768) {
-				this.$refs.terminalContent.addEventListener('touchstart', this.handleMobileTimelineNavigation);
-			}
 		},
 
-		handleMobileTimelineNavigation(e) {
-			if (this.isTimelineActive) {
-				e.preventDefault();
-				this.showNextTimelineStep();
-			}
-		},
-
-		beforeDestroy() {
-			if (this.$refs.terminalContent) {
-				this.$refs.terminalContent.removeEventListener('touchstart', this.handleMobileTimelineNavigation);
-			}
-		},
 		showNextTimelineStep() {
 			if (!this.timelineSections || this.currentTimelineStep >= this.timelineSections.length) {
 				this.isTimelineActive = false;
+				if (this.timelineInterval) {
+					clearInterval(this.timelineInterval);
+				}
 				this.output.push({
 					type: 'output',
 					text: 'Timeline complete. Type "help" to see available commands.',
@@ -457,9 +462,20 @@ export default {
 				text: `\n${section.title}\n${section.content}`,
 			});
 
+
+			this.$nextTick(() => {
+				this.scrollToBottom();
+			});
+
 			this.currentTimelineStep++;
 		},
 
+		beforeDestroy() {
+			if (this.timelineInterval) {
+				clearInterval(this.timelineInterval);
+			}
+			document.removeEventListener('keydown', this.handleTimelineNavigation);
+		},
 		handleTimelineNavigation(e) {
 			if (this.isTimelineActive && e.key.length === 1) {
 				this.showNextTimelineStep();
