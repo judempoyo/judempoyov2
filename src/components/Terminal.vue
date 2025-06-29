@@ -586,7 +586,7 @@ export default {
 </script>
 
 <style>
-/* Custom scrollbar */
+
 ::-webkit-scrollbar {
 	width: 8px;
 	height: 8px;
@@ -605,7 +605,6 @@ export default {
 	background: rgba(255, 255, 255, 0.3);
 }
 
-/* Light theme specific styles */
 .bg-zinc-100 ::-webkit-scrollbar-track {
 	background: rgba(0, 0, 0, 0.05);
 }
@@ -618,7 +617,7 @@ export default {
 	background: rgba(0, 0, 0, 0.3);
 }
 
-/* New line entry animation */
+
 .terminal-line {
 	will-change: transform, opacity;
 }
