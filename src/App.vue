@@ -6,8 +6,10 @@ import VisualPortfolio from '@/pages/VisualPortfolio.vue'
 import StyleSwitcher from './components/StyleSwitcher.vue'
 import ToogleTheme from './components/ToggleTheme.vue'
 import { sharedData } from '@/data/shared-data'
+import { useMetadata } from '@/composables/useMetadata';
 
-
+const { setMetadata } = useMetadata();
+setMetadata();
 export default {
 	name: 'PortfolioApp', 
   components: { StyleSelector, TerminalPortfolio, VisualPortfolio, StyleSwitcher, ToogleTheme },
@@ -31,13 +33,6 @@ export default {
       currentStyle.value = localStorage.getItem('portfolioStyle') || null
       showStyleSelector.value = !currentStyle.value
     })
-
-const metaDescription = document.createElement('meta')
-      metaDescription.name = 'description'
-      metaDescription.content = currentStyle.value === 'terminal' 
-        ? 'Interactive terminal-style portfolio showcasing developer skills' 
-        : 'Visual portfolio with modern design showcasing projects'
-      document.head.appendChild(metaDescription)
     
     provide('currentStyle', currentStyle)
     provide('handleStyleSelection', handleStyleSelection)
