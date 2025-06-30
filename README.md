@@ -61,6 +61,10 @@ Passionate full-stack developer crafting robust web and mobile applications. I s
   <img src="https://github-profile-trophy.vercel.app/?username=judempoyo&theme=onedark&no-frame=true&row=2&column=8&margin-w=10&margin-h=10" alt="Trophies" width="100%">
 </div>
 
+[![committers.top badge](https://user-badge.committers.top/congo_kinshasa/judempoyo.svg)](https://user-badge.committers.top/congo_kinshasa/judempoyo)
+
+
+
 ## 📬 Let's Connect
 
 [![WhatsApp](https://img.shields.io/badge/Chat_on-WhatsApp-25D366?logo=whatsapp&logoColor=white)](https://wa.me/+243975889135)
