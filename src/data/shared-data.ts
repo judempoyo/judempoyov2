@@ -137,11 +137,11 @@ export const sharedData: SharedData = {
   tools: [
     {
       category: "Editors & IDE",
-      items: ["VS Code", "WebStorm", "Android Studio"]
+      items: ["VS Code", "Android Studio"]
     },
     {
       category: "Collaboration",
-      items: ["Git/GitHub", "Figma"]
+      items: ["Git/GitHub", "Gitlab"]
     },
     {
       category: "Environment",
