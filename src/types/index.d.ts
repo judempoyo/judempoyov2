@@ -36,7 +36,7 @@ export interface SkillItem {
 
 export interface SkillCategory {
   title: string;
-  icon?: string;
+  icon: string;
   items: SkillItem[];
 }
 
