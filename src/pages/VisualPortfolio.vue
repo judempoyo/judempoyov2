@@ -25,9 +25,40 @@ import { sharedData } from '@/data/shared-data'
 import AppHeader from '@/components/AppHeader.vue'
 import AppFooter from '@/components/AppFooter.vue'
 import { useMetadata } from '@/composables/useMetadata'
+import type { Ref } from 'vue';
+
 
 gsap.registerPlugin(ScrollTrigger)
 
+
+type HTMLElementRef = HTMLElement | null;
+
+const hero = ref<HTMLElementRef>(null);
+const heroTitle = ref<HTMLElementRef>(null);
+const heroText = ref<HTMLElementRef>(null);
+const heroButtons: Ref<HTMLElement | null> = ref(null);
+
+const heroVisual = ref<HTMLElementRef>(null);
+
+const aboutCards = sharedData.aboutCards
+const about = ref<HTMLElementRef>(null);
+const aboutTitle = ref<HTMLElementRef>(null);
+const aboutText = ref<HTMLElementRef>(null);
+const aboutVisual = ref<HTMLElementRef>(null);
+
+const experience = ref<HTMLElementRef>(null);
+const education = ref<HTMLElementRef>(null);
+const testimonials = ref<HTMLElementRef>(null);
+
+const visibleProjects = ref(3)
+const projects = ref(Object.values(sharedData.projects))
+
+const projectsSection = ref<HTMLElementRef>(null);
+const projectsTitle = ref<HTMLElementRef>(null);
+const projectCards = ref<HTMLElement[]>([]);
+
+const contact = ref<HTMLElementRef>(null);
+const contactTitle = ref<HTMLElementRef>(null);
 // Animation setup
 const setupAnimations = () => {
   // Hero section animations
@@ -46,15 +77,18 @@ const setupAnimations = () => {
     ease: 'power3.out'
   })
 
-  if (heroButtons.value) {
-    gsap.from(heroButtons.value.children, {
+if (heroButtons.value) {
+  const children = heroButtons.value.children;
+  if (children && children.length > 0) {
+    gsap.from(Array.from(children), {
       opacity: 0,
       y: 40,
-      duration:1,
+      duration: 1,
       delay: 0.2,
-      ease: 'power3.out'
-    })
+      ease: 'power3.out',
+    });
   }
+}
 	
 
   gsap.from(heroVisual.value, {
@@ -133,32 +167,6 @@ const setupAnimations = () => {
   })
 }
 
-// Refs
-const hero = ref(null)
-const heroTitle = ref(null)
-const heroText = ref(null)
-const heroButtons = ref(null)
-const heroVisual = ref(null)
-
-const aboutCards = sharedData.aboutCards
-const about = ref(null)
-const aboutTitle = ref(null)
-const aboutText = ref(null)
-const aboutVisual = ref(null)
-
-const experience = ref(null)
-const education = ref(null)
-const testimonials = ref(null)
-
-const visibleProjects = ref(3)
-const projects = ref(Object.values(sharedData.projects))
-
-const projectsSection = ref(null)
-const projectsTitle = ref(null)
-const projectCards = ref([])
-
-const contact = ref(null)
-const contactTitle = ref(null)
 
 function showMore() {
   visibleProjects.value = Math.min(

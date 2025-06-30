@@ -1,4 +1,6 @@
-export const sharedData = {
+import type { SharedData } from '@/types';
+
+export const sharedData: SharedData = {
   personal: {
     name: "Jude Mpoyo",
     initials: "JM",
@@ -82,6 +84,7 @@ Philosophy: "Code is logical poetry".`,
   skills: {
     frontend: {
       title: "Frontend",
+      icon: "CodeIcon",
       items: [
         { name: "Vue.js", level: 3, years: 0 },
         { name: "Angular", level: 2, years: 0 },
@@ -92,6 +95,7 @@ Philosophy: "Code is logical poetry".`,
     },
     backend: {
       title: "Backend",
+      icon: "TerminalIcon",
       items: [
         { name: "PHP", level: 5, years: 3 },
         { name: "Laravel", level: 4, years: 2 },
@@ -102,15 +106,13 @@ Philosophy: "Code is logical poetry".`,
       ]
     },
     devops: {
-      title: "DevOps & Tools",
+      title: "Tools",
+      icon: "serverIcon",
       items: [
         { name: "Docker", level: 1, years: 0 },
         { name: "GIT", level: 4, years: 3 },
         { name: "GitHub", level: 3, years: 2 },
         { name: "Postman", level: 2, years: 0 },
-        { name: "Trello", level: 2, years: 0 },
-        { name: "VS Code", level: 4, years: 5 },
-
         { name: "Firebase", level: 2, years: 1 },
         { name: "Supabase", level: 1, years: 0 },
       ]
