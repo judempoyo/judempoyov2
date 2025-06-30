@@ -17,67 +17,82 @@ export const sharedData: SharedData = {
     github: "github.com/judempoyo",
     linkedin: "linkedin.com/in/judempoyo",
     bio: `
-    
-Passionate developer with 7 years of experience in building complex web applications.
-Expert in problem solving and performance optimization.
-Philosophy: "Code is logical poetry".`,
+  <p class="text-2xl text-zinc-700 dark:text-zinc-300 leading-relaxedc font-bold">
+    Freelance Web Developer – PHP Laravel & Vue.js
+  </p>
+
+  <p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
+    I am a freelance developer with 2 years of experience creating modern and intuitive web applications.
+    Passionate about clean, well-structured code, I enjoy working on projects that bring real value to users.
+  </p>
+
+  <p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
+    Today, I help businesses, startups, and entrepreneurs develop custom websites and tools tailored to their needs.
+    My ambition is to keep growing every day, expand my skills, and contribute to innovative and meaningful projects.
+  </p>
+
+  <p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
+    If you are looking for a dedicated, curious developer committed to bringing your ideas to life, I would be glad to connect with you.
+  </p>
+
+`,
     languages: [
       { name: "French", level: "Native" },
       { name: "English", level: "Intermediate" },
     ]
   },
 
-   aboutCards:[
-			{
-				title: 'Backend Development',
-				text: 'Building robust and scalable server-side applications',
-				icon: 'TerminalIcon',
-				bg: 'bg-blue-100 dark:bg-blue-900/50',
-				color: 'text-blue-600 dark:text-blue-400',
-				class: 'top-0 left-0 w-48'
-			},
-			{
-				title: 'API Design',
-				text: 'Creating efficient and well-documented RESTful/graphQL APIs',
-				icon: 'CodeIcon',
-				bg: 'bg-indigo-100 dark:bg-indigo-900/50',
-				color: 'text-indigo-600 dark:text-indigo-400',
-				class: 'top-12 right-0 w-56'
-			},
-			{
-				title: 'Database Optimization',
-				text: 'Designing and optimizing SQL/NoSQL database schemas',
-				icon: 'DatabaseIcon',
-				bg: 'bg-purple-100 dark:bg-purple-900/50',
-				color: 'text-purple-600 dark:text-purple-400',
-				class: 'bottom-0 left-1/4 w-52'
-			},
-			/* {
-				title: 'DevOps & Deployment',
-				text: 'Implementing CI/CD pipelines and cloud infrastructure',
-				icon: 'ServerIcon',
-				bg: 'bg-teal-100 dark:bg-teal-900/50',
-				color: 'text-teal-600 dark:text-teal-400',
-				class: 'top-24 left-1/3 w-48'
-			} */
-		],
-    education: [
+  aboutCards: [
+    {
+      title: 'Backend Development',
+      text: 'Building robust and scalable server-side applications',
+      icon: 'TerminalIcon',
+      bg: 'bg-blue-100 dark:bg-blue-900/50',
+      color: 'text-blue-600 dark:text-blue-400',
+      class: 'top-0 left-0 w-48'
+    },
+    {
+      title: 'API Design',
+      text: 'Creating efficient and well-documented RESTful/graphQL APIs',
+      icon: 'CodeIcon',
+      bg: 'bg-indigo-100 dark:bg-indigo-900/50',
+      color: 'text-indigo-600 dark:text-indigo-400',
+      class: 'top-12 right-0 w-56'
+    },
+    {
+      title: 'Database Optimization',
+      text: 'Designing and optimizing SQL/NoSQL database schemas',
+      icon: 'DatabaseIcon',
+      bg: 'bg-purple-100 dark:bg-purple-900/50',
+      color: 'text-purple-600 dark:text-purple-400',
+      class: 'bottom-0 left-1/4 w-52'
+    },
+    /* {
+      title: 'DevOps & Deployment',
+      text: 'Implementing CI/CD pipelines and cloud infrastructure',
+      icon: 'ServerIcon',
+      bg: 'bg-teal-100 dark:bg-teal-900/50',
+      color: 'text-teal-600 dark:text-teal-400',
+      class: 'top-24 left-1/3 w-48'
+    } */
+  ],
+  education: [
     {
       degree: "Degree in Programming",
       institution: "Institut Supérieur de Commerce de Lubumbashi (Graduated 2024)",
       duration: "2022 - 2024",
       description: "Focus on software development, databases, and web technologies"
     }
-    
+
   ],
-  
+
   testimonials: [
-   /*  {
-      name: "Client Satisfait",
-      position: "CEO, Entreprise XYZ",
-      quote: "Jude a fait un excellent travail...",
-      avatar: "/judepic.png" 
-    } */
+    /*  {
+       name: "Client Satisfait",
+       position: "CEO, Entreprise XYZ",
+       quote: "Jude a fait un excellent travail...",
+       avatar: "/judepic.png" 
+     } */
   ],
 
 
@@ -118,7 +133,7 @@ Philosophy: "Code is logical poetry".`,
       ]
     }
   },
-  
+
   tools: [
     {
       category: "Editors & IDE",
@@ -137,7 +152,7 @@ Philosophy: "Code is logical poetry".`,
       items: ["Notion", "Trello"]
     }
   ],
-  
+
 
   experience: [
     {
@@ -174,7 +189,7 @@ Philosophy: "Code is logical poetry".`,
       stack: ["Laravel", "Blade", "JavaScript"]
     }
   ]
-,
+  ,
 
   projects: {
     portfolio: {
@@ -190,7 +205,7 @@ Philosophy: "Code is logical poetry".`,
       ],
       image: "images/judeportfolio.png"
     },
-     jumpdatatable: {
+    jumpdatatable: {
       name: "Jump Datatable",
       description: "Composer package to easily add dynamic tables in PHP projects",
       technologies: ["PHP", "Tailwind CSS", "Bootstrap", "JavaScript"],
@@ -219,7 +234,7 @@ Philosophy: "Code is logical poetry".`,
       ],
       image: "images/phpmvcstarter.png"
     },
-     learn2code: {
+    learn2code: {
       name: "Learn2Code",
       description: "Mobile app to help beginners learn programming",
       technologies: ["Flutter"],
@@ -245,7 +260,7 @@ Philosophy: "Code is logical poetry".`,
       ],
       image: "images/ecom.png"
     },
-   
+
     gestion_pharmacie: {
       name: "Pharmacy Management",
       description: "Pharmacy management app using PHP MVC architecture",
@@ -272,7 +287,7 @@ Philosophy: "Code is logical poetry".`,
       ],
       image: "images/jumptododark.png"
     },
-    
+
     jumpmanagment: {
       name: "Jump Management",
       description: "Full management app for hardware stores or similar businesses",
@@ -328,7 +343,7 @@ Philosophy: "Code is logical poetry".`,
       ],
       image: "images/mobileapp.jpg"
     },
-   
+
     laravel12angular19starter: {
       name: "Laravel + Angular Starter",
       description: "Starter kit combining Laravel and Angular 19 (in progress)",
@@ -342,11 +357,11 @@ Philosophy: "Code is logical poetry".`,
       ],
       image: "images/laravelangularstarter.png"
     },
-   
+
   },
 
 
- 
+
   timeline: [
     {
       title: "💼 First Experiences",
@@ -365,21 +380,21 @@ Philosophy: "Code is logical poetry".`,
       content: "Self-training on advanced Laravel, Angular, and API design\nContributed to open-source tools (e.g., Jump Datatable package)"
     }
   ]
-,
+  ,
 
   socialLinks: [
-    { 
-      icon: "github", 
+    {
+      icon: "github",
       link: "https://github.com/judempoyo",
       name: "GitHub"
     },
-    { 
-      icon: "linkedin", 
+    {
+      icon: "linkedin",
       link: "https://linkedin.com/in/judempoyo",
       name: "LinkedIn"
     },
   ],
-  
+
   contactMethods: {
     whatsapp: {
       name: "WhatsApp",
@@ -406,7 +421,7 @@ Philosophy: "Code is logical poetry".`,
       value: "mpoyojude0@gmail.com"
     }
   },
-  
+
   navLinks: [
     { id: 'home', text: 'Home' },
     { id: 'projects', text: 'Projects' },

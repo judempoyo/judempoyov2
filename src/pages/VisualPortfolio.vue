@@ -305,9 +305,10 @@ onMounted(() => {
 
 				<div class="grid md:grid-cols-2 gap-16 items-center">
 					<div class="space-y-8" ref="aboutText" itemprop="knowsAbout" itemscope itemtype="https://schema.org/ItemList">
-						<p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed" itemprop="description">
-							{{ sharedData.personal.bio }}
-						</p>
+
+						<div  class="space-y-2 "itemprop="description" v-html="sharedData.personal.bio ">
+						
+						</div>
 
 						<!-- Skills Section -->
 						<div>
