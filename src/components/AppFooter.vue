@@ -1,20 +1,17 @@
-
 <script setup lang="ts">
 import { 
   TwitterIcon,
   GithubIcon,
   LinkedinIcon,
   InstagramIcon,
-	
-	PhoneIcon,
+  PhoneIcon,
   MailIcon,
-  GlobeIcon
+  GlobeIcon,
+  MapPinIcon
 } from 'lucide-vue-next'
 import { sharedData } from '@/data/shared-data'
 
 const navLinks = sharedData.navLinks;
-
-
 
 const scrollToSection = (id: string) => {
   const element = document.getElementById(id)
@@ -22,7 +19,6 @@ const scrollToSection = (id: string) => {
     element.scrollIntoView({ behavior: 'smooth' })
   }
 }
-
 
 type SocialIconKey = 'twitter' | 'github' | 'linkedin' | 'instagram' | 'email' | 'website'
 
@@ -34,7 +30,6 @@ const socialIcons: Record<SocialIconKey, any> = {
   email: MailIcon,
   website: GlobeIcon
 }
-
 </script>
 
 <template>
@@ -58,6 +53,7 @@ const socialIcons: Record<SocialIconKey, any> = {
         <p class="text-zinc-400 leading-relaxed">
           {{ sharedData.personal.shortBio }}
         </p>
+				 
       </div>
 
       <div class="space-y-6">
@@ -94,6 +90,13 @@ const socialIcons: Record<SocialIconKey, any> = {
             <PhoneIcon class="w-5 h-5 flex-shrink-0" />
             <span>{{ sharedData.personal.phone }}</span>
           </a>
+          <div 
+            v-if="sharedData.personal.location" 
+            class="flex items-center gap-3 text-zinc-400"
+          >
+            <MapPinIcon class="w-5 h-5 flex-shrink-0" />
+            <span>{{ sharedData.personal.location }}</span>
+          </div>
         </div>
       </div>
 

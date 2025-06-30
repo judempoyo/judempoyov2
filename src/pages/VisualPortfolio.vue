@@ -1,4 +1,4 @@
-<script>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -14,252 +14,212 @@ import {
 	TwitterIcon,
 	GithubIcon,
 	LinkedinIcon,
-	InstagramIcon
+	InstagramIcon,
+	AwardIcon,
+	BriefcaseIcon,
+	SchoolIcon,
+	UsersIcon,
+	GlobeIcon,
+type LucideIcon
 } from 'lucide-vue-next'
 import { sharedData } from '@/data/shared-data'
 import AppHeader from '@/components/AppHeader.vue'
 import AppFooter from '@/components/AppFooter.vue'
-import { useMetadata } from '@/composables/useMetadata';
+import { useMetadata } from '@/composables/useMetadata'
+import type { Ref } from 'vue';
 
 
+const iconComponents: Record<string, any> = {
+	CodeIcon,
+	TerminalIcon,
+	PaletteIcon,
+	MailIcon,
+	ServerIcon,
+	PhoneIcon,
+	MapPinIcon,
+	DatabaseIcon,
+	TwitterIcon,
+	GithubIcon,
+	LinkedinIcon,
+	InstagramIcon,
+	AwardIcon,
+	BriefcaseIcon,
+	SchoolIcon,
+	UsersIcon,
+	GlobeIcon
+};
 gsap.registerPlugin(ScrollTrigger)
 
-export default {
 
-	components: {
-		CodeIcon,
-		TerminalIcon,
-		DatabaseIcon,
-		ServerIcon,
-		PaletteIcon,
-		MailIcon,
-		PhoneIcon,
-		MapPinIcon,
-		TwitterIcon,
-		GithubIcon,
-		LinkedinIcon,
-		InstagramIcon,
-		AppHeader,
-		AppFooter
-	},
+type HTMLElementRef = HTMLElement | null;
 
-	emits: ['change-style'],
-	setup(props, { emit }) {
-		const { setMetadata } = useMetadata();
+const hero = ref<HTMLElementRef>(null);
+const heroTitle = ref<HTMLElementRef>(null);
+const heroText = ref<HTMLElementRef>(null);
+const heroButtons: Ref<HTMLElement | null> = ref(null);
 
-		const aboutCards = ref([
-			{
-				title: 'Backend Development',
-				text: 'Building robust and scalable server-side applications',
-				icon: 'TerminalIcon',
-				bg: 'bg-blue-100 dark:bg-blue-900/50',
-				color: 'text-blue-600 dark:text-blue-400',
-				class: 'top-0 left-0 w-48'
-			},
-			{
-				title: 'API Design',
-				text: 'Creating efficient and well-documented RESTful/graphQL APIs',
-				icon: 'CodeIcon',
-				bg: 'bg-indigo-100 dark:bg-indigo-900/50',
-				color: 'text-indigo-600 dark:text-indigo-400',
-				class: 'top-12 right-0 w-56'
-			},
-			{
-				title: 'Database Optimization',
-				text: 'Designing and optimizing SQL/NoSQL database schemas',
-				icon: 'DatabaseIcon',
-				bg: 'bg-purple-100 dark:bg-purple-900/50',
-				color: 'text-purple-600 dark:text-purple-400',
-				class: 'bottom-0 left-1/4 w-52'
-			},
-			/* {
-				title: 'DevOps & Deployment',
-				text: 'Implementing CI/CD pipelines and cloud infrastructure',
-				icon: 'ServerIcon',
-				bg: 'bg-teal-100 dark:bg-teal-900/50',
-				color: 'text-teal-600 dark:text-teal-400',
-				class: 'top-24 left-1/3 w-48'
-			} */
-		]);
+const heroVisual = ref<HTMLElementRef>(null);
 
-		const hero = ref(null)
-		const heroTitle = ref(null)
-		const heroText = ref(null)
-		const heroButtons = ref(null)
-		const heroVisual = ref(null)
+const aboutCards = sharedData.aboutCards
+const about = ref<HTMLElementRef>(null);
+const aboutTitle = ref<HTMLElementRef>(null);
+const aboutText = ref<HTMLElementRef>(null);
+const aboutVisual = ref<HTMLElementRef>(null);
 
-		const about = ref(null)
-		const aboutTitle = ref(null)
-		const aboutText = ref(null)
-		const aboutVisual = ref(null)
+const experience = ref<HTMLElementRef>(null);
+const education = ref<HTMLElementRef>(null);
+const testimonials = ref<HTMLElementRef>(null);
 
-		const visibleProjects = ref(3)
-		const projects = ref(Object.values(sharedData.projects))
+const visibleProjects = ref(3)
+const projects = ref(Object.values(sharedData.projects))
 
-		const projectsSection = ref(null)
-		const projectsTitle = ref(null)
-		const projectCards = ref([])
+const projectsSection = ref<HTMLElementRef>(null);
+const projectsTitle = ref<HTMLElementRef>(null);
+const projectCards = ref<HTMLElement[]>([]);
 
-		const contact = ref(null)
-		const contactTitle = ref(null)
+const contact = ref<HTMLElementRef>(null);
+const contactTitle = ref<HTMLElementRef>(null);
+// Animation setup
+const setupAnimations = () => {
+	// Hero section animations
+	gsap.from(heroTitle.value, {
+		opacity: 0,
+		y: 50,
+		duration: 1,
+		ease: 'power3.out'
+	})
 
-		function showMore() {
-			visibleProjects.value = Math.min(
-				visibleProjects.value + 3,
-				projects.value.length
-			)
-		}
+	gsap.from(heroText.value, {
+		opacity: 0,
+		y: 50,
+		duration: 1,
+		delay: 0.2,
+		ease: 'power3.out'
+	})
 
-		const scrollToSection = (id) => {
-			const element = document.getElementById(id)
-			if (element) {
-				element.scrollIntoView({ behavior: 'smooth' })
-			}
-		}
-
-		onMounted(() => {
-			gsap.from(heroTitle.value, {
+	if (heroButtons.value) {
+		const children = heroButtons.value.children;
+		if (children && children.length > 0) {
+			gsap.from(Array.from(children), {
 				opacity: 0,
-				y: 50,
-				duration: 1,
-				ease: 'power3.out'
-			})
-
-			gsap.from(heroText.value, {
-				opacity: 0,
-				y: 50,
+				y: 40,
 				duration: 1,
 				delay: 0.2,
-				ease: 'power3.out'
-			})
-
-			if (heroButtons.value) {
-				gsap.from(heroButtons.value.children, {
-					opacity: 1,
-					y: 0,
-					duration: 0.8,
-					stagger: 0.1,
-					delay: 0.4,
-					ease: 'power3.out'
-				});
-			}
-
-			gsap.from(heroVisual.value, {
-				opacity: 0,
-				x: 100,
-				duration: 1,
-				delay: 0.6,
-				ease: 'power3.out'
-			})
-
-			gsap.from(aboutTitle.value, {
-				scrollTrigger: {
-					trigger: about.value,
-					start: 'top 80%'
-				},
-				opacity: 0,
-				y: 50,
-				duration: 0.8
-			})
-
-			gsap.from(aboutText.value.children, {
-				scrollTrigger: {
-					trigger: about.value,
-					start: 'top 70%'
-				},
-				opacity: 0,
-				y: 30,
-				stagger: 0.1,
-				duration: 0.6
-			})
-
-			gsap.from(aboutVisual.value.querySelectorAll('div[class*="absolute"]'), {
-				scrollTrigger: {
-					trigger: about.value,
-					start: 'top 70%'
-				},
-				opacity: 0,
-				y: 50,
-				stagger: 0.2,
-				duration: 0.8,
-				ease: 'power2.out'
+				ease: 'power3.out',
 			});
-
-			gsap.from(projectsTitle.value, {
-				scrollTrigger: {
-					trigger: projectsSection.value,
-					start: 'top 80%'
-				},
-				opacity: 0,
-				y: 50,
-				duration: 0.8
-			})
-
-			projectCards.value.forEach((card, index) => {
-				gsap.from(card, {
-					scrollTrigger: {
-						trigger: card.parentElement,
-						start: "top 80%"
-					},
-					opacity: 0,
-					y: 50,
-					duration: 0.6,
-					delay: index * 0.1
-				})
-			})
-
-
-			gsap.from(contactTitle.value, {
-				scrollTrigger: {
-					trigger: contact.value,
-					start: 'top 80%'
-				},
-				opacity: 0,
-				y: 50,
-				duration: 0.8
-			})
-
-			setMetadata({
-				projects: true,
-				image: '/preview.jpg'
-			})
-		})
-
-
-		return {
-			sharedData,
-			aboutCards,
-			hero,
-			heroTitle,
-			heroText,
-			heroButtons,
-			heroVisual,
-			about,
-			aboutTitle,
-			aboutText,
-			aboutVisual,
-			projectsSection,
-			projectsTitle,
-			projectCards,
-			contact,
-			contactTitle,
-			scrollToSection,
-			projects,
-			visibleProjects,
-			showMore
 		}
 	}
+
+
+	gsap.from(heroVisual.value, {
+		opacity: 0,
+		x: 100,
+		duration: 1,
+		delay: 0.6,
+		ease: 'power3.out'
+	})
+
+	// About section animations
+	gsap.from(aboutTitle.value, {
+		scrollTrigger: {
+			trigger: about.value,
+			start: 'top 80%'
+		},
+		opacity: 0,
+		y: 50,
+		duration: 0.8
+	})
+
+	gsap.from(aboutText.value, {
+		scrollTrigger: {
+			trigger: about.value,
+			start: 'top 70%'
+		},
+		opacity: 0,
+		y: 30,
+		duration: 0.6
+	})
+
+	// Experience timeline animations
+	gsap.from('.timeline-item', {
+		scrollTrigger: {
+			trigger: experience.value,
+			start: 'top 70%'
+		},
+		opacity: 0,
+		y: 50,
+		stagger: 0.2,
+		duration: 0.8
+	})
+
+	// Projects animations
+	gsap.from(projectsTitle.value, {
+		scrollTrigger: {
+			trigger: projectsSection.value,
+			start: 'top 80%'
+		},
+		opacity: 0,
+		y: 50,
+		duration: 0.8
+	})
+
+	// Testimonials animations
+	gsap.from('.testimonial-card', {
+		scrollTrigger: {
+			trigger: testimonials.value,
+			start: 'top 70%'
+		},
+		opacity: 0,
+		y: 50,
+		stagger: 0.2,
+		duration: 0.8
+	})
+
+	// Contact animations
+	gsap.from(contactTitle.value, {
+		scrollTrigger: {
+			trigger: contact.value,
+			start: 'top 80%'
+		},
+		opacity: 0,
+		y: 50,
+		duration: 0.8
+	})
 }
+
+
+function showMore() {
+	visibleProjects.value = Math.min(
+		visibleProjects.value + 3,
+		projects.value.length
+	)
+}
+
+const scrollToSection = (id: string) => {
+	const element = document.getElementById(id)
+	if (element) {
+		element.scrollIntoView({ behavior: 'smooth' })
+	}
+}
+
+
+onMounted(() => {
+	setupAnimations()
+	useMetadata().setMetadata({
+		projects: true,
+		image: '/preview.jpg'
+	})
+})
 </script>
+
 <template>
-	<div class="visual-portfolio min-h-screen overflow-hidden bg-white dark:bg-zinc-900 transition-colors duration-500">
+	<div class="visual-portfolio min-h-screen overflow-hidden bg-white dark:bg-zinc-900 transition-colors duration-300">
 		<AppHeader />
 
 		<!-- Hero Section -->
 		<section id="home" class="min-h-screen flex items-center justify-center pt-16 pb-12 px-4 sm:px-6" ref="hero"
 			itemscope itemtype="https://schema.org/Person">
 			<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
-				<!-- Contenu texte -->
 				<div class="relative z-10 order-2 md:order-1 text-center md:text-left">
 					<div class="hidden md:block absolute -top-6 -left-6 w-24 h-24 bg-teal-400/10 rounded-full blur-xl"></div>
 
@@ -277,7 +237,7 @@ export default {
 
 					<div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start" ref="heroButtons">
 						<a href="#projects"
-							class="px-6 py-3 sm:px-8 sm:py-3.5 bg-gradient-to-r from-teal-600 to-teal-500 dark:from-teal-700 dark:to-teal-600 text-white rounded-lg sm:rounded-xl hover:shadow-lg hover:shadow-teal-500/20 transition-all duration-300 shadow-md flex items-center justify-center gap-2 group"
+							class="px-6 py-3 sm:px-8 sm:py-3.5 bg-gradient-to-r from-teal-600 to-zinc-600 dark:from-teal-700 dark:to-zinc-700 text-white rounded-lg sm:rounded-xl hover:shadow-lg hover:shadow-teal-500/20 transition-all duration-300 shadow-md flex items-center justify-center gap-2 group"
 							@click="scrollToSection('projects')">
 							<span>My projects</span>
 							<svg xmlns="http://www.w3.org/2000/svg"
@@ -299,7 +259,6 @@ export default {
 					</div>
 				</div>
 
-				<!-- Image profil -->
 				<div class="relative order-1 md:order-2 mx-auto w-full max-w-xs sm:max-w-sm md:max-w-none" ref="heroVisual">
 					<div class="hidden md:block absolute -top-8 -left-8 w-40 h-40 bg-teal-400/20 rounded-full blur-xl"></div>
 
@@ -346,23 +305,24 @@ export default {
 
 				<div class="grid md:grid-cols-2 gap-16 items-center">
 					<div class="space-y-8" ref="aboutText" itemprop="knowsAbout" itemscope itemtype="https://schema.org/ItemList">
-						<p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed" itemprop="description">
-							{{ sharedData.personal.bio }}
-						</p>
+
+						<div  class="space-y-2 "itemprop="description" v-html="sharedData.personal.bio ">
+						
+						</div>
 
 						<!-- Skills Section -->
 						<div>
 							<h3 class="text-2xl font-semibold mb-6 dark:text-white">My Skills</h3>
-							<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+							<div class="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-2 gap-4">
 								<div v-for="(category, key) in sharedData.skills" :key="key"
 									class="bg-white dark:bg-zinc-800 p-5 rounded-xl shadow-sm border border-zinc-100 dark:border-zinc-700/50 hover:shadow-md transition-all">
 									<h4 class="font-medium text-lg text-teal-600 dark:text-teal-400 mb-3 flex items-center gap-2">
-										<component :is="category.icon || 'CodeIcon'" class="w-5 h-5" />
+										<component :is="iconComponents[category.icon] || CodeIcon" class="w-5 h-5" />
 										{{ category.title }}
 									</h4>
 									<div class="space-y-3">
 										<div v-for="(skill, index) in category.items" :key="index"
-											class="text-sm p-3 rounded-lg bg-zinc-50 dark:bg-zinc-700/50 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-all">
+											class="text-sm p-3 rounded-lg bg-zinc-50 dark:bg-zinc-700/50 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-all cursor-pointer">
 											<div class="flex justify-between items-center">
 												<span class="dark:text-zinc-300 font-medium">{{ skill.name }}</span>
 												<span
@@ -389,14 +349,15 @@ export default {
 					</div>
 
 					<div class="relative h-[600px] md:h-[500px]" ref="aboutVisual">
-						<div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-zinc-500/5 rounded-2xl blur-xl"></div>
+						<div class="absolute inset-0 bg-gradient-to-br from-zinc-500/5 to-zinc-500/5 rounded-2xl blur-xl"></div>
 
 						<template v-for="(card, index) in aboutCards" :key="index">
 							<div
 								class="absolute bg-white dark:bg-zinc-800 p-6 rounded-xl shadow-lg border border-zinc-100 dark:border-zinc-700/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
 								:class="card.class" :style="{ opacity: 1 }">
 								<div class="w-12 h-12 mb-4 rounded-xl flex items-center justify-center shadow-inner" :class="card.bg">
-									<component :is="card.icon" class="w-6 h-6" :class="card.color" />
+
+									<component :is="iconComponents[card.icon] || CodeIcon" class="w-6 h-6" :class="card.color" />
 								</div>
 								<h3 class="font-semibold text-lg mb-2 dark:text-white">{{ card.title }}</h3>
 								<p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">{{ card.text }}</p>
@@ -407,8 +368,88 @@ export default {
 			</div>
 		</section>
 
+		<!-- Experience Section -->
+		<section id="experience" class="py-24 px-6 md:px-12 bg-zinc-50 dark:bg-zinc-800/30" ref="experience">
+			<div class="max-w-7xl mx-auto">
+				<div class="text-center mb-16">
+					<span
+						class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider text-teal-600 dark:text-teal-400 uppercase rounded-full bg-teal-100/50 dark:bg-teal-900/50 mb-4">
+						My Journey
+					</span>
+					<h2 class="text-4xl md:text-5xl font-bold dark:text-white max-w-2xl mx-auto">
+						Work <span class="text-teal-600 dark:text-teal-400">Experience</span>
+					</h2>
+					<p class="text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto mt-4">
+						My professional career and achievements
+					</p>
+				</div>
+
+				<div class="relative max-w-3xl mx-auto">
+					<!-- Timeline line -->
+					<div class="absolute left-1/2 -translate-x-1/2 w-0.5 h-full bg-zinc-200 dark:bg-zinc-700"></div>
+
+					<!-- Timeline items -->
+					<div v-for="(exp, index) in sharedData.experience" :key="index" class="mb-12 timeline-item">
+						<div class="relative flex items-center justify-between">
+							<!-- Left side -->
+							<div class="w-5/12 pr-8 text-right" :class="{ 'order-last pl-8 text-left': index % 2 !== 0 }">
+								<div class="text-sm text-teal-600 dark:text-teal-400 font-medium">{{ exp.duration }}</div>
+								<h3 class="text-xl font-bold dark:text-white">{{ exp.position }}</h3>
+								<div class="text-zinc-500 dark:text-zinc-400">{{ exp.company }}</div>
+							</div>
+
+							<!-- Middle dot -->
+							<div
+								class="w-8 h-8 rounded-full bg-teal-500 border-4 border-white dark:border-zinc-800 z-10 flex items-center justify-center">
+								<BriefcaseIcon class="w-4 h-4 text-white" />
+							</div>
+
+							<!-- Right side -->
+							<div class="w-5/12 pl-8" :class="{ 'pr-8 text-right': index % 2 !== 0 }">
+								<p class="text-zinc-600 dark:text-zinc-300">{{ exp.description }}</p>
+								<div class="mt-2 flex flex-wrap gap-2" :class="{ 'justify-end': index % 2 !== 0 }">
+									<span v-for="(tech, i) in exp.technologies" :key="i"
+										class="text-xs px-2 py-1 bg-zinc-100 dark:bg-zinc-700 rounded-full">
+										{{ tech }}
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Education Section -->
+		<section id="education" class="py-24 px-6 md:px-12 bg-white dark:bg-zinc-900" ref="education">
+			<div class="max-w-7xl mx-auto">
+				<div class="text-center mb-16">
+					<span
+						class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider text-teal-600 dark:text-teal-400 uppercase rounded-full bg-teal-100/50 dark:bg-teal-900/50 mb-4">
+						Learning Path
+					</span>
+					<h2 class="text-4xl md:text-5xl font-bold dark:text-white max-w-2xl mx-auto">
+						Education & <span class="text-teal-600 dark:text-teal-400">Certifications</span>
+					</h2>
+				</div>
+
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+					<div v-for="(edu, index) in sharedData.education" :key="index"
+						class="bg-white dark:bg-zinc-800 p-6 rounded-xl shadow-sm border border-zinc-100 dark:border-zinc-700/50 hover:shadow-md transition-all hover:-translate-y-1">
+						<div class="w-12 h-12 mb-4 rounded-lg bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center">
+							<SchoolIcon class="w-6 h-6 text-teal-600 dark:text-teal-400" />
+						</div>
+						<h3 class="text-xl font-bold dark:text-white mb-2">{{ edu.degree }}</h3>
+						<div class="text-teal-600 dark:text-teal-400 font-medium mb-1">{{ edu.institution }}</div>
+						<div class="text-sm text-zinc-500 dark:text-zinc-400 mb-3">{{ edu.duration }}</div>
+						<p class="text-zinc-600 dark:text-zinc-300 text-sm">{{ edu.description }}</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<!-- Projects Section -->
-		<section id="projects" class="py-24 px-6 md:px-12 bg-white dark:bg-zinc-900" ref="projectsSection" itemscope
+		<section id="projects" class="py-24 px-6 md:px-12 bg-zinc-50 dark:bg-zinc-800/30" ref="projectsSection" itemscope
 			itemtype="https://schema.org/ItemList">
 			<div class="max-w-7xl mx-auto">
 				<div class="text-center mb-16">
@@ -424,7 +465,7 @@ export default {
 					</p>
 				</div>
 
-				<transition-group name="stagger" tag="div" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
 					<div v-for="(project, index) in projects.slice(0, visibleProjects)" :key="project.name"
 						class="bg-white dark:bg-zinc-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
 						ref="projectCards" itemprop="itemListElement" itemscope itemtype="https://schema.org/CreativeWork">
@@ -469,11 +510,11 @@ export default {
 							</div>
 						</div>
 					</div>
-				</transition-group>
+				</div>
 
 				<div class="text-center" v-if="visibleProjects < projects.length">
 					<button @click="showMore"
-						class="px-8 py-3.5 bg-gradient-to-r from-teal-600 to-teal-500 dark:from-teal-700 dark:to-teal-600 text-white rounded-xl hover:shadow-lg hover:shadow-teal-500/20 transition-all duration-300 shadow-md flex items-center gap-2 mx-auto group">
+						class="px-8 py-3.5 bg-gradient-to-r from-teal-600 to-zinc-600 dark:from-teal-700 dark:to-zinc-700 text-white rounded-xl hover:shadow-lg hover:shadow-teal-500/20 transition-all duration-300 shadow-md flex items-center gap-2 mx-auto group">
 						Show more projects
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-y-1 transition-transform"
 							fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -484,6 +525,41 @@ export default {
 			</div>
 		</section>
 
+		<!-- Testimonials Section -->
+		<section id="testimonials" class="py-24 px-6 md:px-12 bg-white dark:bg-zinc-900" ref="testimonials">
+			<div class="max-w-7xl mx-auto">
+				<div class="text-center mb-16">
+					<span
+						class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider text-teal-600 dark:text-teal-400 uppercase rounded-full bg-teal-100/50 dark:bg-teal-900/50 mb-4">
+						Client Feedback
+					</span>
+					<h2 class="text-4xl md:text-5xl font-bold dark:text-white max-w-2xl mx-auto">
+						What People <span class="text-teal-600 dark:text-teal-400">Say</span>
+					</h2>
+				</div>
+
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+					<div v-for="(testimonial, index) in sharedData.testimonials" :key="index"
+						class="bg-white dark:bg-zinc-800 p-6 rounded-xl shadow-sm border border-zinc-100 dark:border-zinc-700/50 hover:shadow-md transition-all hover:-translate-y-1 testimonial-card">
+						<div class="flex items-center mb-4">
+							<div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+								<img :src="testimonial.avatar" :alt="testimonial.name" class="w-full h-full object-cover">
+							</div>
+							<div>
+								<h4 class="font-bold dark:text-white">{{ testimonial.name }}</h4>
+								<div class="text-sm text-zinc-500 dark:text-zinc-400">{{ testimonial.position }}</div>
+							</div>
+						</div>
+						<p class="text-zinc-600 dark:text-zinc-300 mb-4 italic">"{{ testimonial.quote }}"</p>
+						<div class="flex">
+							<span v-for="i in 5" :key="i" class="text-yellow-500">
+								★
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
 
 		<AppFooter />
@@ -534,15 +610,11 @@ export default {
 	box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
-
 .gradient-text {
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
-
-
-
 
 @media (max-width: 768px) {
 	.visual-portfolio {
@@ -556,46 +628,67 @@ export default {
 	.hero-title {
 		font-size: 2.5rem;
 	}
+
+	/* Timeline adjustments */
+	.timeline-item .w-5\/12 {
+		width: 100%;
+		padding: 0;
+		text-align: left !important;
+	}
+
+	.timeline-item .w-8 {
+		display: none;
+	}
+
+	/* About cards adjustments */
+	.about-cards-container {
+		height: auto !important;
+		min-height: 400px;
+		position: relative;
+		margin-bottom: 2rem;
+	}
+
+	.about-card {
+		position: relative !important;
+		top: auto !important;
+		left: auto !important;
+		right: auto !important;
+		bottom: auto !important;
+		width: 100% !important;
+		margin-bottom: 1rem;
+	}
+
+	.skills-grid {
+		grid-template-columns: 1fr !important;
+	}
+
+	.hero-section {
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+
+	.hero-content {
+		order: 2;
+		text-align: center;
+	}
+
+	.hero-image {
+		order: 1;
+		margin-bottom: 2rem;
+	}
+}
+
+@media (max-width: 640px) {
+	.projects-grid {
+		grid-template-columns: 1fr !important;
+	}
+
+	.contact-grid {
+		grid-template-columns: 1fr !important;
+	}
 }
 
 .dark-transition * {
-	transition: background-color 0.5s ease, border-color 0.5s ease;
-}
-@media (max-width: 640px) {
-  .about-cards-container {
-    height: auto !important;
-    min-height: 400px;
-    position: relative;
-    margin-bottom: 2rem;
-  }
-  
-  .about-card {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    width: 100% !important;
-    margin-bottom: 1rem;
-  }
-  
-  .skills-grid {
-    grid-template-columns: 1fr !important;
-  }
-  
-  .hero-section {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-  
-  .hero-content {
-    order: 2;
-    text-align: center;
-  }
-  
-  .hero-image {
-    order: 1;
-    margin-bottom: 2rem;
-  }
+	transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 </style>
