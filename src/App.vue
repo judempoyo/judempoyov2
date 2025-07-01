@@ -12,7 +12,7 @@ import { Analytics } from '@vercel/analytics/vue';
 const { setMetadata } = useMetadata();
 setMetadata();
 export default {
-  components: { StyleSelector, TerminalPortfolio, VisualPortfolio, StyleSwitcher, ToogleTheme },
+  components: { StyleSelector, TerminalPortfolio, VisualPortfolio, StyleSwitcher, ToogleTheme, Analytics },
   setup() {
     const currentStyle = ref(null)
     const showStyleSelector = ref(false)
