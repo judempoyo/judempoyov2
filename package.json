@@ -13,6 +13,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.8",
     "@types/gsap": "^3.0.0",
+    "@vercel/analytics": "^1.5.0",
     "@vueuse/core": "^13.3.0",
     "@xterm/xterm": "^5.5.0",
     "class-variance-authority": "^0.7.1",
