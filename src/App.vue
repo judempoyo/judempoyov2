@@ -7,6 +7,7 @@ import StyleSwitcher from './components/StyleSwitcher.vue'
 import ToogleTheme from './components/ToggleTheme.vue'
 import { sharedData } from '@/data/shared-data'
 import { useMetadata } from '@/composables/useMetadata';
+import { Analytics } from '@vercel/analytics/vue';
 
 const { setMetadata } = useMetadata();
 setMetadata();
@@ -48,6 +49,8 @@ export default {
 </script>
 
 <template>
+	  <Analytics />
+
   <div :class="{'terminal-mode': currentStyle === 'terminal'}">
 	 <header v-if="!showStyleSelector" aria-label="Portfolio navigation">
       <StyleSwitcher v-if="currentStyle" />
