@@ -269,7 +269,7 @@ onMounted(() => {
 					<div
 						class="relative bg-white dark:bg-zinc-800 p-1 sm:p-1.5 rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl overflow-hidden border-4 md:border-8 border-white dark:border-zinc-800 transition-all duration-300 hover:shadow-teal-500/20 hover:-translate-y-1 md:hover:-translate-y-2">
 						<img src="/judepic.png" alt="Jude Mpoyo"
-							class="rounded-xl md:rounded-2xl w-full h-auto object-cover aspect-square grayscale-[25%] hover:grayscale-0 transition-all duration-300">
+						 class="rounded-xl md:rounded-2xl w-full h-auto object-cover aspect-square grayscale-[25%] hover:grayscale-0 transition-all duration-300">
 
 						<div
 							class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 bg-white/90 dark:bg-zinc-800/90 backdrop-blur-sm p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md border border-white/20">
