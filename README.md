@@ -9,7 +9,7 @@
 
 ## 👨‍💻 About Me
 
-Passionate full-stack developer crafting robust web and mobile applications. I specialize in building scalable solutions with modern technologies while maintaining clean, efficient code.
+Passionate backend developer crafting robust web and mobile applications. I specialize in building scalable solutions with modern technologies while maintaining clean, efficient code.
 
 - 🌱 **Currently learning**: Vue.Js,Docker
 - 💬 **Expertise**: PHP, Laravel, Flutter, Vue.Js
