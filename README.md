@@ -1,12 +1,15 @@
-# 🚀 Jude Mpoyo - Web and mobile developer 
+# 🚀 Jude Mpoyo - Backend developer 
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/20906a65-30a7-4c5b-9407-25544b9f9d69" alt="Banner" width="100%">
 </div>
 
+[![committers.top badge](https://user-badge.committers.top/congo_kinshasa/judempoyo.svg)](https://user-badge.committers.top/congo_kinshasa/judempoyo)
+
+
 ## 👨‍💻 About Me
 
-Passionate full-stack developer crafting robust web and mobile applications. I specialize in building scalable solutions with modern technologies while maintaining clean, efficient code.
+Passionate backend developer crafting robust web and mobile applications. I specialize in building scalable solutions with modern technologies while maintaining clean, efficient code.
 
 - 🌱 **Currently learning**: Vue.Js,Docker
 - 💬 **Expertise**: PHP, Laravel, Flutter, Vue.Js
@@ -60,6 +63,9 @@ Passionate full-stack developer crafting robust web and mobile applications. I s
 <div align="center">
   <img src="https://github-profile-trophy.vercel.app/?username=judempoyo&theme=onedark&no-frame=true&row=2&column=8&margin-w=10&margin-h=10" alt="Trophies" width="100%">
 </div>
+
+
+
 
 ## 📬 Let's Connect
 
