@@ -5,10 +5,10 @@ import type { Config } from 'ziggy-js';
 
 
 export interface NavItem {
-    title: string;
-    href: string;
-    icon?: LucideIcon;
-    isActive?: boolean;
+  title: string;
+  href: string;
+  icon?: LucideIcon;
+  isActive?: boolean;
 }
 export interface ExperienceItem {
   position: string;
