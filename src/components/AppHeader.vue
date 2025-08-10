@@ -52,7 +52,9 @@ const isSheetOpen = ref(false);
 </script>
 
 <template>
-  <nav class="fixed w-full z-50 backdrop-blur-2xl bg-white/90 dark:bg-[#0a0a0a]/90 border-b border-zinc-200/20 dark:border-zinc-800/20 shadow-lg shadow-zinc-200/10 dark:shadow-black/20">
+  <nav class="fixed w-full z-50 backdrop-blur-2xl bg-white/90 dark:bg-[#0a0a0a]/90 border-b border-zinc-200/20 dark:border-zinc-800/20 shadow-lg shadow-zinc-200/10 dark:shadow-black/20 
+         supports-[backdrop-filter]:bg-white/60 supports-[backdrop-filter]:dark:bg-zinc-900/60
+         shadow-lg shadow-zinc-200 dark:shadow-zinc-800 rounded-b-3xl mx-auto">
     <div class="max-w-7xl mx-auto px-6 py-3 flex items-center">
   
        <a href="#home" class="flex items-center mr-4 group" aria-label="Go to homepage">
@@ -77,7 +79,7 @@ const isSheetOpen = ref(false);
           </SheetTrigger>
           <SheetContent 
             side="left" 
-            class="w-xs max-w-sm h-[65vh] !top-6 !left-4 !right-auto !bottom-6 rounded-circle bg-white/95 dark:bg-[#0d0d0d]/95 backdrop-blur-3xl border border-zinc-200/30 dark:border-zinc-800/30 drop-shadow-2xl overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            class="w-xs max-w-sm h-[65vh] !top-6 !left-4 !right-auto !bottom-6 rounded-circle bg-white/95 dark:bg-[#0d0d0d]/95 backdrop-blur-5xl border border-zinc-200/30 dark:border-zinc-800/30 drop-shadow-2xl overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] "
             :style="{
               transform: isSheetOpen ? 'translateX(0)' : 'translateX(-120%)',
               opacity: isSheetOpen ? 1 : 0,
@@ -105,7 +107,7 @@ const isSheetOpen = ref(false);
               </SheetTitle>
             </SheetHeader>
 
-            <div class="flex flex-col space-y-2 py-2 relative z-10">
+            <div class="flex flex-col space-y-2 py-2 relative z-10 ">
               <a
                 v-for="link in navLinks"
                 :key="link.id"
