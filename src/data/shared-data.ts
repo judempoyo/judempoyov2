@@ -17,6 +17,8 @@ import laravelangularstarter from '@/assets/images/laravelangularstarter.png'
 import mobileapp from '@/assets/images/mobileapp.jpg'
 import phpmvcstarter from '@/assets/images/phpmvcstarter.png'
 import trelloboardclone from '@/assets/images/trelloboardclone.png'
+
+
 export const sharedData: SharedData = {
   personal: {
     name: "Jude Mpoyo",
@@ -110,7 +112,44 @@ export const sharedData: SharedData = {
        quote: "Jude a fait un excellent travail...",
        avatar: "/judepic.png" 
      } */
+    {
+       name: 'MONGA KALOKO Thomas',
+      position: 'Chief Executive Officer (CEO) at AbceHolding',
+             quote: "Jude a fait un excellent travail...",
+             avatar: agriproject,
+    },
+     {
+       name: 'MONGA KALOKO Thomas',
+      position: 'Chief Executive Officer (CEO) at AbceHolding',
+             quote: "Jude a fait un excellent travail...",
+             avatar: agriproject,
+    },
+     {
+       name: 'MONGA KALOKO Thomas',
+      position: 'Chief Executive Officer (CEO) at AbceHolding',
+             quote: "Jude a fait un excellent travail...",
+             avatar: agriproject,
+    },
+     {
+       name: 'MONGA KALOKO Thomas',
+      position: 'Chief Executive Officer (CEO) at AbceHolding',
+             quote: "Jude a fait un excellent travail...",
+             avatar: agriproject,
+    },
+     {
+       name: 'MONGA KALOKO Thomas',
+      position: 'Chief Executive Officer (CEO) at AbceHolding',
+             quote: "Jude a fait un excellent travail...",
+             avatar: agriproject,
+    },
+     {
+       name: 'MONGA KALOKO Thomas',
+      position: 'Chief Executive Officer (CEO) at AbceHolding',
+             quote: "Jude a fait un excellent travail...",
+             avatar: agriproject,
+    }
   ],
+
 
 
   skills: {
@@ -210,6 +249,19 @@ export const sharedData: SharedData = {
   ,
 
   projects: {
+     uzaraka: {
+      name: "Uzarak",
+      description: "Portfolio with selectable visual style (terminal or graphical)",
+      technologies: ["Nuxt 3", "Tailwind CSS"],
+      link: "https://github.com/judempoyo/judempoyov2",
+      year: 2025,
+      features: [
+        "Terminal and graphical modes",
+        "Customizable visual theme",
+        "Modern responsive design"
+      ],
+      image:judeportfolioterm
+    },
     portfolio: {
       name: "Terminal/Graphical Portfolio",
       description: "Portfolio with selectable visual style (terminal or graphical)",
