@@ -1,4 +1,4 @@
-# 🚀 Jude Mpoyo - Backend developer 
+# 🚀 Jude Mpoyo - Fullstack developer 
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/20906a65-30a7-4c5b-9407-25544b9f9d69" alt="Banner" width="100%">
@@ -9,7 +9,7 @@
 
 ## 👨‍💻 About Me
 
-Passionate backend developer crafting robust web and mobile applications. I specialize in building scalable solutions with modern technologies while maintaining clean, efficient code.
+Passionate fullstack developer crafting robust web and mobile applications. I specialize in building scalable solutions with modern technologies while maintaining clean, efficient code.
 
 - 🌱 **Currently learning**: Vue.Js,Docker
 - 💬 **Expertise**: PHP, Laravel, Flutter, Vue.Js
