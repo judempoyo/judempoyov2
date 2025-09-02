@@ -52,10 +52,8 @@ const isSheetOpen = ref(false);
 </script>
 
 <template>
-  <nav class="fixed w-full z-50 backdrop-blur-2xl bg-white/90 dark:bg-[#0a0a0a]/90 border-b border-zinc-200/20 dark:border-zinc-800/20 shadow-lg shadow-zinc-200/10 dark:shadow-black/20 
-         supports-[backdrop-filter]:bg-white/60 supports-[backdrop-filter]:dark:bg-zinc-900/60
-         shadow-lg shadow-zinc-200 dark:shadow-zinc-800 rounded-b-3xl mx-auto">
-    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center">
+  <header class="fixed sm:left-1/3 top-0 z-50 w-full  md:w-4/10 bg-white/95 dark:bg-zinc-950/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 supports-[backdrop-filter]:dark:bg-zinc-900/60 shadow-lg shadow-zinc-200 dark:shadow-zinc-800 rounded-b-3xl">
+    <div class="flex h-16 items-center justify-between px-4">
   
        <a href="#home" class="flex items-center mr-4 group" aria-label="Go to homepage">
         <div class="relative overflow-hidden h-8 w-8 rounded-lg mr-2 flex items-center justify-center bg-gradient-to-tr from-teal-400 to-teal-500">
@@ -145,9 +143,8 @@ const isSheetOpen = ref(false);
               <NavigationMenuLink
                 :href="'#' + link.id"
                 @click="scrollToSection(link.id)"
-                class="relative  px-4 py-2.5 text-sm font-medium group overflow-hidden flex items-center gap-2"
+                class="relative  px-4 py-2.5 text-sm font-medium  overflow-hidden flex items-center gap-2"
               >
-                <component :is="link.icon" class="h-4 w-4 flex-shrink-0 text-teal-600 dark:text-teal-400 opacity-80 group-hover:opacity-100 transition-opacity" />
                 <span class="relative  z-10 text-zinc-700 dark:text-zinc-300 group-hover:text-teal-500 dark:group-hover:text-teal-400 transition-colors duration-300 whitespace-nowrap">
                   {{ link.text }}
                 </span>
@@ -157,14 +154,14 @@ const isSheetOpen = ref(false);
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-      </div>
-
       <div class="hidden md:flex items-center gap-4 ml-auto">
         <StyleSwitcher />
         <ToggleTheme />
       </div>
+      </div>
+
     </div>
-  </nav>
+  </header>
 </template>
 
 <style scoped>

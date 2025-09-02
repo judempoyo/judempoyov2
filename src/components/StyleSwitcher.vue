@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { inject } from 'vue'
+import { Button } from '@/components/ui/button'
 
 
 	const currentStyle = inject('currentStyle')
@@ -9,7 +10,7 @@ import { inject } from 'vue'
 <template>
   <Button
     @click="openStyleSelector"
-    class="fixed top-4 right-4 z-50 flex items-center gap-2 px-2 py-2 rounded-full transition-all"
+    class="z-50 flex items-center gap-2 px-2 py-2 rounded-full transition-all"
     :class="{
       'bg-zinc-800 text-white hover:bg-zinc-700': currentStyle === 'terminal',
       'bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 shadow-md hover:bg-zinc-100': currentStyle === 'visual'
