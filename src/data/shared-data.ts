@@ -17,6 +17,7 @@ import laravelangularstarter from '@/assets/images/laravelangularstarter.png'
 import mobileapp from '@/assets/images/mobileapp.jpg'
 import phpmvcstarter from '@/assets/images/phpmvcstarter.png'
 import trelloboardclone from '@/assets/images/trelloboardclone.png'
+import uzaraka from '@/assets/images/uzaraka.png'
 
 
 export const sharedData: SharedData = {
@@ -26,9 +27,7 @@ export const sharedData: SharedData = {
     title: "fullstack Developer",
     specialties: ["Laravel", "PHP", "VueJS", "Docker","Cloud Architecture"],
     shortBio: `
-    Passionate about creating dynamic and responsive
-      applications. Let's build
-      something amazing together!.`,
+    Full-stack Developer | Open Source | Clean Code Enthusiast | Future-focused on AI, Cloud & DevOps.`,
     location: "Kolwezi, DRC",
     email: "mpoyojude0@gmail.com",
     phone: "+243975889135",
@@ -37,18 +36,24 @@ export const sharedData: SharedData = {
     linkedin: "linkedin.com/in/judempoyo",
     bio: `
   <p class="text-2xl text-zinc-700 dark:text-zinc-300 leading-relaxedc font-bold">
-    Freelance Web Developer – PHP Laravel & Vue.js
+   Full-stack Developer | Open Source | Clean Code Enthusiast | Future-focused on AI, Cloud & DevOps
   </p>
 
   <p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
-    I am a freelance developer with 2 years of experience creating modern and intuitive web applications.
-    Passionate about clean, well-structured code, I enjoy working on projects that bring real value to users.
+    I am a full-stack developer passionate about building robust and elegant web and mobile solutions. My main stack includes Laravel, Vue.js, TypeScript, Flutter, Docker, with a strong commitment to clean code and problem-solving.
   </p>
 
   <p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
-    Today, I help businesses, startups, and entrepreneurs develop custom websites and tools tailored to their needs.
-    My ambition is to keep growing every day, expand my skills, and contribute to innovative and meaningful projects.
+    Beyond coding, I aim to grow towards Cloud, AI, and DevOps to design scalable, innovative IT solutions with global impact.
   </p>
+  <p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
+    Core values:
+  </p>
+  <ul class="list-disc pl-5 space-y-2 text-md text-zinc-700 dark:text-zinc-300 leading-relaxed">
+   <li>Building reliable and scalable applications.</li>
+   <li>Contributing to open source and the tech community.</li>
+   <li>Exploring the future of IT with curiosity and ambition.</li>
+  </ul>
 
   <p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
     If you are looking for a dedicated, curious developer committed to bringing your ideas to life, I would be glad to connect with you.
@@ -112,41 +117,20 @@ export const sharedData: SharedData = {
        quote: "Jude a fait un excellent travail...",
        avatar: "/judepic.png" 
      } */
+    
+     {
+       name: 'MONGA KALOKO Thomas',
+      position: 'Chief Executive Officer (CEO)',
+      company: 'AbceHolding',
+             quote: "Jude a fait un excellent travail...",
+             avatar: agriproject,
+    },
     {
-       name: 'MONGA KALOKO Thomas',
-      position: 'Chief Executive Officer (CEO) at AbceHolding',
+       name: 'Jonas Kaninda',
+      position: 'Chief Executive Officer (CEO)',
+      company: 'Jkantech',
              quote: "Jude a fait un excellent travail...",
-             avatar: agriproject,
-    },
-     {
-       name: 'MONGA KALOKO Thomas',
-      position: 'Chief Executive Officer (CEO) at AbceHolding',
-             quote: "Jude a fait un excellent travail...",
-             avatar: agriproject,
-    },
-     {
-       name: 'MONGA KALOKO Thomas',
-      position: 'Chief Executive Officer (CEO) at AbceHolding',
-             quote: "Jude a fait un excellent travail...",
-             avatar: agriproject,
-    },
-     {
-       name: 'MONGA KALOKO Thomas',
-      position: 'Chief Executive Officer (CEO) at AbceHolding',
-             quote: "Jude a fait un excellent travail...",
-             avatar: agriproject,
-    },
-     {
-       name: 'MONGA KALOKO Thomas',
-      position: 'Chief Executive Officer (CEO) at AbceHolding',
-             quote: "Jude a fait un excellent travail...",
-             avatar: agriproject,
-    },
-     {
-       name: 'MONGA KALOKO Thomas',
-      position: 'Chief Executive Officer (CEO) at AbceHolding',
-             quote: "Jude a fait un excellent travail...",
-             avatar: agriproject,
+             avatar: uzaraka,
     }
   ],
 
@@ -250,17 +234,20 @@ export const sharedData: SharedData = {
 
   projects: {
      uzaraka: {
-      name: "Uzarak",
-      description: "Portfolio with selectable visual style (terminal or graphical)",
+      name: "Uzaraka",
+      description: "A modern marketplace platform where users can post, browse, and manage listings for products, jobs, or services.",
       technologies: ["Nuxt 3", "Tailwind CSS"],
-      link: "https://github.com/judempoyo/judempoyov2",
       year: 2025,
       features: [
-        "Terminal and graphical modes",
-        "Customizable visual theme",
-        "Modern responsive design"
-      ],
-      image:judeportfolioterm
+    "User authentication with roles (buyer, seller, admin)",
+    "Create and manage listings with images and details",
+    "Advanced search and filtering by category, price, and location",
+    "Built-in messaging system between users",
+    "Responsive and mobile-friendly design",
+    "Personal dashboard to track listings and conversations",
+    "Customizable dark/light theme"
+  ],
+      image:uzaraka
     },
     portfolio: {
       name: "Terminal/Graphical Portfolio",
