@@ -24,6 +24,7 @@ export interface ExperienceItem {
 export interface Testimonial {
   name: string;
   position: string;
+  company: string,
   quote: string;
   avatar: string;
 }
@@ -44,7 +45,7 @@ export interface Project {
   name: string;
   description: string;
   technologies: string[];
-  link: string;
+  link?: string;
   year: string | number;
   features?: string[];
   image: string;

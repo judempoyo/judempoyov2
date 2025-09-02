@@ -1,35 +1,59 @@
 import type { SharedData } from '@/types';
 
+import agriproject from '@/assets/images/agriproject.png'
+import ecom from '@/assets/images/ecom.png'
+import ecomdark from '@/assets/images/ecomdark.png'
+import judeportfolio from '@/assets/images/judeportfolio.png'
+import judeportfolioterm from '@/assets/images/judeportfolioterm.png'
+import jumpapi from '@/assets/images/jumpapi.png'
+import jumpcalculator from '@/assets/images/jumpcalculator.png'
+import jumpdatatable from '@/assets/images/jumpdatatable.png'
+import jumpdatatabledark from '@/assets/images/jumpdatatabledark.png'
+import jumpmanagement from '@/assets/images/jumpmanagement.png'
+import jumpmanagementdark from '@/assets/images/jumpmanagementdark.png'
+import jumptodo from '@/assets/images/jumptodo.png'
+import jumptododark from '@/assets/images/jumptododark.png'
+import laravelangularstarter from '@/assets/images/laravelangularstarter.png'
+import mobileapp from '@/assets/images/mobileapp.jpg'
+import phpmvcstarter from '@/assets/images/phpmvcstarter.png'
+import trelloboardclone from '@/assets/images/trelloboardclone.png'
+import uzaraka from '@/assets/images/uzaraka.png'
+
+
 export const sharedData: SharedData = {
   personal: {
     name: "Jude Mpoyo",
     initials: "JM",
-    title: "Backend Developer",
-    specialties: ["Laravel", "PHP", "VueJS", "Cloud Architecture"],
+    title: "fullstack Developer",
+    specialties: ["Laravel", "PHP", "VueJS", "Docker","Cloud Architecture"],
     shortBio: `
-    Passionate about creating dynamic and responsive
-      applications. Let's build
-      something amazing together!.`,
+    Full-stack Developer | Open Source | Clean Code Enthusiast | Future-focused on AI, Cloud & DevOps.`,
     location: "Kolwezi, DRC",
     email: "mpoyojude0@gmail.com",
     phone: "+243975889135",
-    website: "https://judempoyo.dev",
+    website: "https://jude.jkantech.net/jude",
     github: "github.com/judempoyo",
     linkedin: "linkedin.com/in/judempoyo",
     bio: `
   <p class="text-2xl text-zinc-700 dark:text-zinc-300 leading-relaxedc font-bold">
-    Freelance Web Developer – PHP Laravel & Vue.js
+   Full-stack Developer | Open Source | Clean Code Enthusiast | Future-focused on AI, Cloud & DevOps
   </p>
 
   <p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
-    I am a freelance developer with 2 years of experience creating modern and intuitive web applications.
-    Passionate about clean, well-structured code, I enjoy working on projects that bring real value to users.
+    I am a full-stack developer passionate about building robust and elegant web and mobile solutions. My main stack includes Laravel, Vue.js, TypeScript, Flutter, Docker, with a strong commitment to clean code and problem-solving.
   </p>
 
   <p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
-    Today, I help businesses, startups, and entrepreneurs develop custom websites and tools tailored to their needs.
-    My ambition is to keep growing every day, expand my skills, and contribute to innovative and meaningful projects.
+    Beyond coding, I aim to grow towards Cloud, AI, and DevOps to design scalable, innovative IT solutions with global impact.
   </p>
+  <p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
+    Core values:
+  </p>
+  <ul class="list-disc pl-5 space-y-2 text-md text-zinc-700 dark:text-zinc-300 leading-relaxed">
+   <li>Building reliable and scalable applications.</li>
+   <li>Contributing to open source and the tech community.</li>
+   <li>Exploring the future of IT with curiosity and ambition.</li>
+  </ul>
 
   <p class="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
     If you are looking for a dedicated, curious developer committed to bringing your ideas to life, I would be glad to connect with you.
@@ -93,7 +117,23 @@ export const sharedData: SharedData = {
        quote: "Jude a fait un excellent travail...",
        avatar: "/judepic.png" 
      } */
+    
+     {
+       name: 'MONGA KALOKO Thomas',
+      position: 'Chief Executive Officer (CEO)',
+      company: 'AbceHolding',
+             quote: "Jude a fait un excellent travail...",
+             avatar: agriproject,
+    },
+    {
+       name: 'Jonas Kaninda',
+      position: 'Chief Executive Officer (CEO)',
+      company: 'Jkantech',
+             quote: "Jude a fait un excellent travail...",
+             avatar: uzaraka,
+    }
   ],
+
 
 
   skills: {
@@ -154,7 +194,19 @@ export const sharedData: SharedData = {
   ],
 
 
-  experience: [
+  experience: [ {
+      position: "Developer",
+      company: "Jkantech",
+      period: "2025 - present",
+      achievements: [
+        "Supported maintenance and updates for client websites",
+        "Added features to existing Laravel applications",
+        "Participated in code reviews and testing",
+         "Built and delivered multiple web applications",
+        "Created custom dashboards, e-commerce platforms, and APIs"
+      ],
+      stack: ["Laravel", "Vuejs", "TYpeScript", "tilwindcss","PHP", "NuxtJS" ]
+    },
     {
       position: "Freelance Web Developer",
       company: "Self-employed",
@@ -176,22 +228,27 @@ export const sharedData: SharedData = {
         "Collaborated in a team of 3 developers on a client project"
       ],
       stack: ["PHP", "Tailwind CSS", "MySQL"]
-    },
-    {
-      position: "Web Developer Intern",
-      company: "Link DCs",
-      period: "2024 (1 month)",
-      achievements: [
-        "Supported maintenance and updates for client websites",
-        "Added features to existing Laravel applications",
-        "Participated in code reviews and testing"
-      ],
-      stack: ["Laravel", "Blade", "JavaScript"]
     }
   ]
   ,
 
   projects: {
+     uzaraka: {
+      name: "Uzaraka",
+      description: "A modern marketplace platform where users can post, browse, and manage listings for products, jobs, or services.",
+      technologies: ["Nuxt 3", "Tailwind CSS"],
+      year: 2025,
+      features: [
+    "User authentication with roles (buyer, seller, admin)",
+    "Create and manage listings with images and details",
+    "Advanced search and filtering by category, price, and location",
+    "Built-in messaging system between users",
+    "Responsive and mobile-friendly design",
+    "Personal dashboard to track listings and conversations",
+    "Customizable dark/light theme"
+  ],
+      image:uzaraka
+    },
     portfolio: {
       name: "Terminal/Graphical Portfolio",
       description: "Portfolio with selectable visual style (terminal or graphical)",
@@ -203,7 +260,7 @@ export const sharedData: SharedData = {
         "Customizable visual theme",
         "Modern responsive design"
       ],
-      image: "images/judeportfolio.png"
+      image:judeportfolio
     },
     jumpdatatable: {
       name: "Jump Datatable",
@@ -219,7 +276,7 @@ export const sharedData: SharedData = {
         "Responsive design",
         "Easy customization"
       ],
-      image: "images/jumpdatatable.png"
+      image:jumpdatatable
     },
     phpmvstarter: {
       name: "PHP MV Starter",
@@ -232,7 +289,7 @@ export const sharedData: SharedData = {
         "Clean MVC structure",
         "Tailwind CSS integration"
       ],
-      image: "images/phpmvcstarter.png"
+      image:phpmvcstarter
     },
     learn2code: {
       name: "Learn2Code",
@@ -245,7 +302,7 @@ export const sharedData: SharedData = {
         "Interactive quizzes",
         "Progress tracking"
       ],
-      image: "images/mobileapp.jpg"
+      image:mobileapp
     },
     ecom: {
       name: "Ecom Platform",
@@ -258,7 +315,7 @@ export const sharedData: SharedData = {
         "Admin dashboard (Filament)",
         "Planned payment integration"
       ],
-      image: "images/ecom.png"
+      image:ecom
     },
 
     gestion_pharmacie: {
@@ -272,7 +329,7 @@ export const sharedData: SharedData = {
         "Sales tracking",
         "Clean MVC structure"
       ],
-      image: "images/jumpapi.png"
+      image:jumpapi
     },
     jumptodo: {
       name: "Jump Todo",
@@ -285,7 +342,7 @@ export const sharedData: SharedData = {
         "Pomodoro integration",
         "Responsive UI"
       ],
-      image: "images/jumptododark.png"
+      image:jumptododark
     },
 
     jumpmanagment: {
@@ -299,7 +356,7 @@ export const sharedData: SharedData = {
         "Sales dashboard",
         "User roles and permissions"
       ],
-      image: "images/jumpmanagement.png"
+      image:jumpmanagement
     },
     trelloboardclone: {
       name: "Trello Board Clone",
@@ -314,7 +371,7 @@ export const sharedData: SharedData = {
         "Planned animations",
         "Planned authentication"
       ],
-      image: "images/trelloboardclone.png"
+      image:trelloboardclone
     },
     jumpapi: {
       name: "Jump API",
@@ -328,7 +385,7 @@ export const sharedData: SharedData = {
         "Dynamic model creation",
         "JSON request/response"
       ],
-      image: "images/jumpapi.png"
+      image:jumpapi
     },
     appimmo: {
       name: "App Immo",
@@ -341,7 +398,7 @@ export const sharedData: SharedData = {
         "Contact management",
         "Mobile optimized UI"
       ],
-      image: "images/mobileapp.jpg"
+      image:mobileapp
     },
 
     laravel12angular19starter: {
@@ -355,7 +412,7 @@ export const sharedData: SharedData = {
         "REST API structure",
         "Angular frontend setup"
       ],
-      image: "images/laravelangularstarter.png"
+      image:laravelangularstarter
     },
 
   },

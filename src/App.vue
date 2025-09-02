@@ -49,13 +49,9 @@ export default {
 </script>
 
 <template>
-	  <Analytics />
 
   <div :class="{'terminal-mode': currentStyle === 'terminal'}">
-	 <header v-if="!showStyleSelector" aria-label="Portfolio navigation">
-      <StyleSwitcher v-if="currentStyle" />
-    </header>
-    
+
 
     <StyleSelector 
       v-if="showStyleSelector" 
