@@ -121,7 +121,56 @@ const setupAnimations = () => {
 			}
 		})
 	})
+  gsap.fromTo(
+    "#experience-header",
+    { opacity: 0, y: 50 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      scrollTrigger: {
+        trigger: "#experience",
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+    }
+  );
 
+  gsap.utils.toArray<HTMLElement>(".timeline-item").forEach((item, i) => {
+    gsap.fromTo(
+      item,
+      { opacity: 0, y: 50, x: i % 2 === 0 ? -50 : 50 },
+      {
+        opacity: 1,
+        y: 0,
+        x: 0,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: item,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+  });
+
+  gsap.utils.toArray<HTMLElement>(".timeline-point").forEach((point) => {
+    gsap.fromTo(
+      point,
+      { scale: 0 },
+      {
+        scale: 1,
+        duration: 0.5,
+        ease: "back.out(2)",
+        scrollTrigger: {
+          trigger: point,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+  });
 	gsap.fromTo(projectsTitle.value,
 		{ opacity: 0, y: 50 },
 		{
@@ -335,7 +384,6 @@ onMounted(() => {
 						</template>
 					</div>
 				</div>
-				<!-- Skills Section -->
 						<div class="sm:mt-12 ">
 							<h3 class="text-2xl font-semibold mb-6 dark:text-white">My Skills</h3>
 
@@ -376,103 +424,73 @@ onMounted(() => {
 			</div>
 		</section>
 
-		<section id="experience" class="py-24 px-6 md:px-12 bg-zinc-50 dark:bg-zinc-800/30" ref="experience">
-			<div class="max-w-7xl mx-auto">
-				<div class="text-center mb-16">
-					<span
-						class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider text-teal-600 dark:text-teal-400 uppercase rounded-full bg-teal-100/50 dark:bg-teal-900/50 mb-4">
-						My Journey
-					</span>
+<section
+  id="experience"
+  class="py-24 px-6 md:px-12 bg-gradient-to-b from-zinc-50 to-zinc-100 dark:from-zinc-900 dark:to-zinc-800 relative overflow-hidden"
+>
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-20 opacity-0 translate-y-10" id="experience-header">
+      <span
+        class="inline-block px-5 py-2 text-xs font-semibold tracking-wider text-teal-600 dark:text-teal-400 uppercase rounded-full bg-teal-100/70 dark:bg-teal-900/40 shadow-sm">
+        My Journey
+      </span>
 
-					<h2 class="text-4xl md:text-5xl font-bold dark:text-white max-w-2xl mx-auto">
-						Work <span class="text-teal-600 dark:text-teal-400">Experience</span>
-					</h2>
+      <h2 class="text-4xl md:text-5xl font-extrabold dark:text-white mt-6">
+        Work <span class="bg-gradient-to-r from-teal-500 to-emerald-400 bg-clip-text text-transparent">Experience</span>
+      </h2>
 
-					<p class="text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto mt-4">
-						My professional career and achievements
-					</p>
-				</div>
+      <p class="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mt-4">
+        A timeline of my professional growth, achievements, and contributions
+      </p>
+    </div>
 
-				<div class="relative max-w-6xl mx-auto">
-					<!-- Ligne de timeline centrale -->
-					<div
-						class="absolute left-4 md:left-1/2 md:-translate-x-1/2 w-1 h-full bg-gradient-to-b from-teal-400/50 via-teal-400 to-teal-400/50 dark:from-teal-500/30 dark:via-teal-500 dark:to-teal-500/30">
-					</div>
+    <div class="relative">
+      <div class="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 bg-gradient-to-b from-teal-400/70 to-emerald-400/70"></div>
 
-					<!-- Éléments de timeline -->
-					<div v-for="(exp, index) in sharedData.experience" :key="index"
-						class="mb-16 md:mb-24 timeline-item relative pl-12 md:pl-0">
-						<div class="flex flex-col md:flex-row items-start relative">
-							<!-- Point de timeline -->
-							<div
-								class="absolute -left-3 md:left-1/2 md:-translate-x-1/2 top-6 w-6 h-6 rounded-full bg-teal-500 dark:bg-teal-400 border-4 border-white dark:border-zinc-900 shadow-lg z-10 flex items-center justify-center">
-								<BriefcaseIcon class="w-3 h-3 text-white" />
-							</div>
+      <div
+        v-for="(exp, index) in sharedData.experience"
+        :key="index"
+        class="relative flex items-center justify-between w-full mb-16 timeline-item opacity-0 translate-y-10"
+        :class="index % 2 === 0 ? 'flex-row-reverse' : ''"
+      >
+        <span
+          class="absolute left-1/2 top-2 -translate-x-1/2 flex h-5 w-5 items-center justify-center rounded-full border-4 border-white dark:border-zinc-900 bg-gradient-to-r from-teal-500 to-emerald-400 shadow-lg shadow-teal-400/30 dark:shadow-teal-800/30 scale-0 timeline-point"
+        ></span>
 
-							<!-- Côté gauche (dates) - visible seulement sur desktop -->
-							<div class="hidden md:block md:w-5/12 md:pr-8" :class="{ 'md:order-last md:pl-8': index % 2 !== 0 }">
-								<div
-									class="bg-white dark:bg-zinc-800 p-5 rounded-2xl shadow-lg border border-zinc-100 dark:border-zinc-700/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-									<div class="text-sm text-teal-600 dark:text-teal-400 font-medium mb-1">{{ exp.period }}</div>
-									<div class="text-xs text-zinc-500 dark:text-zinc-400 mb-3">{{ exp.duration }}</div>
-									<h3 class="text-xl font-bold dark:text-white mb-2">{{ exp.position }}</h3>
-									<div class="text-zinc-700 dark:text-zinc-300 font-medium flex items-center">
-										<BriefcaseIcon class="w-4 h-4 mr-2 text-teal-500" />
-										{{ exp.company }}
-									</div>
-									<div v-if="exp.location" class="text-xs text-zinc-500 dark:text-zinc-400 mt-2 flex items-center">
-										<MapPinIcon class="w-3 h-3 mr-1" />
-										{{ exp.location }}
-									</div>
-								</div>
-							</div>
+        <div
+          class="w-[calc(50%-2rem)] bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 border border-zinc-100 dark:border-zinc-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+        >
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <h3 class="text-xl font-bold text-zinc-900 dark:text-white">{{ exp.position }}</h3>
+            <span
+              class="px-3 py-1 text-xs font-medium rounded-full bg-teal-100 text-teal-700 dark:bg-teal-900/60 dark:text-teal-300"
+            >
+              {{ exp.period }}
+            </span>
+          </div>
+          <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{{ exp.company }} – {{ exp.location }}</p>
 
-							<!-- Connecteur pour mobile -->
-							<div class="absolute left-0 top-6 w-6 h-0.5 bg-teal-400 md:hidden"></div>
+          <ul class="mt-4 space-y-2 list-disc list-inside text-zinc-700 dark:text-zinc-300">
+            <li v-for="(ach, i) in exp.achievements" :key="i">{{ ach }}</li>
+          </ul>
 
-							<!-- Côté droit (détails) -->
-							<div class="md:w-7/12 mt-2 md:mt-0 md:pl-8" :class="{ 'md:pr-8': index % 2 !== 0 }">
-								<div
-									class="bg-white dark:bg-zinc-800 p-6 rounded-2xl shadow-lg border border-zinc-100 dark:border-zinc-700/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-									<!-- Info company/position pour mobile -->
-									<div class="md:hidden mb-4 pb-4 border-b border-zinc-100 dark:border-zinc-700">
-										<div class="text-sm text-teal-600 dark:text-teal-400 font-medium">{{ exp.period }}</div>
-										<h3 class="text-xl font-bold dark:text-white mb-1">{{ exp.position }}</h3>
-										<div class="text-zinc-700 dark:text-zinc-300 font-medium flex items-center">
-											<BriefcaseIcon class="w-4 h-4 mr-2 text-teal-500" />
-											{{ exp.company }}
-										</div>
-									</div>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span
+              v-for="(tech, i) in exp.stack"
+              :key="i"
+              class="px-3 py-1 text-xs font-medium rounded-full bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 hover:bg-teal-100 hover:text-teal-700 dark:hover:bg-teal-900/60 dark:hover:text-teal-300 transition-colors duration-300"
+            >
+              {{ tech }}
+            </span>
+          </div>
+        </div>
 
-									<h4 class="text-lg font-semibold dark:text-white mb-3 flex items-center">
-										<AwardIcon class="w-5 h-5 mr-2 text-teal-500" />
-										Key Achievements
-									</h4>
+        <div class="w-[calc(50%-2rem)]"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-									<ul class="space-y-2 mb-4">
-										<li v-for="(achievement, aIndex) in exp.achievements" :key="aIndex"
-											class="text-zinc-600 dark:text-zinc-300 text-sm flex items-start">
-											<span class="w-1.5 h-1.5 rounded-full bg-teal-400 mt-2 mr-3 flex-shrink-0"></span>
-											<span>{{ achievement }}</span>
-										</li>
-									</ul>
-
-									<div class="pt-4 border-t border-zinc-100 dark:border-zinc-700/50">
-										<h4 class="text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-2">Technologies used:</h4>
-										<div class="flex flex-wrap gap-2" :class="{ 'md:justify-end': index % 2 !== 0 }">
-											<span v-for="(tech, i) in exp.stack" :key="i"
-												class="text-xs px-3 py-1.5 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-full border border-teal-100 dark:border-teal-700/50 hover:bg-teal-100 dark:hover:bg-teal-800/50 transition-colors">
-												{{ tech }}
-											</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
 
 
 
@@ -559,9 +577,7 @@ onMounted(() => {
 			<div class="absolute inset-0 bg-gradient-to-br from-teal-900 via-zinc-900 to-emerald-900 opacity-95"></div>
 
 			<div class="absolute inset-0 opacity-10">
-				<div
-					class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBzdHJva2U9IiMwZGRjZDgiIHN0cm9rZS13aWR0aD0iMC41IiBzdHJva2Utb3BhY2l0eT0iMC4zIj48cGF0aCBkPSJNIDAgMCBMIDYwIDYwIE0gNjAgMCBMIDAgNjAiLz48L2c+PC9zdmc+')]">
-				</div>
+			
 
 				<div v-for="i in 15" :key="i" class="absolute text-teal-400/20 font-mono text-xs"
 					:class="['left-1/4', 'right-1/4', 'left-1/3', 'right-1/3', 'left-2/3', 'right-2/3'][i % 6]" :style="{
