@@ -15,6 +15,7 @@ export interface ExperienceItem {
   company: string;
   period: string;
   duration?: string;
+  location?: string;
   description?: string;
   technologies?: string[];
   achievements: string[];
