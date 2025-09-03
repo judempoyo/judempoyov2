@@ -111,27 +111,15 @@ export const sharedData: SharedData = {
   ],
 
   testimonials: [
-    /*  {
-       name: "Client Satisfait",
-       position: "CEO, Entreprise XYZ",
-       quote: "Jude a fait un excellent travail...",
-       avatar: "/judepic.png" 
-     } */
-    
-     {
-       name: 'MONGA KALOKO Thomas',
+   
+   /*   {
+       name: 'Client Satisfai',
       position: 'Chief Executive Officer (CEO)',
-      company: 'AbceHolding',
+      company: 'xyz',
              quote: "Jude a fait un excellent travail...",
              avatar: agriproject,
-    },
-    {
-       name: 'Jonas Kaninda',
-      position: 'Chief Executive Officer (CEO)',
-      company: 'Jkantech',
-             quote: "Jude a fait un excellent travail...",
-             avatar: uzaraka,
-    }
+    }, */
+  
   ],
 
 
@@ -198,6 +186,7 @@ export const sharedData: SharedData = {
       position: "Developer",
       company: "Jkantech",
       period: "2025 - present",
+      location:"Kolwezi, remote",
       achievements: [
         "Supported maintenance and updates for client websites",
         "Added features to existing Laravel applications",
@@ -211,17 +200,19 @@ export const sharedData: SharedData = {
       position: "Freelance Web Developer",
       company: "Self-employed",
       period: "2024 - Present",
+      location:"Kolwezi, remote",
       achievements: [
         "Built and delivered multiple web applications for small businesses",
         "Created custom dashboards, e-commerce platforms, and APIs",
         "Provided consulting on tech stack and architecture choices"
       ],
-      stack: ["Laravel", "Angular", "Vue.js", "Tailwind CSS", "PHP"]
+      stack: ["Laravel",  "Vue.js", "Angular","Tailwind CSS", "PHP"]
     },
     {
       position: "Web Developer Intern",
       company: "Afrisoft",
       period: "2024 (1 month)",
+      location:"Lubumbashi",
       achievements: [
         "Assisted in developing internal tools for business processes",
         "Contributed to UI improvements using Tailwind CSS",
@@ -433,8 +424,12 @@ export const sharedData: SharedData = {
       content: "Started as a Freelance Web Developer (2024 - Present)\n• Delivered custom web apps, dashboards, and APIs for clients\n• Gained hands-on experience with modern frameworks"
     },
     {
+      title: "🚀 Fullstack Developper at Jkantech",
+      content: "Started as a Fullstack Developer (2025 - Present)\n• Delivered custom web apps, dashboards, and APIs for clients\n• Gained hands-on experience with modern frameworks"
+    },
+    {
       title: "🌱 Continuous Learning",
-      content: "Self-training on advanced Laravel, Angular, and API design\nContributed to open-source tools (e.g., Jump Datatable package)"
+      content: "Self-training on advanced Laravel, Nuxt(VueJS), Docker, and API design\nContributed to open-source tools (e.g., Jump Datatable package)"
     }
   ]
   ,
