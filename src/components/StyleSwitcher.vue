@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 
 
 	const currentStyle = inject('currentStyle')
-	const openStyleSelector = inject('openStyleSelector')
+	const openStyleSelector = inject<() => void>('openStyleSelector')!
 
 </script>
 <template>
