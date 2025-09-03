@@ -206,7 +206,7 @@ export const sharedData: SharedData = {
         "Created custom dashboards, e-commerce platforms, and APIs",
         "Provided consulting on tech stack and architecture choices"
       ],
-      stack: ["Laravel", "Angular", "Vue.js", "Tailwind CSS", "PHP"]
+      stack: ["Laravel",  "Vue.js", "Angular","Tailwind CSS", "PHP"]
     },
     {
       position: "Web Developer Intern",
@@ -424,8 +424,12 @@ export const sharedData: SharedData = {
       content: "Started as a Freelance Web Developer (2024 - Present)\n• Delivered custom web apps, dashboards, and APIs for clients\n• Gained hands-on experience with modern frameworks"
     },
     {
+      title: "🚀 Fullstack Developper at Jkantech",
+      content: "Started as a Fullstack Developer (2025 - Present)\n• Delivered custom web apps, dashboards, and APIs for clients\n• Gained hands-on experience with modern frameworks"
+    },
+    {
       title: "🌱 Continuous Learning",
-      content: "Self-training on advanced Laravel, Angular, and API design\nContributed to open-source tools (e.g., Jump Datatable package)"
+      content: "Self-training on advanced Laravel, Nuxt(VueJS), Docker, and API design\nContributed to open-source tools (e.g., Jump Datatable package)"
     }
   ]
   ,
