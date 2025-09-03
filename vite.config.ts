@@ -9,6 +9,7 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
 // https://vite.dev/config/
 export default defineConfig({
+   base: './',
   plugins: [
     tailwindcss(),
     vue(),
