@@ -22,54 +22,25 @@ const toggleMode = () => {
       @click="toggleMode"
       variant="ghost"
       size="icon"
-      class="rounded-full h-10 w-10 relative hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+      class="rounded-full h-10 w-10 relative bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
       aria-label="Toggle theme"
     >
       <transition name="fade" mode="out-in">
         <Sun
           v-if="mode === 'light'"
           key="sun"
-          class="h-5 w-5 text-yellow-500"
+          class="h-5 w-5 text-yellow-600"
         />
         <Moon
           v-else
           key="moon"
-          class="h-5 w-5 text-blue-400"
+          class="h-5 w-5  text-zinc-100"
         />
       </transition>
       
       <span class="sr-only">Toggle theme</span>
     </Button>
 
-
-   <!--  <DropdownMenu>
-      <DropdownMenuTrigger as-child>
-        <Button 
-          variant="ghost"
-          size="sm"
-          class="ml-2 hidden sm:inline-flex"
-          aria-label="Theme options"
-        >
-          <span class="capitalize">{{ mode }}</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" class="w-32">
-        <DropdownMenuItem 
-          @click="mode = 'light'"
-          class="cursor-pointer flex items-center gap-2"
-          :class="{ 'bg-gray-100 dark:bg-zinc-700': mode === 'light' }"
-        >
-          <Sun class="h-4 w-4 text-yellow-500" />
-        </DropdownMenuItem>
-        <DropdownMenuItem 
-          @click="mode = 'dark'"
-          class="cursor-pointer flex items-center gap-2"
-          :class="{ 'bg-gray-100 dark:bg-zinc-700': mode === 'dark' }"
-        >
-          <Moon class="h-4 w-4 text-blue-400" />
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu> -->
   </div>
 </template>
 
